@@ -39,10 +39,5 @@ namespace SimCore
         public double RadiationIntensity = 0;
 
         public LifeSignData Life = new LifeSignData();
-
-        public List<DefensiveSystem> DefensiveSystems = new List<DefensiveSystem>();
-        public List<OffensiveSystem> OffensiveSystems = new List<OffensiveSystem>();
-
-        public DiplomaticInfo Diplomatics = new DiplomaticInfo();
     }
 }

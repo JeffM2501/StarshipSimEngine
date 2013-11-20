@@ -36,3 +36,30 @@ The data layout defined in the book makes use of a common data block to store
 global variables and made heavy use of static arrays. This method is not
 optimal for modern languages so the use of data structures and classes
 are used.
+
+Changes
+=================
+
+	Personnel and Cargo items
+	=================
+		Cargo and People data structures share the base class Actor
+		Actor Data  Members
+			Mass
+			Location
+			Desired Location
+			
+		Personnel Data Structure
+		=================
+		Food and Water Consumptions changed from per hour to fixed amounts on a regular cycle
+		
+		Cargo Data Structure
+		=================
+		Additional Cargo Types
+			Repair Parts
+			Torpedo
+		Additional Data Members
+			Quantity
+			Mass
+	
+	
+	

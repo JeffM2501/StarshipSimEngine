@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cargo.cs" />
     <Compile Include="CelestialObject.cs" />
     <Compile Include="DiplomaticInfo.cs" />
     <Compile Include="Entity.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="SensorData.cs" />
     <Compile Include="SpaceSector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StarShip.cs" />
     <Compile Include="SystemInfo.cs" />
     <Compile Include="Univese.cs" />
   </ItemGroup>

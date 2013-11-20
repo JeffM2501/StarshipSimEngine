@@ -11,7 +11,5 @@ namespace SimCore
     {
         public Vector3d Size = Vector3d.Zero;
         public Vector3d GalacticOrign = Vector3d.Zero;
-
-
     }
 }

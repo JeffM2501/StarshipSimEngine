@@ -12,6 +12,7 @@ namespace SimCore
         public double FunctionalStatus = 0;
         public double Reliability = 1.0;
         public double PowerConsumption = 0;
+        public double BaseEfectivness = 1;
     }
 
     public class DefensiveSystem : SystemInfo
@@ -21,6 +22,7 @@ namespace SimCore
             None = 0,
             Screens,
             Shields,
+            Cloaking,
         }
 
         public DefensiveTypes DefensiveType = DefensiveTypes.None;
@@ -41,5 +43,18 @@ namespace SimCore
         public double Arc = 0;
 
         public double Buffer = 0;
+    }
+
+    public class PropulsionSystem : SystemInfo
+    {
+        public enum PropulsionTypes
+        {
+            None = 0,
+            Impulse,
+            Warp,
+            Jump,
+        }
+        public PropulsionTypes PropulsionType = PropulsionTypes.None;
+        public double BaseThrust = 1.0;
     }
 }

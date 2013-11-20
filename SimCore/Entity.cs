@@ -26,5 +26,11 @@ namespace SimCore
         }
 
         public List<InternalLocation> Locations = new List<InternalLocation>();
+
+        public List<DefensiveSystem> DefensiveSystems = new List<DefensiveSystem>();
+        public List<OffensiveSystem> OffensiveSystems = new List<OffensiveSystem>();
+        public List<PropulsionSystem> PropulsionSystems = new List<PropulsionSystem>();
+
+        public DiplomaticInfo Diplomatics = new DiplomaticInfo();
     }
 }
