@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimCore
+using SimCore.Data;
+using SimCore.Actors;
+
+namespace SimCore.Entities
 {
     public class CelestialObject : Entity
     {
@@ -19,6 +22,7 @@ namespace SimCore
             Nova,
         }
         public Categories Category = Categories.Unknown;
+
         public bool Charted = false;
 
         public double Mass = 0;
@@ -39,5 +43,10 @@ namespace SimCore
         public double RadiationIntensity = 0;
 
         public LifeSignData Life = new LifeSignData();
+    }
+
+    public class Planet : CelestialObject
+    {
+        public List<Person> Population = new List<Person>();
     }
 }

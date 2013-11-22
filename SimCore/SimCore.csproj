@@ -41,17 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cargo.cs" />
-    <Compile Include="CelestialObject.cs" />
-    <Compile Include="DiplomaticInfo.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="SensorData.cs" />
-    <Compile Include="SpaceSector.cs" />
+    <Compile Include="Actors\Cargo.cs" />
+    <Compile Include="Data\Materials.cs" />
+    <Compile Include="Entities\CelestialObject.cs" />
+    <Compile Include="Data\DiplomaticInfo.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Actors\Person.cs" />
+    <Compile Include="Data\SensorData.cs" />
+    <Compile Include="Universe\Faction.cs" />
+    <Compile Include="Universe\SpaceSector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StarShip.cs" />
-    <Compile Include="SystemInfo.cs" />
-    <Compile Include="Univese.cs" />
+    <Compile Include="Entities\StarShip.cs" />
+    <Compile Include="Data\Systems.cs" />
+    <Compile Include="Universe\Galaxy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

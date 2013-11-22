@@ -5,7 +5,7 @@ using System.Text;
 
 using OpenTK;
 
-namespace SimCore
+namespace SimCore.Actors
 {
     public class Actor
     {
