@@ -23,6 +23,6 @@ namespace SimCore.Data
             public UInt16 Intelegence = 0;
         }
 
-        public Dictionary<LifeTypes, Info> LifeSigns = new Dictionary<LifeTypes, Info>();
+        public List<Info> LifeSigns = new List<Info>();
     }
 }

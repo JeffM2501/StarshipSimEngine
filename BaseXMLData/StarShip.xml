@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<StarShip xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>18446744073709551615</ID>
+  <Name />
+  <Location>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>0</Z>
+  </Location>
+  <Orientation>
+    <X>0</X>
+    <Y>0</Y>
+  </Orientation>
+  <RelativisticSpeed>0</RelativisticSpeed>
+  <FTLSpeed>0</FTLSpeed>
+  <Radius>0</Radius>
+  <Locations />
+  <Engines />
+  <StorageSystems />
+  <FluidTanks />
+  <PropulsionSystems />
+  <NavigationSystems />
+  <DefensiveSystems />
+  <OffensiveSystems />
+  <MedicalSystems />
+  <LifeSupportDistrobutions />
+  <LifeSupportRecyclers />
+  <Hangars />
+  <Communications />
+  <Sensors />
+  <Transporters />
+  <TractorBeams />
+  <Computers />
+  <Diplomatics>
+    <PendingTreaties />
+  </Diplomatics>
+  <SizeClass>None</SizeClass>
+  <Crew />
+  <Passengers />
+  <Hostiles />
+</StarShip>

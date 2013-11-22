@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<InternalLocation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Index>-1</Index>
+  <Name />
+  <Size>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>0</Z>
+  </Size>
+  <TraversalSpeed>0</TraversalSpeed>
+  <Connections />
+  <Stations />
+</InternalLocation>
