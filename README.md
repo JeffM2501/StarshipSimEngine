@@ -37,30 +37,30 @@ global variables and made heavy use of static arrays. This method is not
 optimal for modern languages so the use of data structures and classes
 are used.
 
-Changes
+Data Layout
 =================
+The data presented in the book has been greatly expanded and built into a set
+of data structures. These data structures are stored in a tree to simulate proper
+containment of items.
 
-	Personnel and Cargo items
-	=================
-		Cargo and People data structures share the base class Actor
-		Actor Data  Members
-			Mass
-			Location
-			Desired Location
+The Top level tree contains
+	Galaxy
+		Sectors
+			Celestial Bodies
+			Vessels
+			Free Actors
 			
-		Personnel Data Structure
-		=================
-		Food and Water Consumptions changed from per hour to fixed amounts on a regular cycle
-		
-		Cargo Data Structure
-		=================
-		Additional Cargo Types
-			Repair Parts
-			Torpedo
-		Additional Data Members
-			Quantity
-			Mass
-	
+Celestial bodies and vessels derived from an entity class and contains many
+of the same things. The main differentiating factor is the Vessels can be
+Crewed by players using Command Controllers. 
+
+Actors are mobile objects that can be attached to an Entity and move throughout
+it's internal locations as well as exist in free space. Actors represent things
+such as Persons, Cargo, and Weapons such as Torpedoes. The internal locations
+of an entity is a linked network of spaces that actors use and also contain 
+various systems. Systems allow an entity to make changes in it's location,
+use or generate various resources, and make changes to actors.
+
 TODO:
 Ship Controller
 Players as Actors

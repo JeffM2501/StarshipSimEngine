@@ -5,6 +5,8 @@ using System.Text;
 
 using OpenTK;
 
+using SimCore.Data;
+
 namespace SimCore.Actors
 {
     public class Actor
@@ -52,5 +54,7 @@ namespace SimCore.Actors
         public double OxygenConsumption = 1.0;
 
         public double CarryingCapacity = 0.0;
+
+        public List<Equipment> CariedEquipment = new List<Equipment>();
     }
 }

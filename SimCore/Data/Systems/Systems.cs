@@ -85,22 +85,6 @@ namespace SimCore.Data.Systems
         public List<FuelConsumption> Byproducts = new List<FuelConsumption>();
     }
 
-    public class PropulsionSystem : BaseSystem
-    {
-        public enum PropulsionTypes
-        {
-            None = 0,
-            Impulse,
-            Warp,
-            Reaction,
-        }
-        public PropulsionTypes PropulsionType = PropulsionTypes.None;
-
-        public double BaseThrust = 1.0;
-
-        public List<GenerationSystem.FuelConsumption> FuelConsumptions = new List<GenerationSystem.FuelConsumption>();
-    }
-
     public class MedicalSystem : BaseSystem
     {
         public enum MedicalSystemTypes

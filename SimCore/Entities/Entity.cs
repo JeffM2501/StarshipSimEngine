@@ -21,14 +21,18 @@ namespace SimCore.Entities
         public string Name = string.Empty;
         public Vector3d Location = Vector3d.Zero;
         public Vector2d Orientation = Vector2d.Zero;
-        public double Speed = 0;
+
+        public double RelativisticSpeed = 0;
+        public double FTLSpeed = 0;
+
         public double Radius = 0;
 
         public class InternalLocation
         {
             public int Index = -1;
             public string Name = string.Empty;
-            public double Size = 0;
+            public Vector3d Size = Vector3d.Zero;
+            public double TraversalSpeed = 0;
 
             public List<int> Connections = new List<int>();
 
@@ -38,7 +42,6 @@ namespace SimCore.Entities
                 public double Condition = 1.0;
                 public Person Crewmember = null;
             }
-
             public List<StationInformation> Stations = new List<StationInformation>();
         }
 

@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Actors\Cargo.cs" />
     <Compile Include="Actors\Torpedo.cs" />
+    <Compile Include="Data\Equipment.cs" />
     <Compile Include="Data\Materials.cs" />
     <Compile Include="Data\Systems\ContainerSystems.cs" />
     <Compile Include="Data\Systems\DefensiveSystems.cs" />
+    <Compile Include="Data\Systems\PropulsionSystems.cs" />
     <Compile Include="Data\Systems\WeaponsSystems.cs" />
     <Compile Include="Entities\CelestialObject.cs" />
     <Compile Include="Data\DiplomaticInfo.cs" />

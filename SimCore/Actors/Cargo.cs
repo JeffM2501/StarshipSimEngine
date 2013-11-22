@@ -16,6 +16,7 @@ namespace SimCore.Actors
             Torpedo,
             RepairParts,
             MedicalSupplies,
+            Equipment,
         }
 
         public CargoTypes CargoType = CargoTypes.Unknown;
@@ -32,5 +33,10 @@ namespace SimCore.Actors
     {
         public BulkMaterialTypes MaterialType = BulkMaterialTypes.Unkown;
         public double MaterialQuality = 1.0;
+    }
+
+    public class EquipmentCargo : Cargo
+    {
+        public List<Equipment> Contents = new List<Equipment>();
     }
 }
