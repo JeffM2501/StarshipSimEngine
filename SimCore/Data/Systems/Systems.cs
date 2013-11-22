@@ -7,7 +7,7 @@ using OpenTK;
 using SimCore.Actors;
 using SimCore.Entities;
 
-namespace SimCore.Data
+namespace SimCore.Data.Systems
 {
     public class SystemStatusInfo
     {
@@ -32,6 +32,24 @@ namespace SimCore.Data
         public double BaseEfectivness = 1;
 
         public int LocationID = -1;
+
+        public UInt64 ControlComputer = UInt64.MaxValue;
+    }
+
+    public class ComputerSystem : BaseSystem
+    {
+        public enum ComputerTypes
+        {
+            Unknown = 0,
+            Drive,
+            Science,
+            Communications,
+            Medical,
+            Fire,
+        }
+        public ComputerTypes ComputerType = ComputerTypes.Unknown;
+
+        public double ComputationFactor = 0;
     }
 
     public class GenerationSystem : BaseSystem
@@ -67,37 +85,6 @@ namespace SimCore.Data
         public List<FuelConsumption> Byproducts = new List<FuelConsumption>();
     }
 
-    public class DefensiveSystem : BaseSystem
-    {
-        public enum DefensiveTypes
-        {
-            None = 0,
-            Screens,
-            Shields,
-            Cloaking,
-        }
-        public DefensiveTypes DefensiveType = DefensiveTypes.None;
-
-        public double Efficiency = 0;
-    }
-
-    public class OffensiveSystem : BaseSystem
-    {
-        public enum OffensiveTypes
-        {
-            None = 0,
-            Phasers,
-            Torpedoes,
-        }
-
-        public OffensiveTypes OffensiveType = OffensiveTypes.None;
-
-        public Vector3d Orientation = Vector3d.UnitX;
-        public double Arc = 0;
-
-        public double Buffer = 0;
-    }
-
     public class PropulsionSystem : BaseSystem
     {
         public enum PropulsionTypes
@@ -130,39 +117,6 @@ namespace SimCore.Data
         public double Quantity = 0;
     }
 
-    public class StorageSystem : BaseSystem
-    {
-        public enum StorageSystemTypes
-        {
-            Unkown = 0,
-            Cargo,
-            Personell,
-            Prisoners,
-        }
-
-        public StorageSystemTypes SystemType = StorageSystemTypes.Unkown;
-        public double MaxCapacity = 0;
-
-        public List<Actor> Contents = new List<Actor>();
-    }
-
-    public class DetentionSystem : StorageSystem
-    {
-        public float BaseBreakoutFactor = 0;
-        public float BaseBreakoutDetectionFactor = 0;
-    }
-
-    public class FluidTankSystem : BaseSystem
-    {
-        public FluidTypes TankType = FluidTypes.Unknown;
-        public double FluidPurity = 1.0;
-
-        public double MaxCapacity = 0;
-        public double Quantity = 0;
-
-        public double MaxFlowRate = 0;
-    }
-
     public class LifeSupportSystem : BaseSystem
     {
         public enum LifeSupportTypes
@@ -186,13 +140,6 @@ namespace SimCore.Data
     public class LifeSupportRecycleSystem : LifeSupportSystem
     {
         public double Efficency = 1;
-    }
-
-    public class HangarSystem : BaseSystem
-    {
-        public int MaxCapacity = 0;
-        public StarShip.StarShipSizeClasses MaxShipClass = StarShip.StarShipSizeClasses.None;
-        public List<StarShip> DockedShips = new List<StarShip>();
     }
 
     public class CommunicationSystem : BaseSystem

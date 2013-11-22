@@ -15,7 +15,7 @@ namespace SimCore.Actors
         public class LocationInfo
         {
             public UInt64 Host = UInt64.MinValue;
-            public int Index = -1;
+            public int TargetLocationIndex = -1;
             public Vector3d Postion = Vector3d.Zero;
         }
 

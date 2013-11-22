@@ -64,7 +64,6 @@ Changes
 TODO:
 Ship Controller
 Players as Actors
-Stations in sections
 Actor Modification Systems
 Torpedoes as Actors
 

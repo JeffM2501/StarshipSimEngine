@@ -5,6 +5,8 @@ using System.Text;
 using OpenTK;
 
 using SimCore.Data;
+using SimCore.Data.Systems;
+using SimCore.Actors;
 
 namespace SimCore.Entities
 {
@@ -28,7 +30,16 @@ namespace SimCore.Entities
             public string Name = string.Empty;
             public double Size = 0;
 
-            public List<int> Connections = new List<int>(); 
+            public List<int> Connections = new List<int>();
+
+            public class StationInformation
+            {
+                public string Name = string.Empty;
+                public double Condition = 1.0;
+                public Person Crewmember = null;
+            }
+
+            public List<StationInformation> Stations = new List<StationInformation>();
         }
 
         public List<InternalLocation> Locations = new List<InternalLocation>();
@@ -57,6 +68,8 @@ namespace SimCore.Entities
         public List<TransporterSystem> Transporters = new List<TransporterSystem>();
 
         public List<TractorBeamSystem> TractorBeams = new List<TractorBeamSystem>();
+
+        public List<ComputerSystem> Computers = new List<ComputerSystem>();
 
         public DiplomaticInfo Diplomatics = new DiplomaticInfo();
 
