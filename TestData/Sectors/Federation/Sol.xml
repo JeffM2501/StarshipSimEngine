@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <Sector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Sol System</Name>
   <ID>1</ID>
   <Size>
     <X>0</X>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Faction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Klingon Empire</Name>
+  <Initals>KLN</Initals>
+  <ShortName>Klingons</ShortName>
+  <ShipPrefix>ISK</ShipPrefix>
+  <ID>2</ID>
+  <InfluencedSectors>
+	<SectorInfluence>
+	  <CoreWorld>true</CoreWorld>
+	  <SectorID>100</SectorID>
+	  <InfluenceFactor>1</InfluenceFactor>
+	</SectorInfluence>
+  </InfluencedSectors>
+  <GovermentType>Empire</GovermentType>
+  <Interactions>
+	<InteractionInfo>
+	  <FactionID>1</FactionID>
+	  <Interaction>Subversive</Interaction>
+	</InteractionInfo>
+  </Interactions>
+  <DefaultInteractionType>Agressive</DefaultInteractionType>
+</Faction>

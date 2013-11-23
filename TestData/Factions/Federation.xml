@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Faction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>United Federation of Planets</Name>
+  <Initals>UFP</Initals>
+  <ShortName>Federation</ShortName>
+  <ShipPrefix>USS</ShipPrefix>
+  <ID>1</ID>
+  <InfluencedSectors>
+	<SectorInfluence>
+	  <CoreWorld>true</CoreWorld>
+	  <SectorID>1</SectorID>
+	  <InfluenceFactor>1</InfluenceFactor>
+	</SectorInfluence>
+  </InfluencedSectors>
+  <GovermentType>Democracy</GovermentType>
+  <Interactions>
+	<InteractionInfo>
+	  <FactionID>2</FactionID>
+	  <Interaction>Defensive</Interaction>
+	</InteractionInfo>
+  </Interactions>
+  <DefaultInteractionType>Altruistic</DefaultInteractionType>
+</Faction>
