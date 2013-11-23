@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <Sector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>Sol System</Name>
-  <ID>1</ID>
+  <Name>Qo'noS</Name>
+  <ID>100</ID>
   <Size>
-    <X>448800000</X>
-    <Y>448800000</Y>
-    <Z>14960000</Z>
+    <X>478800000</X>
+    <Y>448520000</Y>
+    <Z>10660000</Z>
   </Size>
   <GalacticOrign>
-    <X>-26,000</X>
-    <Y>0</Y>
-    <Z>0</Z>
+	<X>-100</X>
+    <Y>-25,452</Y>
+    <Z>16</Z>
   </GalacticOrign>
   <Celestials />
   <Vessels />

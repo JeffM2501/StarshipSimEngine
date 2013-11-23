@@ -42,11 +42,12 @@ namespace SimCore.Universe
         {
             Unknown = 0,
             Ambivolent,
-            Agressive,
+            Aggressive,
             Submissive,
             Suportive,
             Subversive,
             Defensive,
+            Assult,
             Altruistic,
             Xenophobic,
         }
