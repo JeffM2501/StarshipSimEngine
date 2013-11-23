@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Torpedo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name />
+  <Mass>0</Mass>
+  <CurrentLocation>
+    <Host>0</Host>
+    <TargetLocationIndex>-1</TargetLocationIndex>
+    <Postion>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+    </Postion>
+  </CurrentLocation>
+  <TorpedoType>Unknown</TorpedoType>
+  <MaxCharge>0</MaxCharge>
+  <Charge>0</Charge>
+  <DamageFactor>0</DamageFactor>
+  <Acceleration>0</Acceleration>
+  <RotationSpeed>0</RotationSpeed>
+  <Speed>0</Speed>
+  <UseFTLScale>false</UseFTLScale>
+  <Orientation>
+    <X>0</X>
+    <Y>0</Y>
+  </Orientation>
+</Torpedo>
