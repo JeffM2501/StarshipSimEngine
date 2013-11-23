@@ -61,10 +61,36 @@ of an entity is a linked network of spaces that actors use and also contain
 various systems. Systems allow an entity to make changes in it's location,
 use or generate various resources, and make changes to actors.
 
+
+Units
+=================
+Scales
+======
+In order to function on a 64 computer system several units of measure will be 
+used for actions at different scales;
+
+Galactic
+	Coordinates at the galactic level are defined in light years from the
+	galactic centrer. These coordinates are used to define where the local
+	coordinate system of a sector is located. In general there are no speed
+	values used at this scale as sector or galaxy movement is not simulated.
+	
+Sector
+	Coordinates of items inside a sector are given defined in Kilometres. Normal
+	Speeds are defined in Kilometres per Second (KPH). This includes vessels and 
+	actors moving in sector space. Speeds may be defined in the FTL Scale of a 
+	factor of the Speed of Light (FSL) and may exceed 1.0 for various FTL
+	Systems. Solar Systems and other interesting areas may need to be
+	defined as multiple sectors in order to provide usable resolution in
+	coordinates.
+	
+Entity
+	Coordinates of locations and actors within entities are defined in Meters.
+	Speeds are defined in Meters Per Second (MPS)
+	
+
 TODO:
 Ship Controller
-Players as Actors
 Actor Modification Systems
-Torpedoes as Actors
 
 	
