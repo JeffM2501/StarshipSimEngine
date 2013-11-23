@@ -8,6 +8,10 @@ namespace SimCore.Universe
     public class Faction
     {
         public string Name = string.Empty;
+        public string Initals = string.Empty;
+        public string ShortName = string.Empty;
+        public string ShipPrefix = string.Empty;
+
         public UInt64 ID = UInt64.MaxValue;
 
         public class SectorInfluence
@@ -42,6 +46,8 @@ namespace SimCore.Universe
             Submissive,
             Suportive,
             Subversive,
+            Defensive,
+            Altruistic,
             Xenophobic,
         }
 
