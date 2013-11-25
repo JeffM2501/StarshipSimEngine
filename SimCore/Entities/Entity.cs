@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using OpenTK;
 
 using SimCore.Data;
@@ -31,10 +32,34 @@ namespace SimCore.Entities
         {
             public int Index = -1;
             public string Name = string.Empty;
+
+            public Vector3d Origin = Vector3d.Zero;
+            public Quaternion Orientation = Quaternion.Identity;
+
+            public enum LocaionShapes
+            {
+                Rectangular,
+                XCylinder,
+                YCylinder,
+                ZCYlinder,
+                Sphere,
+            }
+            public LocaionShapes Shape = LocaionShapes.Rectangular;
+            
+            // Size varies by shape
+            // Rectangle, H, V D
+            // Cylinders, Radius, Length, Segment Size (0 = full)
+            // Sphere, Radius, Unused, Unused
             public Vector3d Size = Vector3d.Zero;
+
             public double TraversalSpeed = 0;
 
-            public List<int> Connections = new List<int>();
+            public class ConnectionInfo
+            {
+                public int TargetIndex = -1;
+                public Vector3d ConnectionPoint = Vector3d.Zero;
+            }
+            public List<ConnectionInfo> Connections = new List<ConnectionInfo>();
 
             public class StationInformation
             {
@@ -43,6 +68,11 @@ namespace SimCore.Entities
                 public Person Crewmember = null;
             }
             public List<StationInformation> Stations = new List<StationInformation>();
+
+            public override string ToString()
+            {
+                return Name;
+            }
         }
 
         public List<InternalLocation> Locations = new List<InternalLocation>();

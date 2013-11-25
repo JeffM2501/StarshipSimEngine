@@ -19,6 +19,7 @@ namespace SimCore.Data.Systems
     public class BaseSystem
     {
         public UInt64 SystemID = UInt64.MaxValue;
+        public string Name = string.Empty;
 
         public SystemStatusInfo Status = new SystemStatusInfo();
         public SystemStatusInfo PowerConnection = new SystemStatusInfo();
