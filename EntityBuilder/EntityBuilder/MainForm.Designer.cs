@@ -134,6 +134,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComponentsList.ContextMenuStrip = this.ComponentContextMenu;
+            this.ComponentsList.HideSelection = false;
             this.ComponentsList.Location = new System.Drawing.Point(3, 30);
             this.ComponentsList.Name = "ComponentsList";
             this.ComponentsList.Size = new System.Drawing.Size(281, 148);
@@ -162,14 +163,14 @@
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.newToolStripMenuItem1.Text = "New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // systemToolStripMenuItem

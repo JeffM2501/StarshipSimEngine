@@ -178,23 +178,23 @@ namespace EntityBuilder
 
         void inspector_LocationNameChanged(object sender, EventArgs e)
         {
-            LocationInspector inspector = sender as LocationInspector;
-            if (sender == null)
+            Entity.InternalLocation location = sender as Entity.InternalLocation;
+            if (location == null)
                 return;
 
             foreach (TreeNode node in ComponentsList.Nodes)
             {
                 if (ViewByLocation())
                 {
-                    if (node.Tag == inspector.Location)
-                        node.Text = inspector.Location.Name;
+                    if (node.Tag == location)
+                        node.Text = location.Name;
                 }
                 else
                 {
                     foreach (TreeNode n in node.Nodes)
                     {
-                        if (n.Tag == inspector.Location)
-                            n.Text = inspector.Location.Name;
+                        if (n.Tag == location)
+                            n.Text = location.Name;
                     }
                 }
                 
