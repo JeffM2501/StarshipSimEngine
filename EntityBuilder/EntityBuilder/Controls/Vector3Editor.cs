@@ -15,11 +15,20 @@ namespace EntityBuilder.Controls
     {
         public Vector3d Vector = Vector3d.Zero;
 
+        public event EventHandler ValueChanged; 
+
         public string LabelText { get { return ValueName.Text; } set { ValueName.Text = value; } }
 
         public Vector3Editor()
         {
             InitializeComponent();
+
+            Set(Vector);
+        }
+
+        public void Set(Vector3d vec)
+        {
+            Vector = vec;
 
             XValue.Value = (decimal)Vector.X;
             YValue.Value = (decimal)Vector.Y;
@@ -32,6 +41,9 @@ namespace EntityBuilder.Controls
                 return;
 
             Vector.X = (double)XValue.Value;
+
+            if (ValueChanged != null)
+                ValueChanged(this, EventArgs.Empty);
         }
 
         private void YValue_ValueChanged(object sender, EventArgs e)
@@ -40,6 +52,9 @@ namespace EntityBuilder.Controls
                 return;
 
             Vector.Y = (double)YValue.Value;
+
+            if (ValueChanged != null)
+                ValueChanged(this, EventArgs.Empty);
         }
 
         private void ZValue_ValueChanged(object sender, EventArgs e)
@@ -48,6 +63,9 @@ namespace EntityBuilder.Controls
                 return;
 
             Vector.Z = (double)ZValue.Value;
+
+            if (ValueChanged != null)
+                ValueChanged(this, EventArgs.Empty);
         }
 
         private void Vector3Editor_Load(object sender, EventArgs e)

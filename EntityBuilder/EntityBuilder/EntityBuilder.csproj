@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\QuaternionEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QuaternionEditor.Designer.cs">
+      <DependentUpon>QuaternionEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Vector3Editor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\QuaternionEditor.resx">
+      <DependentUpon>QuaternionEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Vector3Editor.resx">
       <DependentUpon>Vector3Editor.cs</DependentUpon>
     </EmbeddedResource>

@@ -34,23 +34,23 @@ namespace SimCore.Entities
             public string Name = string.Empty;
 
             public Vector3d Origin = Vector3d.Zero;
-            public Quaternion Orientation = Quaternion.Identity;
+            public Quaterniond Orientation = new Quaterniond(0,0,1,0);
 
             public enum LocaionShapes
             {
                 Rectangular,
                 XCylinder,
                 YCylinder,
-                ZCYlinder,
+                ZCylinder,
                 Sphere,
             }
             public LocaionShapes Shape = LocaionShapes.Rectangular;
             
             // Size varies by shape
-            // Rectangle, H, V D
+            // Rectangle, H, V, D
             // Cylinders, Radius, Length, Segment Size (0 = full)
             // Sphere, Radius, Unused, Unused
-            public Vector3d Size = Vector3d.Zero;
+            public Vector3d Size = new Vector3d(1,1,1);
 
             public double TraversalSpeed = 0;
 

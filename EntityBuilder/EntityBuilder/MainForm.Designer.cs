@@ -31,15 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainSpliter = new System.Windows.Forms.SplitContainer();
+            this.Visualisation = new OpenTK.GLControl();
             this.ToolsSplitter = new System.Windows.Forms.SplitContainer();
             this.ComponentViewModeList = new System.Windows.Forms.ComboBox();
             this.ComponentsList = new System.Windows.Forms.TreeView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ComponentContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.locationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,17 +43,24 @@
             this.newToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ComponentImages = new System.Windows.Forms.ImageList(this.components);
             this.InspectorArea = new System.Windows.Forms.FlowLayoutPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ComponentImages = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MainSpliter)).BeginInit();
+            this.MainSpliter.Panel1.SuspendLayout();
             this.MainSpliter.Panel2.SuspendLayout();
             this.MainSpliter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToolsSplitter)).BeginInit();
             this.ToolsSplitter.Panel1.SuspendLayout();
             this.ToolsSplitter.Panel2.SuspendLayout();
             this.ToolsSplitter.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.ComponentContextMenu.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainSpliter
@@ -67,12 +69,30 @@
             this.MainSpliter.Location = new System.Drawing.Point(0, 24);
             this.MainSpliter.Name = "MainSpliter";
             // 
+            // MainSpliter.Panel1
+            // 
+            this.MainSpliter.Panel1.Controls.Add(this.Visualisation);
+            // 
             // MainSpliter.Panel2
             // 
             this.MainSpliter.Panel2.Controls.Add(this.ToolsSplitter);
             this.MainSpliter.Size = new System.Drawing.Size(823, 395);
             this.MainSpliter.SplitterDistance = 532;
             this.MainSpliter.TabIndex = 0;
+            // 
+            // Visualisation
+            // 
+            this.Visualisation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Visualisation.BackColor = System.Drawing.Color.Black;
+            this.Visualisation.Location = new System.Drawing.Point(0, 0);
+            this.Visualisation.Name = "Visualisation";
+            this.Visualisation.Size = new System.Drawing.Size(532, 395);
+            this.Visualisation.TabIndex = 0;
+            this.Visualisation.VSync = false;
+            this.Visualisation.Load += new System.EventHandler(this.Visualisation_Load);
+            this.Visualisation.Paint += new System.Windows.Forms.PaintEventHandler(this.Visualisation_Paint);
             // 
             // ToolsSplitter
             // 
@@ -113,11 +133,82 @@
             this.ComponentsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComponentsList.ContextMenuStrip = this.ComponentContextMenu;
             this.ComponentsList.Location = new System.Drawing.Point(3, 30);
             this.ComponentsList.Name = "ComponentsList";
             this.ComponentsList.Size = new System.Drawing.Size(281, 148);
             this.ComponentsList.TabIndex = 0;
             this.ComponentsList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ComponentsList_AfterSelect);
+            // 
+            // ComponentContextMenu
+            // 
+            this.ComponentContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.locationToolStripMenuItem,
+            this.systemToolStripMenuItem});
+            this.ComponentContextMenu.Name = "ComponentContextMenu";
+            this.ComponentContextMenu.Size = new System.Drawing.Size(121, 48);
+            this.ComponentContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ComponentContextMenu_Opening);
+            // 
+            // locationToolStripMenuItem
+            // 
+            this.locationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem1,
+            this.deleteToolStripMenuItem});
+            this.locationToolStripMenuItem.Name = "locationToolStripMenuItem";
+            this.locationToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.locationToolStripMenuItem.Text = "Location";
+            this.locationToolStripMenuItem.DropDownOpened += new System.EventHandler(this.locationToolStripMenuItem_DropDownOpened);
+            // 
+            // newToolStripMenuItem1
+            // 
+            this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem1.Text = "New";
+            this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // systemToolStripMenuItem
+            // 
+            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem2,
+            this.deleteToolStripMenuItem1,
+            this.moveToolStripMenuItem});
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.systemToolStripMenuItem.Text = "System";
+            this.systemToolStripMenuItem.DropDownOpening += new System.EventHandler(this.systemToolStripMenuItem_DropDownOpening);
+            // 
+            // newToolStripMenuItem2
+            // 
+            this.newToolStripMenuItem2.Name = "newToolStripMenuItem2";
+            this.newToolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
+            this.newToolStripMenuItem2.Text = "New";
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem1.Text = "Delete";
+            // 
+            // moveToolStripMenuItem
+            // 
+            this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.moveToolStripMenuItem.Text = "Move";
+            // 
+            // InspectorArea
+            // 
+            this.InspectorArea.AutoScroll = true;
+            this.InspectorArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InspectorArea.Location = new System.Drawing.Point(0, 0);
+            this.InspectorArea.Name = "InspectorArea";
+            this.InspectorArea.Size = new System.Drawing.Size(287, 210);
+            this.InspectorArea.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -165,79 +256,12 @@
             this.templatesToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.templatesToolStripMenuItem.Text = "Templates";
             // 
-            // ComponentContextMenu
-            // 
-            this.ComponentContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.locationToolStripMenuItem,
-            this.systemToolStripMenuItem});
-            this.ComponentContextMenu.Name = "ComponentContextMenu";
-            this.ComponentContextMenu.Size = new System.Drawing.Size(121, 48);
-            // 
-            // locationToolStripMenuItem
-            // 
-            this.locationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem1,
-            this.deleteToolStripMenuItem});
-            this.locationToolStripMenuItem.Name = "locationToolStripMenuItem";
-            this.locationToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.locationToolStripMenuItem.Text = "Location";
-            // 
-            // newToolStripMenuItem1
-            // 
-            this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.newToolStripMenuItem1.Text = "New";
-            this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // systemToolStripMenuItem
-            // 
-            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem2,
-            this.deleteToolStripMenuItem1,
-            this.moveToolStripMenuItem});
-            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
-            this.systemToolStripMenuItem.Text = "System";
-            // 
-            // newToolStripMenuItem2
-            // 
-            this.newToolStripMenuItem2.Name = "newToolStripMenuItem2";
-            this.newToolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
-            this.newToolStripMenuItem2.Text = "New";
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem1.Text = "Delete";
-            // 
-            // moveToolStripMenuItem
-            // 
-            this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.moveToolStripMenuItem.Text = "Move";
-            // 
             // ComponentImages
             // 
             this.ComponentImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ComponentImages.ImageStream")));
             this.ComponentImages.TransparentColor = System.Drawing.Color.Transparent;
             this.ComponentImages.Images.SetKeyName(0, "miscellaneous 2.ico");
             this.ComponentImages.Images.SetKeyName(1, "kservices.ico");
-            // 
-            // InspectorArea
-            // 
-            this.InspectorArea.AutoScroll = true;
-            this.InspectorArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InspectorArea.Location = new System.Drawing.Point(0, 0);
-            this.InspectorArea.Name = "InspectorArea";
-            this.InspectorArea.Size = new System.Drawing.Size(287, 210);
-            this.InspectorArea.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -248,6 +272,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
             this.Text = "EntityBuilder";
+            this.MainSpliter.Panel1.ResumeLayout(false);
             this.MainSpliter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainSpliter)).EndInit();
             this.MainSpliter.ResumeLayout(false);
@@ -255,9 +280,9 @@
             this.ToolsSplitter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ToolsSplitter)).EndInit();
             this.ToolsSplitter.ResumeLayout(false);
+            this.ComponentContextMenu.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.ComponentContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,6 +310,7 @@
         private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
         private System.Windows.Forms.ImageList ComponentImages;
         private System.Windows.Forms.FlowLayoutPanel InspectorArea;
+        private OpenTK.GLControl Visualisation;
     }
 }
 
