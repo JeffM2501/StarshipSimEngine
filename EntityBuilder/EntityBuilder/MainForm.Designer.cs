@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainSpliter = new System.Windows.Forms.SplitContainer();
+            this.ZoomOut = new System.Windows.Forms.Button();
+            this.ZoomIn = new System.Windows.Forms.Button();
+            this.SpinUp = new System.Windows.Forms.Button();
+            this.SpinBack = new System.Windows.Forms.Button();
             this.CCWRot = new System.Windows.Forms.Button();
             this.CWRot = new System.Windows.Forms.Button();
             this.Visualisation = new OpenTK.GLControl();
@@ -75,6 +79,10 @@
             // 
             // MainSpliter.Panel1
             // 
+            this.MainSpliter.Panel1.Controls.Add(this.ZoomOut);
+            this.MainSpliter.Panel1.Controls.Add(this.ZoomIn);
+            this.MainSpliter.Panel1.Controls.Add(this.SpinUp);
+            this.MainSpliter.Panel1.Controls.Add(this.SpinBack);
             this.MainSpliter.Panel1.Controls.Add(this.CCWRot);
             this.MainSpliter.Panel1.Controls.Add(this.CWRot);
             this.MainSpliter.Panel1.Controls.Add(this.Visualisation);
@@ -85,6 +93,54 @@
             this.MainSpliter.Size = new System.Drawing.Size(830, 454);
             this.MainSpliter.SplitterDistance = 586;
             this.MainSpliter.TabIndex = 0;
+            // 
+            // ZoomOut
+            // 
+            this.ZoomOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ZoomOut.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.ZoomOut.Location = new System.Drawing.Point(553, 223);
+            this.ZoomOut.Name = "ZoomOut";
+            this.ZoomOut.Size = new System.Drawing.Size(30, 23);
+            this.ZoomOut.TabIndex = 6;
+            this.ZoomOut.Text = "q";
+            this.ZoomOut.UseVisualStyleBackColor = true;
+            this.ZoomOut.Click += new System.EventHandler(this.ZoomOut_Click);
+            // 
+            // ZoomIn
+            // 
+            this.ZoomIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ZoomIn.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.ZoomIn.Location = new System.Drawing.Point(553, 194);
+            this.ZoomIn.Name = "ZoomIn";
+            this.ZoomIn.Size = new System.Drawing.Size(30, 23);
+            this.ZoomIn.TabIndex = 5;
+            this.ZoomIn.Text = "p";
+            this.ZoomIn.UseVisualStyleBackColor = true;
+            this.ZoomIn.Click += new System.EventHandler(this.ZoomIn_Click);
+            // 
+            // SpinUp
+            // 
+            this.SpinUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SpinUp.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.SpinUp.Location = new System.Drawing.Point(553, 399);
+            this.SpinUp.Name = "SpinUp";
+            this.SpinUp.Size = new System.Drawing.Size(30, 23);
+            this.SpinUp.TabIndex = 4;
+            this.SpinUp.Text = "M";
+            this.SpinUp.UseVisualStyleBackColor = true;
+            this.SpinUp.Click += new System.EventHandler(this.SpinUp_Click);
+            // 
+            // SpinBack
+            // 
+            this.SpinBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SpinBack.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.SpinBack.Location = new System.Drawing.Point(553, 1);
+            this.SpinBack.Name = "SpinBack";
+            this.SpinBack.Size = new System.Drawing.Size(30, 23);
+            this.SpinBack.TabIndex = 3;
+            this.SpinBack.Text = "L";
+            this.SpinBack.UseVisualStyleBackColor = true;
+            this.SpinBack.Click += new System.EventHandler(this.SpinBack_Click);
             // 
             // CCWRot
             // 
@@ -118,7 +174,7 @@
             this.Visualisation.BackColor = System.Drawing.Color.Black;
             this.Visualisation.Location = new System.Drawing.Point(0, 0);
             this.Visualisation.Name = "Visualisation";
-            this.Visualisation.Size = new System.Drawing.Size(586, 422);
+            this.Visualisation.Size = new System.Drawing.Size(547, 422);
             this.Visualisation.TabIndex = 0;
             this.Visualisation.VSync = false;
             this.Visualisation.Load += new System.EventHandler(this.Visualisation_Load);
@@ -267,14 +323,16 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -287,14 +345,16 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // templatesToolStripMenuItem
@@ -317,6 +377,7 @@
             this.ClientSize = new System.Drawing.Size(830, 478);
             this.Controls.Add(this.MainSpliter);
             this.Controls.Add(this.menuStrip1);
+            this.MinimumSize = new System.Drawing.Size(500, 370);
             this.Name = "MainForm";
             this.Text = "EntityBuilder";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -364,6 +425,10 @@
         private System.Windows.Forms.Button CCWRot;
         private System.Windows.Forms.Button CWRot;
         private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
+        private System.Windows.Forms.Button SpinUp;
+        private System.Windows.Forms.Button SpinBack;
+        private System.Windows.Forms.Button ZoomOut;
+        private System.Windows.Forms.Button ZoomIn;
     }
 }
 

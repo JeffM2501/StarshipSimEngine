@@ -33,6 +33,25 @@ namespace EntityLocationRendering
             return Color.White;
         }
 
+        public static void DrawOriginMarker(float size)
+        {
+            GL.Begin(BeginMode.Lines);
+
+            GL.Color3(Color.Red);
+            GL.Vertex3(Vector3.Zero);
+            GL.Vertex3(Vector3.UnitX * size);
+
+            GL.Color3(Color.Green);
+            GL.Vertex3(Vector3.Zero);
+            GL.Vertex3(Vector3.UnitY * size);
+
+            GL.Color3(Color.Blue);
+            GL.Vertex3(Vector3.Zero);
+            GL.Vertex3(Vector3.UnitZ * size);
+
+            GL.End();
+        }
+
         public void Draw()
         {
             GL.LineWidth(LineWidth);
@@ -47,8 +66,10 @@ namespace EntityLocationRendering
                 double angle = 0;
                 loc.Orientation.ToAxisAngle(out axis, out angle);
 
-                 Matrix4d mat = Matrix4d.CreateFromAxisAngle(axis,angle);
-                 GL.MultMatrix(ref mat);
+                Matrix4d mat = Matrix4d.CreateFromAxisAngle(axis,angle);
+                GL.MultMatrix(ref mat);
+
+                DrawOriginMarker(1);
 
                 GL.Color3(GetColorForLocation(loc));
 

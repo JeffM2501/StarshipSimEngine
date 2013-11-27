@@ -37,6 +37,8 @@ namespace EntityBuilder
 
         // camera values
         float Spin = 45;
+        float Tilt = 45;
+        float Zoom = 10;
 
         public CelestialObject GetCelestial() { return TheEntity as CelestialObject; }
         public StarShip GetStarShip() { return TheEntity as StarShip; }
@@ -323,8 +325,8 @@ namespace EntityBuilder
             GL.Disable(EnableCap.Texture2D);
             GL.Disable(EnableCap.Lighting);
 
-            float pullback = 10;
-            float tilt = 45;
+            float pullback = Zoom;
+            float tilt = Tilt;
             float spin = Spin;
             Vector3 viewPos = new Vector3(0,0,0);
 
@@ -333,25 +335,6 @@ namespace EntityBuilder
             GL.Rotate(-spin + 90.0, 0.0f, 1.0f, 0.0f);          // gets us on our rot
             GL.Translate(-viewPos.X, -viewPos.Z, viewPos.Y);    // take us to the pos
             GL.Rotate(-90, 1.0f, 0.0f, 0.0f);				    // gets us into XY
-        }
-
-        void DrawOrigin(float size)
-        {
-            GL.Begin(BeginMode.Lines);
-
-            GL.Color3(Color.Red);
-            GL.Vertex3(Vector3.Zero);
-            GL.Vertex3(Vector3.UnitX * size);
-
-            GL.Color3(Color.Green);
-            GL.Vertex3(Vector3.Zero);
-            GL.Vertex3(Vector3.UnitY * size);
-
-            GL.Color3(Color.Blue);
-            GL.Vertex3(Vector3.Zero);
-            GL.Vertex3(Vector3.UnitZ * size);
-
-            GL.End();
         }
 
         public void Dirty()
@@ -365,7 +348,7 @@ namespace EntityBuilder
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             // draw
             SetupCamera();
-            DrawOrigin(5);
+            EntityLocationRenderer.DrawOriginMarker(5);
 
             if (Renderer != null)
                 Renderer.Draw();
@@ -571,6 +554,32 @@ namespace EntityBuilder
                 if (MessageBox.Show(this,"There are unsaved changes, do you wish to save before closing?","Save changes?",MessageBoxButtons.YesNo) == DialogResult.Yes)
                     saveToolStripMenuItem_Click(this, EventArgs.Empty);
             }
+        }
+
+        private void SpinBack_Click(object sender, EventArgs e)
+        {
+            Tilt += 5;
+            Draw();
+        }
+
+        private void SpinUp_Click(object sender, EventArgs e)
+        {
+            Tilt -= 5;
+            Draw();
+        }
+
+        private void ZoomIn_Click(object sender, EventArgs e)
+        {
+            Zoom -= 0.5f;
+            if (Zoom < 0)
+                Zoom = 0;
+            Draw();
+        }
+
+        private void ZoomOut_Click(object sender, EventArgs e)
+        {
+            Zoom += 0.5f;
+            Draw();
         }
     }
 }

@@ -21,8 +21,8 @@
       <Name>Bridge</Name>
       <Origin>
         <X>-0</X>
-        <Y>3</Y>
-        <Z>2</Z>
+        <Y>12</Y>
+        <Z>11</Z>
       </Origin>
       <Orientation>
         <Xyz>
@@ -32,10 +32,10 @@
         </Xyz>
         <W>0</W>
       </Orientation>
-      <Shape>Rectangular</Shape>
+      <Shape>ZCylinder</Shape>
       <Size>
-        <X>1</X>
-        <Y>1</Y>
+        <X>3</X>
+        <Y>3</Y>
         <Z>1</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
