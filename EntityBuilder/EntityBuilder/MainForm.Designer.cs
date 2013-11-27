@@ -164,6 +164,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComponentsList.ContextMenuStrip = this.ComponentContextMenu;
+            this.ComponentsList.HideSelection = false;
             this.ComponentsList.Location = new System.Drawing.Point(3, 30);
             this.ComponentsList.Name = "ComponentsList";
             this.ComponentsList.Size = new System.Drawing.Size(234, 175);
