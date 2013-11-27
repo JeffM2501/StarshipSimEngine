@@ -11,13 +11,9 @@ using SimCore.Entities;
 
 namespace EntityBuilder.Inspectors
 {
-    public partial class LocationInspector : UserControl
+    public partial class LocationInspector : BaseInspector
     {
         public Entity.InternalLocation TheLocation = null;
-
-        public event EventHandler LocationNameChanged;
-
-        public event EventHandler LocationGeometryChanged;
 
         public LocationInspector()
         {
@@ -44,23 +40,49 @@ namespace EntityBuilder.Inspectors
                 Origin.Set(TheLocation.Origin);
                 Orientation.Set(TheLocation.Orientation);
                 GeoSize.Set(TheLocation.Size);
+
+                Origin.ValueChanged += new EventHandler(Origin_ValueChanged);
+                Orientation.ValueChanged += new EventHandler(Orientation_ValueChanged);
+                GeoSize.ValueChanged += new EventHandler(GeoSize_ValueChanged);
             }
+        }
+
+        void GeoSize_ValueChanged(object sender, EventArgs e)
+        {
+            TheLocation.Size = GeoSize.Vector;
+            CallInfoChanged(TheLocation);
+        }
+
+        void Orientation_ValueChanged(object sender, EventArgs e)
+        {
+            TheLocation.Orientation = Orientation.QuaternionValue;
+            CallInfoChanged(TheLocation);
+        }
+
+        void Origin_ValueChanged(object sender, EventArgs e)
+        {
+            TheLocation.Origin = Origin.Vector;
+            CallInfoChanged(TheLocation);
         }
 
         private void LocationName_TextChanged(object sender, EventArgs e)
         {
-            if (Location != null && LocationName.Text == TheLocation.Name)
+            if (TheLocation != null && LocationName.Text == TheLocation.Name)
                 return;
 
             TheLocation.Name = LocationName.Text;
-            if (LocationNameChanged != null)
-                LocationNameChanged(Location, EventArgs.Empty);
+            ItemName = TheLocation.Name;
+            CallNameChanged(TheLocation);
         }
 
-        private void LocationGeoChanged(object sender, EventArgs e)
+        private void ShapeList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (LocationGeometryChanged != null)
-                LocationGeometryChanged(Location, EventArgs.Empty);
+            if (TheLocation.Shape == (Entity.InternalLocation.LocaionShapes)ShapeList.SelectedItem)
+                return;
+
+            TheLocation.Shape = (Entity.InternalLocation.LocaionShapes)ShapeList.SelectedItem;
+
+            CallInfoChanged(TheLocation);
         }
     }
 }

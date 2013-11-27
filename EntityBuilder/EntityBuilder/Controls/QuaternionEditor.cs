@@ -16,24 +16,32 @@ namespace EntityBuilder.Controls
         public event EventHandler ValueChanged; 
 
         public Quaterniond QuaternionValue = new Quaterniond(0,0,1,0);
-        public string LabelText { get { return VectorEdit.LabelText; } set { VectorEdit.LabelText = value; } }
+
+        protected string LabelNameValue = "Orientation";
+
+        [Browsable(true)]
+        [Category("Appearance")]
+        public string LabelName { get { return LabelNameValue; } set { LabelNameValue = value;  if (VectorEdit.ValueName != null) VectorEdit.ValueName.Text = value; } }
 
         public QuaternionEditor()
         {
             InitializeComponent();
             VectorEdit.ValueChanged += new EventHandler(VectorEdit_VectorChanged);
+            VectorEdit.ValueName.Text = LabelNameValue;
         }
 
         private void VectorEdit_Load(object sender, EventArgs e)
         {
+            VectorEdit.ValueName.Text = LabelNameValue;
             Set(QuaternionValue);
         }
 
         public void Set(Quaterniond quat)
         {
             QuaternionValue = quat;
+            VectorEdit.UseDecimalIncrement = true;
             VectorEdit.Set(QuaternionValue.Xyz);
-            RotationValue.Value = (decimal)QuaternionValue.W;
+            RotationValue.Value = (decimal)(QuaternionValue.W / (Math.PI / 180.0));
             CheckPreset();
         }
 
@@ -51,10 +59,13 @@ namespace EntityBuilder.Controls
 
         private void RotationValue_ValueChanged(object sender, EventArgs e)
         {
-            if (QuaternionValue.W == (double)RotationValue.Value)
+            double rads = (double)RotationValue.Value;
+            rads *= Math.PI / 180.0;
+
+            if (QuaternionValue.W == rads)
                 return;
 
-            QuaternionValue.W = (double)RotationValue.Value;
+            QuaternionValue.W = rads;
             if (ValueChanged != null)
                 ValueChanged(this, EventArgs.Empty);
         }

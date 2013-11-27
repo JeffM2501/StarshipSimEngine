@@ -15,9 +15,13 @@ namespace EntityBuilder.Controls
     {
         public Vector3d Vector = Vector3d.Zero;
 
-        public event EventHandler ValueChanged; 
+        public event EventHandler ValueChanged;
 
-        public string LabelText { get { return ValueName.Text; } set { ValueName.Text = value; } }
+        public bool UseDecimalIncrement = false;
+
+        [Browsable(true)]
+        [Category("Appearance")]
+        public string LabelName { get { return ValueName.Text; } set { if (ValueName != null) ValueName.Text = value; } }
 
         public Vector3Editor()
         {
@@ -33,6 +37,19 @@ namespace EntityBuilder.Controls
             XValue.Value = (decimal)Vector.X;
             YValue.Value = (decimal)Vector.Y;
             ZValue.Value = (decimal)Vector.Z;
+
+            if (UseDecimalIncrement)
+            {
+                XValue.Increment = (decimal)0.001;
+                YValue.Increment = (decimal)0.001;
+                ZValue.Increment = (decimal)0.001;
+            }
+            else
+            {
+                XValue.Increment = (decimal)1;
+                YValue.Increment = (decimal)1;
+                ZValue.Increment = (decimal)1;
+            }
         }
 
         private void XValue_ValueChanged(object sender, EventArgs e)
@@ -70,7 +87,7 @@ namespace EntityBuilder.Controls
 
         private void Vector3Editor_Load(object sender, EventArgs e)
         {
-            ValueName.Text = Name;
+            Set(Vector);
         }
     }
 }

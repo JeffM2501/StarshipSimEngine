@@ -25,5 +25,11 @@ namespace SimCore.Entities
         public List<Person> Crew = new List<Person>();
         public List<Person> Passengers = new List<Person>();
         public List<Actor> Hostiles = new List<Actor>();
+
+        public StarShip()
+            : base()
+        {
+            EntityType = Entity.EntityTypes.Ship;
+        }
     }
 }

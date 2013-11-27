@@ -19,6 +19,16 @@ namespace SimCore.Entities
 
     public class Entity : SimulationObject
     {
+        public enum EntityTypes
+        {
+            Unkown,
+            Celestial,
+            Ship,
+            Station,
+        }
+        public EntityTypes EntityType = EntityTypes.Unkown;
+
+
         public string Name = string.Empty;
         public Vector3d Location = Vector3d.Zero;
         public Vector2d Orientation = Vector2d.Zero;

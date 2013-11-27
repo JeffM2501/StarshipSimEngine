@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainSpliter = new System.Windows.Forms.SplitContainer();
+            this.CCWRot = new System.Windows.Forms.Button();
+            this.CWRot = new System.Windows.Forms.Button();
             this.Visualisation = new OpenTK.GLControl();
             this.ToolsSplitter = new System.Windows.Forms.SplitContainer();
             this.ComponentViewModeList = new System.Windows.Forms.ComboBox();
@@ -48,6 +50,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ComponentImages = new System.Windows.Forms.ImageList(this.components);
@@ -71,14 +75,40 @@
             // 
             // MainSpliter.Panel1
             // 
+            this.MainSpliter.Panel1.Controls.Add(this.CCWRot);
+            this.MainSpliter.Panel1.Controls.Add(this.CWRot);
             this.MainSpliter.Panel1.Controls.Add(this.Visualisation);
             // 
             // MainSpliter.Panel2
             // 
             this.MainSpliter.Panel2.Controls.Add(this.ToolsSplitter);
-            this.MainSpliter.Size = new System.Drawing.Size(823, 395);
-            this.MainSpliter.SplitterDistance = 532;
+            this.MainSpliter.Size = new System.Drawing.Size(830, 454);
+            this.MainSpliter.SplitterDistance = 586;
             this.MainSpliter.TabIndex = 0;
+            // 
+            // CCWRot
+            // 
+            this.CCWRot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CCWRot.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.CCWRot.Location = new System.Drawing.Point(553, 428);
+            this.CCWRot.Name = "CCWRot";
+            this.CCWRot.Size = new System.Drawing.Size(30, 23);
+            this.CCWRot.TabIndex = 2;
+            this.CCWRot.Text = "Q";
+            this.CCWRot.UseVisualStyleBackColor = true;
+            this.CCWRot.Click += new System.EventHandler(this.CCWRot_Click);
+            // 
+            // CWRot
+            // 
+            this.CWRot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CWRot.Font = new System.Drawing.Font("Wingdings 3", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.CWRot.Location = new System.Drawing.Point(3, 428);
+            this.CWRot.Name = "CWRot";
+            this.CWRot.Size = new System.Drawing.Size(30, 23);
+            this.CWRot.TabIndex = 1;
+            this.CWRot.Text = "P";
+            this.CWRot.UseVisualStyleBackColor = true;
+            this.CWRot.Click += new System.EventHandler(this.CWRot_Click);
             // 
             // Visualisation
             // 
@@ -88,7 +118,7 @@
             this.Visualisation.BackColor = System.Drawing.Color.Black;
             this.Visualisation.Location = new System.Drawing.Point(0, 0);
             this.Visualisation.Name = "Visualisation";
-            this.Visualisation.Size = new System.Drawing.Size(532, 395);
+            this.Visualisation.Size = new System.Drawing.Size(586, 422);
             this.Visualisation.TabIndex = 0;
             this.Visualisation.VSync = false;
             this.Visualisation.Load += new System.EventHandler(this.Visualisation_Load);
@@ -109,8 +139,8 @@
             // ToolsSplitter.Panel2
             // 
             this.ToolsSplitter.Panel2.Controls.Add(this.InspectorArea);
-            this.ToolsSplitter.Size = new System.Drawing.Size(287, 395);
-            this.ToolsSplitter.SplitterDistance = 181;
+            this.ToolsSplitter.Size = new System.Drawing.Size(240, 454);
+            this.ToolsSplitter.SplitterDistance = 208;
             this.ToolsSplitter.TabIndex = 0;
             // 
             // ComponentViewModeList
@@ -124,7 +154,7 @@
             "By Deck"});
             this.ComponentViewModeList.Location = new System.Drawing.Point(3, 3);
             this.ComponentViewModeList.Name = "ComponentViewModeList";
-            this.ComponentViewModeList.Size = new System.Drawing.Size(281, 21);
+            this.ComponentViewModeList.Size = new System.Drawing.Size(234, 21);
             this.ComponentViewModeList.TabIndex = 1;
             this.ComponentViewModeList.SelectedIndexChanged += new System.EventHandler(this.ComponentViewModeList_SelectedIndexChanged);
             // 
@@ -136,7 +166,7 @@
             this.ComponentsList.ContextMenuStrip = this.ComponentContextMenu;
             this.ComponentsList.Location = new System.Drawing.Point(3, 30);
             this.ComponentsList.Name = "ComponentsList";
-            this.ComponentsList.Size = new System.Drawing.Size(281, 148);
+            this.ComponentsList.Size = new System.Drawing.Size(234, 175);
             this.ComponentsList.TabIndex = 0;
             this.ComponentsList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ComponentsList_AfterSelect);
             // 
@@ -162,14 +192,14 @@
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.newToolStripMenuItem1.Text = "New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // systemToolStripMenuItem
@@ -207,7 +237,7 @@
             this.InspectorArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InspectorArea.Location = new System.Drawing.Point(0, 0);
             this.InspectorArea.Name = "InspectorArea";
-            this.InspectorArea.Size = new System.Drawing.Size(287, 210);
+            this.InspectorArea.Size = new System.Drawing.Size(240, 242);
             this.InspectorArea.TabIndex = 0;
             // 
             // menuStrip1
@@ -217,7 +247,7 @@
             this.templatesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(823, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(830, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -226,6 +256,8 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
+            this.recentToolStripMenuItem,
+            this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -234,20 +266,34 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // recentToolStripMenuItem
+            // 
+            this.recentToolStripMenuItem.Name = "recentToolStripMenuItem";
+            this.recentToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.recentToolStripMenuItem.Text = "Recent";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // templatesToolStripMenuItem
@@ -267,11 +313,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(823, 419);
+            this.ClientSize = new System.Drawing.Size(830, 478);
             this.Controls.Add(this.MainSpliter);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
             this.Text = "EntityBuilder";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainSpliter.Panel1.ResumeLayout(false);
             this.MainSpliter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainSpliter)).EndInit();
@@ -311,6 +359,10 @@
         private System.Windows.Forms.ImageList ComponentImages;
         private System.Windows.Forms.FlowLayoutPanel InspectorArea;
         private OpenTK.GLControl Visualisation;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.Button CCWRot;
+        private System.Windows.Forms.Button CWRot;
+        private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
     }
 }
 

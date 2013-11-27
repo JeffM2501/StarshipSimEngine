@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 using OpenTK.Graphics;
 
@@ -18,39 +21,68 @@ using SimCore.Actors;
 using EntityBuilder.Inspectors;
 using OpenTK;
 
+using EntityLocationRendering;
+
 
 namespace EntityBuilder
 {
     public partial class MainForm : Form
     {
         Entity TheEntity = null;
+        FileInfo DocumentFile = null;
+
+        EntityLocationRenderer Renderer = null;
+
+        protected bool DocDirty = false;
+
+        // camera values
+        float Spin = 45;
+
+        public CelestialObject GetCelestial() { return TheEntity as CelestialObject; }
+        public StarShip GetStarShip() { return TheEntity as StarShip; }
+        public Planet GetPlanet() { return TheEntity as Planet; }
+
+        private static MainForm CurrentWindow = null;
+        public static void SetCurrentDocDirty()
+        {
+            if (CurrentWindow != null)
+                CurrentWindow.Dirty();
+        }
 
         public MainForm()
         {
+            CurrentWindow = this;
             InitializeComponent();
-
+            SetUpMRU();
             Visualisation.Resize += new EventHandler(Visualisation_Resize);
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        protected void SetUpMRU()
         {
-            EntityTypeSelector selector = new EntityTypeSelector();
-            if (selector.ShowDialog(this) == DialogResult.OK)
+            Prefs prefs = Prefs.GetPrefs();
+            recentToolStripMenuItem.DropDownItems.Clear();
+            foreach (string file in prefs.RecentFiles)
             {
-                if (selector.IsShip)
-                {
-                    TheEntity = new StarShip();
-                }
-                else
-                {
-                    TheEntity = new CelestialObject();
-                    (TheEntity as CelestialObject).Category = selector.CelestialCategory;
-                }
-
-                TheEntity.Name = selector.Name;
+                ToolStripMenuItem menu = new ToolStripMenuItem(Path.GetFileNameWithoutExtension(file));
+                menu.Tag = file;
+                menu.Click += new EventHandler(MRUmenu_Click);
+                recentToolStripMenuItem.DropDownItems.Add(menu);
             }
+        }
 
-            EntityChanged();
+        protected void AddMRUItem(string filename)
+        {
+            Prefs prefs = Prefs.GetPrefs();
+
+            if (prefs.RecentFiles.Contains(filename))
+                prefs.RecentFiles.Remove(filename);
+
+            prefs.RecentFiles.Insert(0,filename);
+            if (prefs.RecentFiles.Count > prefs.MaxRecentlyUsedFiles)
+                prefs.RecentFiles.RemoveRange(prefs.MaxRecentlyUsedFiles - 1, prefs.RecentFiles.Count - prefs.MaxRecentlyUsedFiles);
+
+            prefs.Save();
+            SetUpMRU();
         }
 
         protected void EntityChanged()
@@ -59,6 +91,18 @@ namespace EntityBuilder
 
             ComponentViewModeList.SelectedIndex = -1;
             ComponentViewModeList.SelectedIndex = 0;
+
+            Renderer = new EntityLocationRenderer(TheEntity);
+            Renderer.LineWidth = Prefs.GetPrefs().LineWidth;
+            Renderer.GetColorForLocation = GetColorForLocation;
+            Draw();
+        }
+
+        protected Color GetColorForLocation(Entity.InternalLocation loc)
+        {
+            if (loc == GetSelectedLocation())
+                return Color.Blue;
+            return Color.White;
         }
 
         protected Entity.InternalLocation GetSelectedLocation()
@@ -166,38 +210,37 @@ namespace EntityBuilder
             InspectorArea.Controls.Clear();
             LocationInspector inspector = new LocationInspector(location);
             InspectorArea.Controls.Add(inspector);
-            inspector.LocationNameChanged += new EventHandler(inspector_LocationNameChanged);
-            inspector.LocationGeometryChanged += new EventHandler(inspector_LocationGeometryChanged);
+            inspector.NameChanged += new EventHandler(inspector_LocationNameChanged);
+            inspector.InfoChanged += new EventHandler(inspector_LocationGeometryChanged);
             inspector.Show();
         }
 
         void inspector_LocationGeometryChanged(object sender, EventArgs e)
         {
-            Draw();
+            Dirty();
         }
 
         void inspector_LocationNameChanged(object sender, EventArgs e)
         {
-            LocationInspector inspector = sender as LocationInspector;
-            if (sender == null)
+            Entity.InternalLocation location = sender as Entity.InternalLocation;
+            if (location == null)
                 return;
 
             foreach (TreeNode node in ComponentsList.Nodes)
             {
                 if (ViewByLocation())
                 {
-                    if (node.Tag == inspector.Location)
-                        node.Text = inspector.Location.Name;
+                    if (node.Tag == location)
+                        node.Text = location.Name;
                 }
                 else
                 {
                     foreach (TreeNode n in node.Nodes)
                     {
-                        if (n.Tag == inspector.Location)
-                            n.Text = inspector.Location.Name;
+                        if (n.Tag == location)
+                            n.Text = location.Name;
                     }
                 }
-                
             }
         }
 
@@ -215,6 +258,8 @@ namespace EntityBuilder
                 if (location != null)
                     LoadLocationInspector(location);
             }
+
+            Draw();
         }
 
         private void ComponentContextMenu_Opening(object sender, CancelEventArgs e)
@@ -242,11 +287,12 @@ namespace EntityBuilder
         {
             GL.ClearColor(Color.Black);
 
-            GL.Enable(EnableCap.CullFace);
-            GL.CullFace(CullFaceMode.Back);
+            GL.Disable(EnableCap.CullFace);
+           //GL.CullFace(CullFaceMode.Back);
             GL.FrontFace(FrontFaceDirection.Ccw);
-            GL.ShadeModel(ShadingModel.Smooth);
+            GL.ShadeModel(ShadingModel.Flat);
             GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
+            GL.PolygonMode(MaterialFace.Back, PolygonMode.Line);
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
             GL.Enable(EnableCap.ColorMaterial);
@@ -279,7 +325,7 @@ namespace EntityBuilder
 
             float pullback = 10;
             float tilt = 45;
-            float spin = 45;
+            float spin = Spin;
             Vector3 viewPos = new Vector3(0,0,0);
 
             GL.Translate(0, 0, -pullback);						// pull back on along the zoom vector
@@ -308,6 +354,12 @@ namespace EntityBuilder
             GL.End();
         }
 
+        public void Dirty()
+        {
+            DocDirty = true;
+            Draw();
+        }
+
         public void Draw()
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
@@ -315,12 +367,210 @@ namespace EntityBuilder
             SetupCamera();
             DrawOrigin(5);
 
+            if (Renderer != null)
+                Renderer.Draw();
+
             Visualisation.SwapBuffers();
         }
 
         private void Visualisation_Paint(object sender, PaintEventArgs e)
         {
             Draw();
+        }
+
+        protected Type GetDeserializationType(string filename)
+        {
+            Type serialType = typeof(Entity);
+
+            XmlReader reader = XmlReader.Create(filename);
+
+            bool isCelestial = false;
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        if (reader.Name == "EntityType")
+                        {
+                            reader.Read();
+                            if (reader.NodeType != XmlNodeType.Text)
+                                continue;
+
+                            if (reader.Value == "Ship")
+                                return typeof(StarShip);
+                            else if (reader.Value == "Celestial")
+                                isCelestial = true;
+                            else
+                                return typeof(Entity);
+                        }
+                        else if (reader.Name == "Category" && isCelestial)
+                        {
+                            reader.Read();
+                            if (reader.NodeType != XmlNodeType.Text)
+                                continue;
+
+                            if (reader.Value == "Planet")
+                                return typeof(Planet);
+                            else
+                                return typeof(CelestialObject);
+                        }
+                        break;
+                }
+            }
+
+            return serialType;
+        }
+
+        protected Type GetSerializationType()
+        {
+            Type serialType = typeof(Entity);
+
+            if (TheEntity.EntityType == Entity.EntityTypes.Celestial)
+            {
+                serialType = typeof(CelestialObject);
+                CelestialObject celestial = GetCelestial();
+                if (celestial.Category == CelestialObject.Categories.Planet)
+                    serialType = typeof(Planet);
+            }
+            else if (TheEntity.EntityType == Entity.EntityTypes.Ship)
+                serialType = typeof(StarShip);
+
+            return serialType;
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DocDirty)
+                saveToolStripMenuItem_Click(this, EventArgs.Empty);
+
+            DocDirty = false;
+
+            EntityTypeSelector selector = new EntityTypeSelector();
+            if (selector.ShowDialog(this) == DialogResult.OK)
+            {
+                DocumentFile = null;
+                if (selector.IsShip)
+                {
+                    TheEntity = new StarShip();
+                }
+                else
+                {
+                    if (selector.CelestialCategory == CelestialObject.Categories.Planet)
+                        TheEntity = new Planet();
+                    else
+                    {
+                        TheEntity = new CelestialObject();
+                        (TheEntity as CelestialObject).Category = selector.CelestialCategory;
+                    }
+                }
+
+                TheEntity.Name = selector.Name;
+                EntityChanged();
+            }
+        }
+
+        void MRUmenu_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menu = sender as ToolStripMenuItem;
+            if (menu == null || menu.Tag == null)
+                return;
+
+            OpenFile(menu.Tag as string);
+        }
+
+        protected void OpenFile(string fileName)
+        {
+            if (DocDirty)
+                saveToolStripMenuItem_Click(this, EventArgs.Empty);
+
+            DocDirty = false;
+
+            FileInfo file = new FileInfo(fileName);
+            if (!file.Exists)
+                return;
+
+            XmlSerializer xml = new XmlSerializer(GetDeserializationType(fileName));
+            Stream fs = file.OpenRead();
+            TheEntity = xml.Deserialize(fs) as Entity;
+            fs.Close();
+
+            DocumentFile = file;
+            AddMRUItem(DocumentFile.FullName);
+            EntityChanged();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = false;
+            ofd.Filter = "Extensible Markup Language files (*.XML)|*.xml|All files (*.*)|*.*";
+            ofd.FilterIndex = 0;
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog(this) == DialogResult.OK)
+                OpenFile(ofd.FileName);
+        }
+       
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (TheEntity == null)
+                return;
+
+            if (DocumentFile == null)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Extensible Markup Language files (*.XML)|*.xml|All files (*.*)|*.*";
+                sfd.FilterIndex = 0;
+                sfd.RestoreDirectory = true;
+
+                if (sfd.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                DocumentFile = new FileInfo(sfd.FileName);
+                AddMRUItem(DocumentFile.FullName);
+            }
+
+            DocumentFile.Delete();
+
+            try
+            {
+                FileStream fs = DocumentFile.OpenWrite();
+                XmlSerializer xml = new XmlSerializer(GetSerializationType());
+                xml.Serialize(fs, TheEntity);
+                fs.Close();
+
+                DocDirty = false;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error writing file");
+            }
+        }
+
+        private void CWRot_Click(object sender, EventArgs e)
+        {
+            Spin += 5;
+            Draw();
+        }
+
+        private void CCWRot_Click(object sender, EventArgs e)
+        {
+            Spin -= 5;
+            Draw();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DocDirty)
+            {
+                if (MessageBox.Show(this,"There are unsaved changes, do you wish to save before closing?","Save changes?",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    saveToolStripMenuItem_Click(this, EventArgs.Empty);
+            }
         }
     }
 }

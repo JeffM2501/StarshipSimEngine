@@ -163,7 +163,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown ZValue;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label ValueName;
+        public System.Windows.Forms.Label ValueName;
 
     }
 }

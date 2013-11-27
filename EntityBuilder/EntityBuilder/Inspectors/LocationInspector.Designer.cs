@@ -63,33 +63,31 @@
             this.ShapeList.Name = "ShapeList";
             this.ShapeList.Size = new System.Drawing.Size(144, 21);
             this.ShapeList.TabIndex = 4;
+            this.ShapeList.SelectedIndexChanged += new System.EventHandler(this.ShapeList_SelectedIndexChanged);
             // 
             // Orientation
             // 
-            this.Orientation.LabelText = "Orientation";
+            this.Orientation.LabelName = "Orientation";
             this.Orientation.Location = new System.Drawing.Point(3, 126);
             this.Orientation.Name = "Orientation";
             this.Orientation.Size = new System.Drawing.Size(149, 151);
             this.Orientation.TabIndex = 2;
-            this.Orientation.ValueChanged += new System.EventHandler(this.LocationGeoChanged);
             // 
             // Origin
             // 
-            this.Origin.LabelText = "Origin";
+            this.Origin.LabelName = "Origin";
             this.Origin.Location = new System.Drawing.Point(3, 29);
             this.Origin.Name = "Origin";
             this.Origin.Size = new System.Drawing.Size(148, 100);
             this.Origin.TabIndex = 1;
-            this.Origin.ValueChanged += new System.EventHandler(this.LocationGeoChanged);
             // 
-            // Size
+            // GeoSize
             // 
-            this.GeoSize.LabelText = "Size";
+            this.GeoSize.LabelName = "Size";
             this.GeoSize.Location = new System.Drawing.Point(7, 327);
-            this.GeoSize.Name = "Size";
+            this.GeoSize.Name = "GeoSize";
             this.GeoSize.Size = new System.Drawing.Size(148, 100);
             this.GeoSize.TabIndex = 5;
-            this.GeoSize.ValueChanged += new System.EventHandler(this.LocationGeoChanged);
             // 
             // LocationInspector
             // 

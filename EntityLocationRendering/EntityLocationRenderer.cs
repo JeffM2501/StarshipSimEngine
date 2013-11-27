@@ -20,6 +20,8 @@ namespace EntityLocationRendering
         public delegate Color LocationColorCallback(Entity.InternalLocation location);
         public LocationColorCallback GetColorForLocation;
 
+        public float LineWidth = 1;
+
         public EntityLocationRenderer(Entity ent)
         {
             TheEntity = ent;
@@ -33,6 +35,7 @@ namespace EntityLocationRendering
 
         public void Draw()
         {
+            GL.LineWidth(LineWidth);
             IntPtr quadric = Glu.NewQuadric();
 
             foreach (Entity.InternalLocation loc in TheEntity.Locations)
@@ -44,40 +47,43 @@ namespace EntityLocationRendering
                 double angle = 0;
                 loc.Orientation.ToAxisAngle(out axis, out angle);
 
-                Matrix4d mat = Matrix4d.CreateFromAxisAngle(axis,angle);
-                GL.MultMatrix(ref mat);
+                 Matrix4d mat = Matrix4d.CreateFromAxisAngle(axis,angle);
+                 GL.MultMatrix(ref mat);
 
-                GL.Color4(GetColorForLocation(loc));
+                GL.Color3(GetColorForLocation(loc));
 
                 switch (loc.Shape)
                 {
                     case Entity.InternalLocation.LocaionShapes.Rectangular:
-                        GL.Scale(loc.Size.X, loc.Size.Y, loc.Size.Z);
-                        Glu.Sphere(quadric, 1, 4, 1);
+                        GL.Scale(loc.Size.X, loc.Size.Y, loc.Size.Z); 
+                        GL.Rotate(45, Vector3.UnitZ);
+                        Glu.Cylinder(quadric, 1,1,1, 4,1);
                         break;
 
                     case Entity.InternalLocation.LocaionShapes.Sphere:
                        // GL.Scale(loc.Size.X, loc.Size.Y, loc.Size.Z);
-                        Glu.Sphere(quadric, loc.Size.X, 12, 24);
+                        Glu.Sphere(quadric, loc.Size.X, 8, 8);
                         break;
 
                     case Entity.InternalLocation.LocaionShapes.ZCylinder:
                       //  GL.Scale(loc.Size.X, loc.Size.Y, loc.Size.Z);
-                        Glu.Cylinder(quadric, loc.Size.X, loc.Size.X, loc.Size.Y, 12, 1);
+                        Glu.Cylinder(quadric, loc.Size.X, loc.Size.X, loc.Size.Z, 12, 1);
                         break;
 
                     case Entity.InternalLocation.LocaionShapes.YCylinder:
                         GL.Rotate(90.0f, Vector3.UnitX);
-                        Glu.Cylinder(quadric, loc.Size.X, loc.Size.X, loc.Size.Y, 12, 1);
+                        Glu.Cylinder(quadric, loc.Size.X, loc.Size.Y, loc.Size.Z, 12, 1);
                         break;
 
                     case Entity.InternalLocation.LocaionShapes.XCylinder:
                         GL.Rotate(90.0f, Vector3.UnitY);
-                        Glu.Cylinder(quadric, loc.Size.X, loc.Size.X, loc.Size.Y, 12, 1);
+                        Glu.Cylinder(quadric, loc.Size.X, loc.Size.Y, loc.Size.Z, 12, 1);
                         break;
                 }
 
                 GL.PopMatrix();
+
+                GL.LineWidth(1);
             }
         }
     }

@@ -38,15 +38,25 @@ namespace SimCore.Entities
             Gamma,
             XRay,
         }
-
         public RaditionTypes Radioactivity = RaditionTypes.None;
+
         public double RadiationIntensity = 0;
 
         public LifeSignData Life = new LifeSignData();
+
+        public CelestialObject()
+        {
+            EntityType = Entity.EntityTypes.Celestial;
+        }
     }
 
     public class Planet : CelestialObject
     {
         public List<Person> Population = new List<Person>();
+
+        public Planet() : base()
+        {
+            Category = Categories.Planet;
+        }
     }
 }

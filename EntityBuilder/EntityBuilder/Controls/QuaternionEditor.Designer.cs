@@ -38,7 +38,6 @@
             // 
             // VectorEdit
             // 
-            this.VectorEdit.LabelText = "Vector3Editor";
             this.VectorEdit.Location = new System.Drawing.Point(0, 2);
             this.VectorEdit.Name = "VectorEdit";
             this.VectorEdit.Size = new System.Drawing.Size(148, 100);
