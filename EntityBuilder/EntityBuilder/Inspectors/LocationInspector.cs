@@ -18,16 +18,19 @@ namespace EntityBuilder.Inspectors
         public LocationInspector()
         {
             InitializeComponent();
+            GeoSize.UseLocks = true;
         }
 
         public LocationInspector(Entity.InternalLocation location)
         {
             InitializeComponent();
             TheLocation = location;
+            GeoSize.UseLocks = true;
         }
 
         private void LocationInspector_Load(object sender, EventArgs e)
         {
+            GeoSize.UseLocks = true;
             ShapeList.Items.Clear();
             foreach (Entity.InternalLocation.LocaionShapes shape in Enum.GetValues(typeof(Entity.InternalLocation.LocaionShapes)))
                 ShapeList.Items.Add(shape);

@@ -38,9 +38,10 @@
             // 
             // VectorEdit
             // 
+            this.VectorEdit.LabelName = "Name";
             this.VectorEdit.Location = new System.Drawing.Point(0, 2);
             this.VectorEdit.Name = "VectorEdit";
-            this.VectorEdit.Size = new System.Drawing.Size(148, 100);
+            this.VectorEdit.Size = new System.Drawing.Size(175, 100);
             this.VectorEdit.TabIndex = 0;
             this.VectorEdit.Load += new System.EventHandler(this.VectorEdit_Load);
             // 
@@ -109,7 +110,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.VectorEdit);
             this.Name = "QuaternionEditor";
-            this.Size = new System.Drawing.Size(149, 151);
+            this.Size = new System.Drawing.Size(174, 151);
             ((System.ComponentModel.ISupportInitialize)(this.RotationValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

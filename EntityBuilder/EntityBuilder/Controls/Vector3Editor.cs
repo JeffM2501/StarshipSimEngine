@@ -18,6 +18,10 @@ namespace EntityBuilder.Controls
         public event EventHandler ValueChanged;
 
         public bool UseDecimalIncrement = false;
+        public bool UseLocks = false;
+
+        public string UnlockCharacter = "Ð";
+        public string LockCharacter = "Ï";
 
         [Browsable(true)]
         [Category("Appearance")]
@@ -50,6 +54,10 @@ namespace EntityBuilder.Controls
                 YValue.Increment = (decimal)1;
                 ZValue.Increment = (decimal)1;
             }
+
+            XYLock.Enabled = UseLocks;
+            if (!UseLocks)
+                YValue.Enabled = true;
         }
 
         private void XValue_ValueChanged(object sender, EventArgs e)
@@ -58,6 +66,9 @@ namespace EntityBuilder.Controls
                 return;
 
             Vector.X = (double)XValue.Value;
+
+            if (XYLock.Checked)
+                YValue.Value = XValue.Value;
 
             if (ValueChanged != null)
                 ValueChanged(this, EventArgs.Empty);
@@ -70,7 +81,7 @@ namespace EntityBuilder.Controls
 
             Vector.Y = (double)YValue.Value;
 
-            if (ValueChanged != null)
+            if (!XYLock.Checked && ValueChanged != null)
                 ValueChanged(this, EventArgs.Empty);
         }
 
@@ -88,6 +99,19 @@ namespace EntityBuilder.Controls
         private void Vector3Editor_Load(object sender, EventArgs e)
         {
             Set(Vector);
+        }
+
+        private void XYLock_CheckedChanged(object sender, EventArgs e)
+        {
+            XYLock.Text = XYLock.Checked ? LockCharacter : UnlockCharacter;
+
+            if (XYLock.Checked)
+            {
+                YValue.Value = XValue.Value;
+                YValue.Enabled = false;
+            }
+            else
+                YValue.Enabled = true;
         }
     }
 }

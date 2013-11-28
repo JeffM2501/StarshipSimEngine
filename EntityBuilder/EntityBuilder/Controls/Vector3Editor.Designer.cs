@@ -35,6 +35,7 @@
             this.ZValue = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.ValueName = new System.Windows.Forms.Label();
+            this.XYLock = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.XValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.YValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ZValue)).BeginInit();
@@ -133,10 +134,24 @@
             this.ValueName.TabIndex = 6;
             this.ValueName.Text = "Name";
             // 
+            // XYLock
+            // 
+            this.XYLock.Appearance = System.Windows.Forms.Appearance.Button;
+            this.XYLock.AutoSize = true;
+            this.XYLock.Font = new System.Drawing.Font("Webdings", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.XYLock.Location = new System.Drawing.Point(143, 30);
+            this.XYLock.Name = "XYLock";
+            this.XYLock.Size = new System.Drawing.Size(29, 27);
+            this.XYLock.TabIndex = 7;
+            this.XYLock.Text = "Ð";
+            this.XYLock.UseVisualStyleBackColor = true;
+            this.XYLock.CheckedChanged += new System.EventHandler(this.XYLock_CheckedChanged);
+            // 
             // Vector3Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.XYLock);
             this.Controls.Add(this.ValueName);
             this.Controls.Add(this.ZValue);
             this.Controls.Add(this.label3);
@@ -145,7 +160,7 @@
             this.Controls.Add(this.XValue);
             this.Controls.Add(this.label1);
             this.Name = "Vector3Editor";
-            this.Size = new System.Drawing.Size(148, 100);
+            this.Size = new System.Drawing.Size(174, 100);
             this.Load += new System.EventHandler(this.Vector3Editor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.XValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.YValue)).EndInit();
@@ -164,6 +179,7 @@
         private System.Windows.Forms.NumericUpDown ZValue;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label ValueName;
+        private System.Windows.Forms.CheckBox XYLock;
 
     }
 }

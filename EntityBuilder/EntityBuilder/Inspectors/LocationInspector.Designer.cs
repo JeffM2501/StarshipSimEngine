@@ -42,7 +42,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LocationName.Location = new System.Drawing.Point(3, 3);
             this.LocationName.Name = "LocationName";
-            this.LocationName.Size = new System.Drawing.Size(154, 20);
+            this.LocationName.Size = new System.Drawing.Size(179, 20);
             this.LocationName.TabIndex = 0;
             this.LocationName.TextChanged += new System.EventHandler(this.LocationName_TextChanged);
             // 
@@ -70,7 +70,7 @@
             this.Orientation.LabelName = "Orientation";
             this.Orientation.Location = new System.Drawing.Point(3, 126);
             this.Orientation.Name = "Orientation";
-            this.Orientation.Size = new System.Drawing.Size(149, 151);
+            this.Orientation.Size = new System.Drawing.Size(173, 151);
             this.Orientation.TabIndex = 2;
             // 
             // Origin
@@ -78,7 +78,7 @@
             this.Origin.LabelName = "Origin";
             this.Origin.Location = new System.Drawing.Point(3, 29);
             this.Origin.Name = "Origin";
-            this.Origin.Size = new System.Drawing.Size(148, 100);
+            this.Origin.Size = new System.Drawing.Size(173, 100);
             this.Origin.TabIndex = 1;
             // 
             // GeoSize
@@ -86,7 +86,7 @@
             this.GeoSize.LabelName = "Size";
             this.GeoSize.Location = new System.Drawing.Point(7, 327);
             this.GeoSize.Name = "GeoSize";
-            this.GeoSize.Size = new System.Drawing.Size(148, 100);
+            this.GeoSize.Size = new System.Drawing.Size(182, 100);
             this.GeoSize.TabIndex = 5;
             // 
             // LocationInspector
@@ -100,7 +100,7 @@
             this.Controls.Add(this.Origin);
             this.Controls.Add(this.LocationName);
             this.Name = "LocationInspector";
-            this.Size = new System.Drawing.Size(160, 485);
+            this.Size = new System.Drawing.Size(185, 485);
             this.Load += new System.EventHandler(this.LocationInspector_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

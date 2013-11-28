@@ -36,7 +36,12 @@ namespace EntityBuilder
             return PrefsCache;
         }
 
-        public void Save()
+        public static void Save()
+        {
+            GetPrefs().SaveFile();
+        }
+
+        public void SaveFile()
         {
             FileInfo prefsFile = new FileInfo(GetPrefsFileName());
             if (prefsFile.Exists)
@@ -50,6 +55,17 @@ namespace EntityBuilder
 
         public List<string> RecentFiles = new List<string>();
         public int MaxRecentlyUsedFiles = 10;
+
+        public bool OrthographicView = false;
+        public Byte[] BackgroundColor = new Byte[] { 0, 0, 0 };
+
+        public float MajorGridSpacing = 5;
+        public float MinorGridSpacing = 1;
+
+        public float OriginSize = 5;
+
+        public Byte[] MajorGridColor = new Byte[] { 125, 125, 125 };
+        public Byte[] MinorGridColor = new Byte[] { 75, 75, 75 };
 
         public float LineWidth = 1;
     }
