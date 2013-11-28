@@ -16,6 +16,7 @@ namespace EntityBuilder
     partial class MainForm
     {
         public bool XYGrid = true;
+        public bool ShowGrid = true;
 
         EntityLocationRenderer Renderer = null;
 
@@ -31,6 +32,9 @@ namespace EntityBuilder
         protected Color MajorGridColor = Color.Gray;
         protected Color MinorGridColor = Color.DarkGray;
 
+        private Color SelectionColor = Color.LightGreen;
+        private Color DeselectedColor = Color.LightGray;
+        private Color NoSelectionColor = Color.White;
 
         EntityRenderingOptions RenderOptions = new EntityRenderingOptions();
 
@@ -59,13 +63,18 @@ namespace EntityBuilder
 
         protected Color GetColorForLocation(Entity.InternalLocation loc)
         {
-            if (loc == GetSelectedLocation())
-                return Color.Blue;
-            return Color.White;
+            Entity.InternalLocation selectedLoc = GetSelectedLocation();
+            if (selectedLoc == null)
+                return NoSelectionColor;
+
+            if (loc == selectedLoc)
+                return SelectionColor;
+            return DeselectedColor;
         }
 
         private void Visualisation_Load(object sender, EventArgs e)
         {
+            Visualisation.MouseDown += new MouseEventHandler(Visualisation_MouseDown);
             ResetColors();
 
             GL.Disable(EnableCap.CullFace);
@@ -94,6 +103,11 @@ namespace EntityBuilder
             GL.Light(LightName.Light1, LightParameter.Diffuse, lightInfo);
 
             Visualisation_Resize(Visualisation, EventArgs.Empty);
+        }
+
+        void Visualisation_MouseDown(object sender, MouseEventArgs e)
+        {
+            DeselectComponents();
         }
 
         void Visualisation_Resize(object sender, EventArgs e)
@@ -147,6 +161,9 @@ namespace EntityBuilder
 
         protected void DrawGrid()
         {
+            if (!ShowGrid)
+                return;
+
             Prefs prefs = Prefs.GetPrefs();
             float bounds = prefs.MinorGridSpacing * 100;
 
@@ -305,6 +322,19 @@ namespace EntityBuilder
         {
             XYGrid = XYGridCB.Checked;
             Draw();
-        }   
+        }
+
+        private void Grid_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowGrid = Grid.Checked;
+            XYGridCB.Enabled = ShowGrid;
+            Draw();
+        }
+
+        private void DrawSolid_CheckedChanged(object sender, EventArgs e)
+        {
+            RenderOptions.Solid = DrawSolid.Checked;
+            Draw();
+        }
     }
 }

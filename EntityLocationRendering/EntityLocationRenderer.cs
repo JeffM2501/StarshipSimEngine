@@ -95,7 +95,7 @@ namespace EntityLocationRendering
             {
                 GL.PushMatrix();
                 GL.Translate(0, 0, height);
-                Glu.Disk(QuadricCache, 0, lowerRad, segments, 1);
+                Glu.Disk(QuadricCache, 0, upperRad, segments, 1);
 
                 GL.Translate(0, 0, -height);
 

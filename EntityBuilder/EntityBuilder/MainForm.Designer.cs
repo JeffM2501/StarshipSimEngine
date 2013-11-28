@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainSpliter = new System.Windows.Forms.SplitContainer();
+            this.DrawSolid = new System.Windows.Forms.CheckBox();
+            this.Grid = new System.Windows.Forms.CheckBox();
             this.XYGridCB = new System.Windows.Forms.CheckBox();
             this.OrthographicView = new System.Windows.Forms.CheckBox();
             this.IsometricView = new System.Windows.Forms.Button();
@@ -90,6 +92,8 @@
             // 
             // MainSpliter.Panel1
             // 
+            this.MainSpliter.Panel1.Controls.Add(this.DrawSolid);
+            this.MainSpliter.Panel1.Controls.Add(this.Grid);
             this.MainSpliter.Panel1.Controls.Add(this.XYGridCB);
             this.MainSpliter.Panel1.Controls.Add(this.OrthographicView);
             this.MainSpliter.Panel1.Controls.Add(this.IsometricView);
@@ -112,17 +116,43 @@
             this.MainSpliter.SplitterDistance = 586;
             this.MainSpliter.TabIndex = 0;
             // 
+            // DrawSolid
+            // 
+            this.DrawSolid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DrawSolid.AutoSize = true;
+            this.DrawSolid.Location = new System.Drawing.Point(343, 432);
+            this.DrawSolid.Name = "DrawSolid";
+            this.DrawSolid.Size = new System.Drawing.Size(49, 17);
+            this.DrawSolid.TabIndex = 14;
+            this.DrawSolid.Text = "Solid";
+            this.DrawSolid.UseVisualStyleBackColor = true;
+            this.DrawSolid.CheckedChanged += new System.EventHandler(this.DrawSolid_CheckedChanged);
+            // 
+            // Grid
+            // 
+            this.Grid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Grid.AutoSize = true;
+            this.Grid.Checked = true;
+            this.Grid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Grid.Location = new System.Drawing.Point(398, 433);
+            this.Grid.Name = "Grid";
+            this.Grid.Size = new System.Drawing.Size(45, 17);
+            this.Grid.TabIndex = 13;
+            this.Grid.Text = "Grid";
+            this.Grid.UseVisualStyleBackColor = true;
+            this.Grid.CheckedChanged += new System.EventHandler(this.Grid_CheckedChanged);
+            // 
             // XYGridCB
             // 
             this.XYGridCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.XYGridCB.AutoSize = true;
             this.XYGridCB.Checked = true;
             this.XYGridCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.XYGridCB.Location = new System.Drawing.Point(399, 432);
+            this.XYGridCB.Location = new System.Drawing.Point(449, 432);
             this.XYGridCB.Name = "XYGridCB";
-            this.XYGridCB.Size = new System.Drawing.Size(62, 17);
+            this.XYGridCB.Size = new System.Drawing.Size(40, 17);
             this.XYGridCB.TabIndex = 12;
-            this.XYGridCB.Text = "XY Grid";
+            this.XYGridCB.Text = "XY";
             this.XYGridCB.UseVisualStyleBackColor = true;
             this.XYGridCB.CheckedChanged += new System.EventHandler(this.XYGridCB_CheckedChanged);
             // 
@@ -130,7 +160,7 @@
             // 
             this.OrthographicView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OrthographicView.AutoSize = true;
-            this.OrthographicView.Location = new System.Drawing.Point(467, 432);
+            this.OrthographicView.Location = new System.Drawing.Point(495, 432);
             this.OrthographicView.Name = "OrthographicView";
             this.OrthographicView.Size = new System.Drawing.Size(52, 17);
             this.OrthographicView.TabIndex = 11;
@@ -575,6 +605,8 @@
         private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.CheckBox XYGridCB;
+        private System.Windows.Forms.CheckBox Grid;
+        private System.Windows.Forms.CheckBox DrawSolid;
     }
 }
 

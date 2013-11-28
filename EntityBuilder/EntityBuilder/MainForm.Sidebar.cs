@@ -49,6 +49,12 @@ namespace EntityBuilder
             return sys;
         }
 
+        public void DeselectComponents()
+        {
+            ComponentsList.SelectedNode = null;
+            Draw();
+        }
+
         public bool ViewByLocation()
         {
             return ComponentViewModeList.SelectedIndex == 0;
