@@ -198,6 +198,474 @@
       <Connections />
       <Stations />
     </InternalLocation>
+    <InternalLocation>
+      <Index>7</Index>
+      <Name>ImpulsePod</Name>
+      <Origin>
+        <X>0</X>
+        <Y>1</Y>
+        <Z>9</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>7</X>
+        <Y>6</Y>
+        <Z>1.5</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>8</Index>
+      <Name>PhotonPod</Name>
+      <Origin>
+        <X>0</X>
+        <Y>3</Y>
+        <Z>0</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>5</X>
+        <Y>10</Y>
+        <Z>1</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>9</Index>
+      <Name>SaucerStandoff</Name>
+      <Origin>
+        <X>0</X>
+        <Y>1</Y>
+        <Z>-1</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0.29</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>2</X>
+        <Y>5</Y>
+        <Z>10</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>10</Index>
+      <Name>Deck 7</Name>
+      <Origin>
+        <X>0</X>
+        <Y>1</Y>
+        <Z>-1</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>7</X>
+        <Y>12</Y>
+        <Z>1</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>11</Index>
+      <Name>Deflector Dish</Name>
+      <Origin>
+        <X>0</X>
+        <Y>5</Y>
+        <Z>-3</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>YCylinder</Shape>
+      <Size>
+        <X>3</X>
+        <Y>2.5</Y>
+        <Z>2</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>12</Index>
+      <Name>Deck 8</Name>
+      <Origin>
+        <X>0</X>
+        <Y>1</Y>
+        <Z>-2</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>-0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>8</X>
+        <Y>12</Y>
+        <Z>1</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>13</Index>
+      <Name>Deck 9</Name>
+      <Origin>
+        <X>0</X>
+        <Y>1</Y>
+        <Z>-3</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>-0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>9</X>
+        <Y>12</Y>
+        <Z>1</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>14</Index>
+      <Name>Deck 10</Name>
+      <Origin>
+        <X>0</X>
+        <Y>-4.5</Y>
+        <Z>-5</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>-0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>8</X>
+        <Y>28</Y>
+        <Z>2</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>15</Index>
+      <Name>Deck 11</Name>
+      <Origin>
+        <X>0</X>
+        <Y>-4</Y>
+        <Z>-6</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>-0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>3</X>
+        <Y>26</Y>
+        <Z>1</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>16</Index>
+      <Name>Engine Room</Name>
+      <Origin>
+        <X>0</X>
+        <Y>-6</Y>
+        <Z>-3</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>-0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>6</X>
+        <Y>8</Y>
+        <Z>3</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>17</Index>
+      <Name>Cargo</Name>
+      <Origin>
+        <X>0</X>
+        <Y>-11</Y>
+        <Z>-3</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>-0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>6</X>
+        <Y>6</Y>
+        <Z>3</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>18</Index>
+      <Name>Shuttle Hangar</Name>
+      <Origin>
+        <X>0</X>
+        <Y>-15</Y>
+        <Z>-3</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>-0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>5</X>
+        <Y>5</Y>
+        <Z>3</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>19</Index>
+      <Name>Left Pylon</Name>
+      <Origin>
+        <X>-1</X>
+        <Y>-10</Y>
+        <Z>-1</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>-0.332</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>1</X>
+        <Y>4</Y>
+        <Z>13</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>20</Index>
+      <Name>Left Nacellle</Name>
+      <Origin>
+        <X>-10</X>
+        <Y>-38</Y>
+        <Z>11</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>YCylinder</Shape>
+      <Size>
+        <X>2</X>
+        <Y>2</Y>
+        <Z>30</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>21</Index>
+      <Name>Left Collector</Name>
+      <Origin>
+        <X>-10</X>
+        <Y>-8</Y>
+        <Z>11</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>YCylinder</Shape>
+      <Size>
+        <X>2</X>
+        <Y>1.85</Y>
+        <Z>3</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>22</Index>
+      <Name>Right Pylon</Name>
+      <Origin>
+        <X>1</X>
+        <Y>-10</Y>
+        <Z>-1</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0.332</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>Rectangular</Shape>
+      <Size>
+        <X>1</X>
+        <Y>4</Y>
+        <Z>13</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>23</Index>
+      <Name>Right Nacelle</Name>
+      <Origin>
+        <X>10</X>
+        <Y>-38</Y>
+        <Z>11</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>YCylinder</Shape>
+      <Size>
+        <X>2</X>
+        <Y>2</Y>
+        <Z>30</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
+    <InternalLocation>
+      <Index>24</Index>
+      <Name>Right Collector</Name>
+      <Origin>
+        <X>10</X>
+        <Y>-8</Y>
+        <Z>11</Z>
+      </Origin>
+      <Orientation>
+        <Xyz>
+          <X>0</X>
+          <Y>0</Y>
+          <Z>1</Z>
+        </Xyz>
+        <W>0</W>
+      </Orientation>
+      <Shape>YCylinder</Shape>
+      <Size>
+        <X>2</X>
+        <Y>1.85</Y>
+        <Z>3</Z>
+      </Size>
+      <TraversalSpeed>0</TraversalSpeed>
+      <Connections />
+      <Stations />
+    </InternalLocation>
   </Locations>
   <Engines />
   <StorageSystems />
