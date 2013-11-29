@@ -35,19 +35,8 @@ namespace EntityBuilder
 
             foreach (TreeNode node in ComponentsList.Nodes)
             {
-                if (ViewByLocation())
-                {
-                    if (node.Tag == location)
-                        node.Text = location.Name;
-                }
-                else
-                {
-                    foreach (TreeNode n in node.Nodes)
-                    {
-                        if (n.Tag == location)
-                            n.Text = location.Name;
-                    }
-                }
+                if (node.Tag == location)
+                    node.Text = location.Name;
             }
         }
     }

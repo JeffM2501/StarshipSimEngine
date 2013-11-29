@@ -66,9 +66,6 @@ namespace EntityBuilder
         protected void EntityChanged()
         {
             this.Text = TheEntity.Name;
-
-            ComponentViewModeList.SelectedIndex = -1;
-            ComponentViewModeList.SelectedIndex = 0;
             SetupRendering();
         }
 

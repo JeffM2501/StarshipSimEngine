@@ -55,17 +55,10 @@ namespace EntityBuilder
             Draw();
         }
 
-        public bool ViewByLocation()
-        {
-            return ComponentViewModeList.SelectedIndex == 0;
-        }
-
         private void ComponentViewModeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComponentsList.Nodes.Clear();
-
-            if (ViewByLocation())
-                BuildLocationList();
+            BuildLocationList();
         }
 
         public void AddSystemsToNode(IEnumerable<BaseSystem> systemList, TreeNode root, int locID)
@@ -113,13 +106,10 @@ namespace EntityBuilder
             location.Index = TheEntity.Locations.Count;
             TheEntity.Locations.Add(location);
 
-            if (ViewByLocation())
-            {
-                TreeNode node = new TreeNode(location.ToString());
-                node.Tag = location;
-                ComponentsList.Nodes.Add(node);
-                ComponentsList.SelectedNode = node;
-            }
+            TreeNode node = new TreeNode(location.ToString());
+            node.Tag = location;
+            ComponentsList.Nodes.Add(node);
+            ComponentsList.SelectedNode = node;
         }
 
         private void duplicateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -137,13 +127,10 @@ namespace EntityBuilder
             location.Shape = currentLoc.Shape;
             TheEntity.Locations.Add(location);
 
-            if (ViewByLocation())
-            {
-                TreeNode node = new TreeNode(location.ToString());
-                node.Tag = location;
-                ComponentsList.Nodes.Add(node);
-                ComponentsList.SelectedNode = node;
-            }
+            TreeNode node = new TreeNode(location.ToString());
+            node.Tag = location;
+            ComponentsList.Nodes.Add(node);
+            ComponentsList.SelectedNode = node;
         }
 
         private void ComponentContextMenu_Opening(object sender, CancelEventArgs e)
@@ -166,7 +153,6 @@ namespace EntityBuilder
             foreach (ToolStripItem item in systemToolStripMenuItem.DropDownItems)
                 item.Enabled = systemToolStripMenuItem.Enabled;
         }
-
 
         private void ComponentsList_AfterSelect(object sender, TreeViewEventArgs e)
         {

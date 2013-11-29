@@ -48,7 +48,6 @@
             this.CWRot = new System.Windows.Forms.Button();
             this.Visualisation = new OpenTK.GLControl();
             this.ToolsSplitter = new System.Windows.Forms.SplitContainer();
-            this.ComponentViewModeList = new System.Windows.Forms.ComboBox();
             this.ComponentsList = new System.Windows.Forms.TreeView();
             this.ComponentContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.locationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -320,7 +319,6 @@
             // 
             // ToolsSplitter.Panel1
             // 
-            this.ToolsSplitter.Panel1.Controls.Add(this.ComponentViewModeList);
             this.ToolsSplitter.Panel1.Controls.Add(this.ComponentsList);
             // 
             // ToolsSplitter.Panel2
@@ -330,21 +328,6 @@
             this.ToolsSplitter.SplitterDistance = 141;
             this.ToolsSplitter.TabIndex = 0;
             // 
-            // ComponentViewModeList
-            // 
-            this.ComponentViewModeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComponentViewModeList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComponentViewModeList.FormattingEnabled = true;
-            this.ComponentViewModeList.Items.AddRange(new object[] {
-            "By Location",
-            "By Deck"});
-            this.ComponentViewModeList.Location = new System.Drawing.Point(3, 3);
-            this.ComponentViewModeList.Name = "ComponentViewModeList";
-            this.ComponentViewModeList.Size = new System.Drawing.Size(234, 21);
-            this.ComponentViewModeList.TabIndex = 1;
-            this.ComponentViewModeList.SelectedIndexChanged += new System.EventHandler(this.ComponentViewModeList_SelectedIndexChanged);
-            // 
             // ComponentsList
             // 
             this.ComponentsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -352,9 +335,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComponentsList.ContextMenuStrip = this.ComponentContextMenu;
             this.ComponentsList.HideSelection = false;
-            this.ComponentsList.Location = new System.Drawing.Point(3, 30);
+            this.ComponentsList.Location = new System.Drawing.Point(3, 3);
             this.ComponentsList.Name = "ComponentsList";
-            this.ComponentsList.Size = new System.Drawing.Size(234, 108);
+            this.ComponentsList.Size = new System.Drawing.Size(234, 135);
             this.ComponentsList.TabIndex = 0;
             this.ComponentsList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ComponentsList_AfterSelect);
             // 
@@ -568,7 +551,6 @@
         private System.Windows.Forms.SplitContainer MainSpliter;
         private System.Windows.Forms.SplitContainer ToolsSplitter;
         private System.Windows.Forms.TreeView ComponentsList;
-        private System.Windows.Forms.ComboBox ComponentViewModeList;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
