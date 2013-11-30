@@ -116,6 +116,9 @@
     <EmbeddedResource Include="EntityTypeSelector.resx">
       <DependentUpon>EntityTypeSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Inspectors\ConnectionInspector.resx">
+      <DependentUpon>ConnectionInspector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inspectors\LocationInspector.resx">
       <DependentUpon>LocationInspector.cs</DependentUpon>
     </EmbeddedResource>

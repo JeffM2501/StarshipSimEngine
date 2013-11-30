@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using SimCore.Entities;
+
 namespace EntityBuilder.Inspectors
 {
     public partial class BaseInspector : UserControl
@@ -16,12 +18,19 @@ namespace EntityBuilder.Inspectors
         public event EventHandler NameChanged;
         public event EventHandler InfoChanged;
 
+        protected Entity TheEntity = null;
+
         public BaseInspector()
         {
             InitializeComponent();
         }
 
-        public virtual void Set(object item) { }
+        public virtual void Set(object item, Entity ent)
+        {
+            TheEntity = ent;
+        }
+
+        public virtual string GetItemName() { return string.Empty; }
 
         public virtual void CallNameChanged( object sender)
         {

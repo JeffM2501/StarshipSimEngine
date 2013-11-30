@@ -203,7 +203,7 @@ namespace EntityBuilder
                 fs.Close();
 
                 DocDirty = false;
-                EntityChanged();
+                this.Text = TheEntity.Name;
             }
             catch (System.Exception ex)
             {

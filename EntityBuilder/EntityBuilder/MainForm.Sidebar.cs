@@ -100,10 +100,20 @@ namespace EntityBuilder
             if (locNode == null)
                 return null;
 
-            TreeNode node = new TreeNode("To " + (connection.TargetIndex >= 0 ? TheEntity.Locations[connection.TargetIndex].Name : "Unknown"));
+            TreeNode node = new TreeNode(ConnectionInspector.GetConnectioName(connection, TheEntity));
             node.Tag = connection;
             node.ImageIndex = 2;
             locNode.Nodes.Add(node);
+
+            return node;
+        }
+
+        protected TreeNode AddLocatioNode(Entity.InternalLocation loc)
+        {
+            TreeNode node = new TreeNode(loc.ToString());
+            node.Tag = loc;
+            node.ImageIndex = 11;
+            ComponentsList.Nodes.Add(node);
 
             return node;
         }
@@ -118,10 +128,9 @@ namespace EntityBuilder
         {
             foreach (Entity.InternalLocation loc in TheEntity.Locations)
             {
-                TreeNode node = new TreeNode(loc.ToString());
-                node.Tag = loc;
-                node.ImageIndex = 11;
-                ComponentsList.Nodes.Add(node);
+                TreeNode node = AddLocatioNode(loc);
+
+                AddConnectionNodes(loc, node);
 
                 AddSystemsToNode(TheEntity.Engines, node, loc.Index);
                 AddSystemsToNode(TheEntity.StorageSystems, node, loc.Index);
@@ -147,10 +156,11 @@ namespace EntityBuilder
             location.Index = TheEntity.Locations.Count;
             TheEntity.Locations.Add(location);
 
-            TreeNode node = new TreeNode(location.ToString());
-            node.Tag = location;
+            TreeNode node = AddLocatioNode(location);
             ComponentsList.Nodes.Add(node);
             ComponentsList.SelectedNode = node;
+
+            Dirty();
         }
 
         private void duplicateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,6 +182,8 @@ namespace EntityBuilder
             node.Tag = location;
             ComponentsList.Nodes.Add(node);
             ComponentsList.SelectedNode = node;
+
+            Dirty();
         }
 
         private void newConnectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,9 +193,12 @@ namespace EntityBuilder
                 return;
 
             Entity.InternalLocation.ConnectionInfo con = new Entity.InternalLocation.ConnectionInfo();
+            con.ConnectionPoint = new Vector3d(currentLoc.Origin); // start it at the sections origin
             currentLoc.Connections.Add(con);
 
             ComponentsList.SelectedNode = AddConnectionNode(con, GetSelectedLocationTreeNode());
+
+            Dirty();
         }
 
         private void ComponentContextMenu_Opening(object sender, CancelEventArgs e)

@@ -21,10 +21,16 @@ namespace EntityBuilder.Inspectors
             GeoSize.UseLocks = true;
         }
 
-        public override void Set(object item)
+        public override void Set(object item, Entity ent)
         {
+            base.Set(item, ent);
             Entity.InternalLocation location = item as Entity.InternalLocation;
             TheLocation = location;
+        }
+
+        public override string GetItemName()
+        {
+            return TheLocation.Name;
         }
 
         private void LocationInspector_Load(object sender, EventArgs e)

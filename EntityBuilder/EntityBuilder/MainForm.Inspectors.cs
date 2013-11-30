@@ -17,9 +17,8 @@ namespace EntityBuilder
         protected void InitInspectors()
         {
             InspectorMap.Add(typeof(Entity.InternalLocation), typeof(LocationInspector));
-
+            InspectorMap.Add(typeof(Entity.InternalLocation.ConnectionInfo), typeof(ConnectionInspector));
         }
-
 
         public void LoadInspector(object item)
         {
@@ -38,29 +37,26 @@ namespace EntityBuilder
                 item = GetSelectedLocation();
             }
 
-            inspector.Set(item);
+            inspector.Set(item,TheEntity);
             InspectorArea.Controls.Add(inspector);
-            inspector.NameChanged += new EventHandler(inspector_LocationNameChanged);
-            inspector.InfoChanged += new EventHandler(inspector_LocationGeometryChanged);
+            inspector.NameChanged += new EventHandler(inspector_NameChanged);
+            inspector.InfoChanged += new EventHandler(inspector_GeometryChanged);
             inspector.Show();
         }
 
-        void inspector_LocationGeometryChanged(object sender, EventArgs e)
+        void inspector_GeometryChanged(object sender, EventArgs e)
         {
             Dirty();
         }
 
-        void inspector_LocationNameChanged(object sender, EventArgs e)
+        void inspector_NameChanged(object sender, EventArgs e)
         {
-            Entity.InternalLocation location = sender as Entity.InternalLocation;
-            if (location == null)
+            BaseInspector inspector = sender as BaseInspector;
+            if (inspector == null)
                 return;
-
-            foreach (TreeNode node in ComponentsList.Nodes)
-            {
-                if (node.Tag == location)
-                    node.Text = location.Name;
-            }
+            if (ComponentsList.SelectedNode != null)
+                ComponentsList.SelectedNode.Text = inspector.GetItemName();
+            Dirty();
         }
     }
 }
