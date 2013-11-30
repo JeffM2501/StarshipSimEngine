@@ -11,10 +11,28 @@ using SimCore.Entities;
 using SimCore.Data;
 using SimCore.Data.Systems;
 
+using EntityBuilder.Inspectors;
+
 namespace EntityBuilder
 {
     partial class MainForm
     {
+        protected void InitSidebar()
+        {
+            InitInspectors();
+        }
+
+        protected TreeNode GetSelectedLocationTreeNode()
+        {
+            Entity.InternalLocation loc = GetSelectedLocation();
+            foreach (TreeNode node in ComponentsList.Nodes)
+            {
+                if (node.Tag == loc)
+                    return node;
+            }
+
+            return null;
+        }
         protected Entity.InternalLocation GetSelectedLocation()
         {
             if (ComponentsList.SelectedNode == null)
@@ -26,10 +44,14 @@ namespace EntityBuilder
                 return loc;
 
             BaseSystem sys = ComponentsList.SelectedNode.Tag as BaseSystem;
-            if (sys == null || sys.LocationID < 0 || sys.LocationID >= TheEntity.Locations.Count)
-                return null;
+            if (sys != null && (sys.LocationID >=0 && sys.LocationID < TheEntity.Locations.Count))
+                return TheEntity.Locations[sys.LocationID];
 
-            return TheEntity.Locations[sys.LocationID];
+            Entity.InternalLocation.ConnectionInfo info = ComponentsList.SelectedNode.Tag as Entity.InternalLocation.ConnectionInfo;
+            if (info != null && ComponentsList.SelectedNode.Parent != null)
+                return ComponentsList.SelectedNode.Parent.Tag as Entity.InternalLocation;
+
+            return null;
         }
 
         protected BaseSystem GetSelectedSystem()
@@ -37,16 +59,15 @@ namespace EntityBuilder
             if (ComponentsList.SelectedNode == null)
                 return null;
 
-            Entity.InternalLocation loc = ComponentsList.SelectedNode.Tag as Entity.InternalLocation;
+            return ComponentsList.SelectedNode.Tag as BaseSystem;
+        }
 
-            if (loc != null)
+        protected Entity.InternalLocation.ConnectionInfo GetSelectedConnection()
+        {
+            if (ComponentsList.SelectedNode == null)
                 return null;
 
-            BaseSystem sys = ComponentsList.SelectedNode.Tag as BaseSystem;
-            if (sys == null || sys.LocationID < 0 || sys.LocationID >= TheEntity.Locations.Count)
-                return null;
-
-            return sys;
+            return ComponentsList.SelectedNode.Tag as Entity.InternalLocation.ConnectionInfo;
         }
 
         public void DeselectComponents()
@@ -74,12 +95,32 @@ namespace EntityBuilder
             }
         }
 
+        protected TreeNode AddConnectionNode(Entity.InternalLocation.ConnectionInfo connection, TreeNode locNode)
+        {
+            if (locNode == null)
+                return null;
+
+            TreeNode node = new TreeNode("To " + (connection.TargetIndex >= 0 ? TheEntity.Locations[connection.TargetIndex].Name : "Unknown"));
+            node.Tag = connection;
+            node.ImageIndex = 2;
+            locNode.Nodes.Add(node);
+
+            return node;
+        }
+
+        protected void AddConnectionNodes(Entity.InternalLocation loc, TreeNode locNode)
+        {
+            foreach (Entity.InternalLocation.ConnectionInfo connection in loc.Connections)
+                AddConnectionNode(connection, locNode);
+        }
+
         public void BuildLocationList()
         {
             foreach (Entity.InternalLocation loc in TheEntity.Locations)
             {
                 TreeNode node = new TreeNode(loc.ToString());
                 node.Tag = loc;
+                node.ImageIndex = 11;
                 ComponentsList.Nodes.Add(node);
 
                 AddSystemsToNode(TheEntity.Engines, node, loc.Index);
@@ -133,6 +174,18 @@ namespace EntityBuilder
             ComponentsList.SelectedNode = node;
         }
 
+        private void newConnectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Entity.InternalLocation currentLoc = GetSelectedLocation();
+            if (currentLoc == null)
+                return;
+
+            Entity.InternalLocation.ConnectionInfo con = new Entity.InternalLocation.ConnectionInfo();
+            currentLoc.Connections.Add(con);
+
+            ComponentsList.SelectedNode = AddConnectionNode(con, GetSelectedLocationTreeNode());
+        }
+
         private void ComponentContextMenu_Opening(object sender, CancelEventArgs e)
         {
             ComponentContextMenu.Enabled = TheEntity != null;
@@ -156,19 +209,13 @@ namespace EntityBuilder
 
         private void ComponentsList_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            BaseSystem system = GetSelectedSystem();
-            if (system != null)
-            {
+            if (ComponentsList.SelectedNode != null)
+                ComponentsList.SelectedImageIndex = ComponentsList.SelectedNode.ImageIndex;
 
-            }
+            if (ComponentsList.SelectedNode != null)
+                LoadInspector(ComponentsList.SelectedNode.Tag);
             else
-            {
-                Entity.InternalLocation location = GetSelectedLocation();
-
-                if (location != null)
-                    LoadLocationInspector(location);
-            }
-
+                InspectorArea.Controls.Clear();
             Draw();
         }
 

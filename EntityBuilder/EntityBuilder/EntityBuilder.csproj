@@ -74,6 +74,12 @@
     <Compile Include="Inspectors\BaseInspector.Designer.cs">
       <DependentUpon>BaseInspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inspectors\ConnectionInspector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inspectors\ConnectionInspector.Designer.cs">
+      <DependentUpon>ConnectionInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inspectors\LocationInspector.cs">
       <SubType>UserControl</SubType>
     </Compile>

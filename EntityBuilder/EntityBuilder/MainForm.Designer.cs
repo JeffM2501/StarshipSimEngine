@@ -58,6 +58,7 @@
             this.newToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ComponentImages = new System.Windows.Forms.ImageList(this.components);
             this.InspectorArea = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +71,8 @@
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ComponentImages = new System.Windows.Forms.ImageList(this.components);
+            this.newConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainSpliter)).BeginInit();
             this.MainSpliter.Panel1.SuspendLayout();
             this.MainSpliter.Panel2.SuspendLayout();
@@ -335,8 +337,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComponentsList.ContextMenuStrip = this.ComponentContextMenu;
             this.ComponentsList.HideSelection = false;
+            this.ComponentsList.ImageIndex = 0;
+            this.ComponentsList.ImageList = this.ComponentImages;
             this.ComponentsList.Location = new System.Drawing.Point(3, 3);
             this.ComponentsList.Name = "ComponentsList";
+            this.ComponentsList.SelectedImageIndex = 0;
             this.ComponentsList.Size = new System.Drawing.Size(234, 135);
             this.ComponentsList.TabIndex = 0;
             this.ComponentsList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ComponentsList_AfterSelect);
@@ -347,7 +352,7 @@
             this.locationToolStripMenuItem,
             this.systemToolStripMenuItem});
             this.ComponentContextMenu.Name = "ComponentContextMenu";
-            this.ComponentContextMenu.Size = new System.Drawing.Size(121, 48);
+            this.ComponentContextMenu.Size = new System.Drawing.Size(153, 70);
             this.ComponentContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ComponentContextMenu_Opening);
             // 
             // locationToolStripMenuItem
@@ -355,29 +360,31 @@
             this.locationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem1,
             this.deleteToolStripMenuItem,
-            this.duplicateToolStripMenuItem});
+            this.duplicateToolStripMenuItem,
+            this.newConnectionToolStripMenuItem,
+            this.deleteConnectionToolStripMenuItem});
             this.locationToolStripMenuItem.Name = "locationToolStripMenuItem";
-            this.locationToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.locationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.locationToolStripMenuItem.Text = "Location";
             this.locationToolStripMenuItem.DropDownOpened += new System.EventHandler(this.locationToolStripMenuItem_DropDownOpened);
             // 
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.newToolStripMenuItem1.Text = "New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // duplicateToolStripMenuItem
             // 
             this.duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
-            this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.duplicateToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.duplicateToolStripMenuItem.Text = "Duplicate";
             this.duplicateToolStripMenuItem.Click += new System.EventHandler(this.duplicateToolStripMenuItem_Click);
             // 
@@ -388,7 +395,7 @@
             this.deleteToolStripMenuItem1,
             this.moveToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.systemToolStripMenuItem.Text = "System";
             this.systemToolStripMenuItem.DropDownOpening += new System.EventHandler(this.systemToolStripMenuItem_DropDownOpening);
             // 
@@ -409,6 +416,23 @@
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
             this.moveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.moveToolStripMenuItem.Text = "Move";
+            // 
+            // ComponentImages
+            // 
+            this.ComponentImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ComponentImages.ImageStream")));
+            this.ComponentImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.ComponentImages.Images.SetKeyName(0, "miscellaneous 2.ico");
+            this.ComponentImages.Images.SetKeyName(1, "kservices.ico");
+            this.ComponentImages.Images.SetKeyName(2, "restart.ico");
+            this.ComponentImages.Images.SetKeyName(3, "quick_restart.ico");
+            this.ComponentImages.Images.SetKeyName(4, "logout.ico");
+            this.ComponentImages.Images.SetKeyName(5, "database.ico");
+            this.ComponentImages.Images.SetKeyName(6, "Login Manager.ico");
+            this.ComponentImages.Images.SetKeyName(7, "kcmmemory.ico");
+            this.ComponentImages.Images.SetKeyName(8, "kspaceduel.ico");
+            this.ComponentImages.Images.SetKeyName(9, "utilities.ico");
+            this.ComponentImages.Images.SetKeyName(10, "kthememgr.ico");
+            this.ComponentImages.Images.SetKeyName(11, "kbounce.ico");
             // 
             // InspectorArea
             // 
@@ -510,12 +534,18 @@
             this.scaleToolStripMenuItem.Text = "Scale";
             this.scaleToolStripMenuItem.Click += new System.EventHandler(this.scaleToolStripMenuItem_Click);
             // 
-            // ComponentImages
+            // newConnectionToolStripMenuItem
             // 
-            this.ComponentImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ComponentImages.ImageStream")));
-            this.ComponentImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.ComponentImages.Images.SetKeyName(0, "miscellaneous 2.ico");
-            this.ComponentImages.Images.SetKeyName(1, "kservices.ico");
+            this.newConnectionToolStripMenuItem.Name = "newConnectionToolStripMenuItem";
+            this.newConnectionToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.newConnectionToolStripMenuItem.Text = "New Connection";
+            this.newConnectionToolStripMenuItem.Click += new System.EventHandler(this.newConnectionToolStripMenuItem_Click);
+            // 
+            // deleteConnectionToolStripMenuItem
+            // 
+            this.deleteConnectionToolStripMenuItem.Name = "deleteConnectionToolStripMenuItem";
+            this.deleteConnectionToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.deleteConnectionToolStripMenuItem.Text = "Delete Connection";
             // 
             // MainForm
             // 
@@ -589,6 +619,8 @@
         private System.Windows.Forms.CheckBox XYGridCB;
         private System.Windows.Forms.CheckBox Grid;
         private System.Windows.Forms.CheckBox DrawSolid;
+        private System.Windows.Forms.ToolStripMenuItem newConnectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteConnectionToolStripMenuItem;
     }
 }
 

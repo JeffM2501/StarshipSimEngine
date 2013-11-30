@@ -12,10 +12,33 @@ namespace EntityBuilder
 {
     partial class MainForm
     {
-        public void LoadLocationInspector(Entity.InternalLocation location)
+        protected Dictionary<Type, Type> InspectorMap = new Dictionary<Type, Type>();
+
+        protected void InitInspectors()
+        {
+            InspectorMap.Add(typeof(Entity.InternalLocation), typeof(LocationInspector));
+
+        }
+
+
+        public void LoadInspector(object item)
         {
             InspectorArea.Controls.Clear();
-            LocationInspector inspector = new LocationInspector(location);
+
+            if (item == null)
+                return;
+
+            BaseInspector inspector = null;
+
+            if (InspectorMap.ContainsKey(item.GetType()))
+                inspector = (BaseInspector)Activator.CreateInstance(InspectorMap[item.GetType()]);
+            else
+            {
+                inspector = new LocationInspector();
+                item = GetSelectedLocation();
+            }
+
+            inspector.Set(item);
             InspectorArea.Controls.Add(inspector);
             inspector.NameChanged += new EventHandler(inspector_LocationNameChanged);
             inspector.InfoChanged += new EventHandler(inspector_LocationGeometryChanged);

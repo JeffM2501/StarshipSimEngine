@@ -51,7 +51,7 @@ namespace EntityBuilder
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            InitSidebar();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -67,6 +67,7 @@ namespace EntityBuilder
         {
             this.Text = TheEntity.Name;
             SetupRendering();
+            BuildLocationList();
         }
 
         public void Dirty()

@@ -21,6 +21,8 @@ namespace EntityBuilder.Inspectors
             InitializeComponent();
         }
 
+        public virtual void Set(object item) { }
+
         public virtual void CallNameChanged( object sender)
         {
             if (NameChanged != null)
