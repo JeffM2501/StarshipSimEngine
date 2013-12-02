@@ -28,7 +28,6 @@ namespace SimCore.Entities
         }
         public EntityTypes EntityType = EntityTypes.Unkown;
 
-
         public string Name = string.Empty;
         public Vector3d Location = Vector3d.Zero;
         public Vector2d Orientation = Vector2d.Zero;
@@ -115,6 +114,10 @@ namespace SimCore.Entities
         public List<ComputerSystem> Computers = new List<ComputerSystem>();
 
         public DiplomaticInfo Diplomatics = new DiplomaticInfo();
+
+        // the entity that we are attached to, ether physically like a moon to a planet
+        // or operationally like a shuttle to a ship 
+        public UInt64 ParrentID = UInt64.MaxValue;
 
     }
 }
