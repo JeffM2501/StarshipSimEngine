@@ -550,6 +550,22 @@
             <Z>-1</Z>
           </ConnectionPoint>
         </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>12</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-1</Y>
+            <Z>-1</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>16</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-3.25</Y>
+            <Z>-1</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
       </Connections>
       <Stations />
     </InternalLocation>
@@ -611,7 +627,48 @@
         <Z>1</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>10</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-1</Y>
+            <Z>-1</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>26</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>16</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-3.25</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>13</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-1</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>-1</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-1</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -637,7 +694,56 @@
         <Z>1</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>12</TargetIndex>
+          <ConnectionPoint>
+            <X>-0</X>
+            <Y>-1</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>11</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>5</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>26</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>27</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-2</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>16</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-3.25</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>14</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-1</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -663,7 +769,48 @@
         <Z>2</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>13</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-1</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>26</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>2.5</Y>
+            <Z>-4</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>17</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-11.5</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>18</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-14</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>15</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-6.5</Y>
+            <Z>-5</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -689,7 +836,24 @@
         <Z>1</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>14</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-6.5</Y>
+            <Z>-5</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>26</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>-6</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -715,7 +879,72 @@
         <Z>3</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>10</TargetIndex>
+          <ConnectionPoint>
+            <X>-0</X>
+            <Y>-3.25</Y>
+            <Z>-1</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>12</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-3.25</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>13</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-3.25</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>17</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-8.75</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>22</TargetIndex>
+          <ConnectionPoint>
+            <X>1.5</X>
+            <Y>-9</Y>
+            <Z>-0</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>19</TargetIndex>
+          <ConnectionPoint>
+            <X>-1.5</X>
+            <Y>-9</Y>
+            <Z>0</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>14</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-7</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>27</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-5</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -741,7 +970,40 @@
         <Z>3</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>16</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-8.75</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>27</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-12</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>18</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-13.25</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>14</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-11.5</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -767,7 +1029,32 @@
         <Z>3</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>17</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-13.25</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>27</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-13.25</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>14</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-14</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -793,7 +1080,24 @@
         <Z>13</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>16</TargetIndex>
+          <ConnectionPoint>
+            <X>-1.5</X>
+            <Y>-9</Y>
+            <Z>0</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>20</TargetIndex>
+          <ConnectionPoint>
+            <X>-9</X>
+            <Y>-10</Y>
+            <Z>9</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -801,7 +1105,7 @@
       <Name>Left Nacellle</Name>
       <Origin>
         <X>-10</X>
-        <Y>-38</Y>
+        <Y>-33</Y>
         <Z>11</Z>
       </Origin>
       <Orientation>
@@ -816,10 +1120,27 @@
       <Size>
         <X>2</X>
         <Y>2</Y>
-        <Z>30</Z>
+        <Z>25</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>19</TargetIndex>
+          <ConnectionPoint>
+            <X>-9</X>
+            <Y>-10</Y>
+            <Z>9</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>21</TargetIndex>
+          <ConnectionPoint>
+            <X>-10</X>
+            <Y>-8</Y>
+            <Z>11</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -845,7 +1166,16 @@
         <Z>3</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>20</TargetIndex>
+          <ConnectionPoint>
+            <X>-10</X>
+            <Y>-8</Y>
+            <Z>11</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -871,7 +1201,24 @@
         <Z>13</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>16</TargetIndex>
+          <ConnectionPoint>
+            <X>1.5</X>
+            <Y>-9</Y>
+            <Z>-0</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>23</TargetIndex>
+          <ConnectionPoint>
+            <X>9</X>
+            <Y>-10</Y>
+            <Z>9</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -879,7 +1226,7 @@
       <Name>Right Nacelle</Name>
       <Origin>
         <X>10</X>
-        <Y>-38</Y>
+        <Y>-33</Y>
         <Z>11</Z>
       </Origin>
       <Orientation>
@@ -894,10 +1241,27 @@
       <Size>
         <X>2</X>
         <Y>2</Y>
-        <Z>30</Z>
+        <Z>25</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>22</TargetIndex>
+          <ConnectionPoint>
+            <X>9</X>
+            <Y>-10</Y>
+            <Z>9</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>24</TargetIndex>
+          <ConnectionPoint>
+            <X>10</X>
+            <Y>-8</Y>
+            <Z>11</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -923,7 +1287,16 @@
         <Z>3</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>23</TargetIndex>
+          <ConnectionPoint>
+            <X>10</X>
+            <Y>-8</Y>
+            <Z>11</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -949,7 +1322,64 @@
         <Z>7</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>0</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>13</Y>
+            <Z>11</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>1</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>13</Y>
+            <Z>10</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>2</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>13</Y>
+            <Z>9</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>3</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>13</Y>
+            <Z>8</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>4</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>13</Y>
+            <Z>7</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>5</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>13</Y>
+            <Z>6</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>6</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>13</Y>
+            <Z>5</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -975,7 +1405,72 @@
         <Z>8</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>9</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>1</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>8</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>0</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>10</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>-1</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>12</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>13</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>-3</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>14</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>2.5</Y>
+            <Z>-4</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>15</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>3</Y>
+            <Z>-6</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>27</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>2.5</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
     <InternalLocation>
@@ -1001,7 +1496,48 @@
         <Z>16</Z>
       </Size>
       <TraversalSpeed>0</TraversalSpeed>
-      <Connections />
+      <Connections>
+        <ConnectionInfo>
+          <TargetIndex>26</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>2.5</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>13</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-2</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>16</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-5</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>17</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-12</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+        <ConnectionInfo>
+          <TargetIndex>18</TargetIndex>
+          <ConnectionPoint>
+            <X>0</X>
+            <Y>-13.25</Y>
+            <Z>-2</Z>
+          </ConnectionPoint>
+        </ConnectionInfo>
+      </Connections>
       <Stations />
     </InternalLocation>
   </Locations>
