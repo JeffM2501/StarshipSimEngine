@@ -70,9 +70,20 @@ namespace EntityBuilder
             SetupRendering();
         }
 
+        public void Clean()
+        {
+            this.Text = TheEntity.Name;
+            DocDirty = false;
+            Draw();
+        }
+
         public void Dirty()
         {
+            if (!DocDirty)
+                this.Text = TheEntity.Name + "*";
+
             DocDirty = true;
+
             Draw();
         }
 
