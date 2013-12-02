@@ -41,13 +41,28 @@ namespace EntityBuilder
             SetUpMRU();
         }
 
+        protected void RemoveMRUItem(string filename)
+        {
+            Prefs prefs = Prefs.GetPrefs();
+
+            if (prefs.RecentFiles.Contains(filename))
+                prefs.RecentFiles.Remove(filename);
+
+            Prefs.Save();
+            SetUpMRU();
+        }
+
         void MRUmenu_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem menu = sender as ToolStripMenuItem;
             if (menu == null || menu.Tag == null)
                 return;
 
-            OpenFile(menu.Tag as string);
+            string file = menu.Tag as string;
+            if (!File.Exists(file))
+                RemoveMRUItem(file);
+            else
+                OpenFile(file);
         }
 
         protected Type GetDeserializationType(string filename)
