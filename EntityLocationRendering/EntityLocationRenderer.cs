@@ -21,8 +21,8 @@ namespace EntityLocationRendering
         public float LineWidth = 1;
 
         // connector sizes
-        public float CenterRadius = 0.25f;
-        public float ConnectorRadius = 0.35f;
+        public float CenterRadius = 0.125f;
+        public float ConnectorRadius = 0.25f;
     }
 
     public class EntityLocationRenderer
@@ -143,6 +143,24 @@ namespace EntityLocationRendering
             return loc.Origin + offset;
         }
 
+        protected void DrawCylinder(double lowerRad, double upperRad, double height)
+        {
+            int segments = 6;
+            if (upperRad > 0.5 || lowerRad > 0.5)
+            {
+                double rad = lowerRad;
+                if (upperRad < rad)
+                    rad = upperRad;
+
+                segments = segments + (int)Math.Ceiling(1.5 * (rad-0.5));
+
+//                 if (segments > 64)
+//                     segments = 64;
+            }
+
+            DrawCylinder(lowerRad, upperRad, height, segments);
+        }
+
         protected void DrawCylinder(double lowerRad, double upperRad, double height, int segments)
         {
             Glu.Cylinder(QuadricCache, lowerRad, upperRad, height, segments, 1);
@@ -203,18 +221,18 @@ namespace EntityLocationRendering
 
                     case Entity.InternalLocation.LocaionShapes.ZCylinder:
                       //  GL.Scale(loc.Size.X, loc.Size.Y, loc.Size.Z);
-                        DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z, 24);
+                        DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z);
 
                         break;
 
                     case Entity.InternalLocation.LocaionShapes.YCylinder:
                         GL.Rotate(90.0f, Vector3.UnitX);
-                        DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z, 24);
+                        DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z);
                         break;
 
                     case Entity.InternalLocation.LocaionShapes.XCylinder:
                         GL.Rotate(90.0f, Vector3.UnitY);
-                        DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z, 24);
+                        DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z);
                         break;
                 }
                 GL.PopMatrix();
