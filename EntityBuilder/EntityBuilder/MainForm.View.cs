@@ -33,8 +33,10 @@ namespace EntityBuilder
         protected Color MinorGridColor = Color.DarkGray;
 
         private Color SelectionColor = Color.LightGreen;
-        private Color DeselectedColor = Color.LightGray;
+        private Color DeselectedColor = Color.Gray;
         private Color NoSelectionColor = Color.White;
+
+        protected float ZoomPerClick = 1;
 
         EntityRenderingOptions RenderOptions = new EntityRenderingOptions();
 
@@ -71,7 +73,7 @@ namespace EntityBuilder
                 return SelectionColor;
 
             Entity.InternalLocation.ConnectionInfo selectedConnection = GetSelectedConnection();
-            if (selectedConnection != null && TheEntity.Locations[selectedConnection.TargetIndex] == loc)
+            if (selectedConnection != null && selectedConnection.TargetIndex >= 0 && TheEntity.Locations[selectedConnection.TargetIndex] == loc)
                 return Color.Yellow;
 
             return DeselectedColor;
@@ -79,8 +81,10 @@ namespace EntityBuilder
 
         protected Color GetColorForConnection(Entity.InternalLocation location, Entity.InternalLocation.ConnectionInfo connection, int connectionIndex)
         {
+            Entity.InternalLocation selectedLoc = GetSelectedLocation();
+
             if (connection == null)
-                return Color.CadetBlue;
+                return selectedLoc == location ? Color.Indigo : Color.CadetBlue;
 
             Entity.InternalLocation.ConnectionInfo selectedConnection = GetSelectedConnection();
 
@@ -274,7 +278,7 @@ namespace EntityBuilder
 
         private void ZoomIn_Click(object sender, EventArgs e)
         {
-            Zoom -= 0.5f;
+            Zoom -= ZoomPerClick;
             if (Zoom < 0)
                 Zoom = 0;
             Draw();
@@ -282,7 +286,7 @@ namespace EntityBuilder
 
         private void ZoomOut_Click(object sender, EventArgs e)
         {
-            Zoom += 0.5f;
+            Zoom += ZoomPerClick;
             Draw();
         }
 
@@ -298,7 +302,7 @@ namespace EntityBuilder
             if (location == null)
                 return;
 
-            ViewCenter = new Vector3((float)location.Origin.X, (float)location.Origin.X, (float)location.Origin.Z);
+            ViewCenter = new Vector3((float)location.Origin.X, (float)location.Origin.Y, (float)location.Origin.Z);
             Draw();
         }
 

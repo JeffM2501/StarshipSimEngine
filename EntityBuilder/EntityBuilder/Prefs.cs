@@ -25,7 +25,10 @@ namespace EntityBuilder
 
             FileInfo prefsFile = new FileInfo(GetPrefsFileName());
             if (!prefsFile.Exists)
+            {
                 PrefsCache = new Prefs();
+                PrefsCache.SetDefaults();
+            }
             else
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Prefs));
@@ -57,16 +60,23 @@ namespace EntityBuilder
         public int MaxRecentlyUsedFiles = 10;
 
         public bool OrthographicView = false;
-        public Byte[] BackgroundColor = new Byte[] { 0, 0, 0 };
+        public List<byte> BackgroundColor = new List<Byte>();
 
         public float MajorGridSpacing = 5;
         public float MinorGridSpacing = 1;
 
         public float OriginSize = 5;
 
-        public Byte[] MajorGridColor = new Byte[] { 125, 125, 125 };
-        public Byte[] MinorGridColor = new Byte[] { 75, 75, 75 };
+        public List<byte> MajorGridColor = new List<Byte>();
+        public List<byte> MinorGridColor = new List<Byte>();
 
         public float LineWidth = 1;
+
+        protected void SetDefaults()
+        {
+            MajorGridColor = new List<Byte>(new Byte[] { 125, 125, 125 });
+            MinorGridColor = new List<Byte>(new Byte[] { 75, 75, 75 });
+            BackgroundColor = new List<Byte>(new Byte[] { 0, 0, 0 });
+        }
     }
 }
