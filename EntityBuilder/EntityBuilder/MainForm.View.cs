@@ -40,6 +40,25 @@ namespace EntityBuilder
 
         EntityRenderingOptions RenderOptions = new EntityRenderingOptions();
 
+        protected void InitGUI()
+        {
+            // set any checkboxes and shit
+            vissibleToolStripMenuItem.Checked = ShowGrid;
+
+            xYToolStripMenuItem.Checked = XYGrid;
+            yZToolStripMenuItem.Checked = !XYGrid;
+
+            solidToolStripMenuItem.Checked = RenderOptions.Solid;
+            wireframeToolStripMenuItem.Checked = !RenderOptions.Solid;
+
+            orthographicToolStripMenuItem.Checked = Prefs.GetPrefs().OrthographicView;
+            perspectiveToolStripMenuItem.Checked = !orthographicToolStripMenuItem.Checked;
+
+            connectionsToolStripMenuItem.Checked = RenderOptions.ShowConnections;
+            systemsToolStripMenuItem.Checked = RenderOptions.ShowSystems;
+       
+        }
+
         protected void SetupRendering()
         {
             Renderer = new EntityLocationRenderer(TheEntity);
@@ -48,6 +67,7 @@ namespace EntityBuilder
             Renderer.GetColorForConnection = GetColorForConnection;
             ResetColors();
             //RenderOptions.Solid = true;
+
            
             Draw();
         }
@@ -109,8 +129,6 @@ namespace EntityBuilder
             GL.Enable(EnableCap.ColorMaterial);
             GL.Enable(EnableCap.LineSmooth);
             GL.Enable(EnableCap.DepthTest);
-
-            OrthographicView.Checked = Prefs.GetPrefs().OrthographicView;
 
             // setup lights0
             Vector4 lightInfo = new Vector4(0.25f, 0.25f, 0.25f, 1.0f);
@@ -290,13 +308,13 @@ namespace EntityBuilder
             Draw();
         }
 
-        private void ResetView_Click(object sender, EventArgs e)
+        private void resetFocusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ViewCenter = Vector3.Zero;
             Draw();
         }
 
-        private void CenterOnSelection_Click(object sender, EventArgs e)
+        private void focusSelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Entity.InternalLocation location = GetSelectedLocation();
             if (location == null)
@@ -306,15 +324,7 @@ namespace EntityBuilder
             Draw();
         }
 
-        private void IsometricView_Click(object sender, EventArgs e)
-        {
-            ViewCenter = Vector3.Zero;
-            Spin = -45;
-            Tilt = 45;
-            Draw();
-        }
-
-        private void TopView_Click(object sender, EventArgs e)
+        private void topToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ViewCenter = Vector3.Zero;
             Spin = 0;
@@ -322,7 +332,7 @@ namespace EntityBuilder
             Draw();
         }
 
-        private void SideView_Click(object sender, EventArgs e)
+        private void sideToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ViewCenter = Vector3.Zero;
             Spin = -90;
@@ -330,31 +340,96 @@ namespace EntityBuilder
             Draw();
         }
 
-        private void OrthographicView_CheckedChanged(object sender, EventArgs e)
+        private void frontToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Prefs.GetPrefs().OrthographicView = OrthographicView.Checked;
+            ViewCenter = Vector3.Zero;
+            Spin = 180;
+            Tilt = 0;
+            Draw();
+        }
+
+        private void isometricToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewCenter = Vector3.Zero;
+            Spin = -45;
+            Tilt = 45;
+            Draw();
+        }
+
+        private void orthographicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Prefs.GetPrefs().OrthographicView = true;
             Prefs.Save();
+
+            orthographicToolStripMenuItem.Checked = true;
+            perspectiveToolStripMenuItem.Checked = false;
 
             Visualisation_Resize(Visualisation, EventArgs.Empty);
             Draw();
         }
 
-        private void XYGridCB_CheckedChanged(object sender, EventArgs e)
+        private void perspectiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            XYGrid = XYGridCB.Checked;
+            Prefs.GetPrefs().OrthographicView = false;
+            Prefs.Save();
+
+            orthographicToolStripMenuItem.Checked = false;
+            perspectiveToolStripMenuItem.Checked = true;
+
+            Visualisation_Resize(Visualisation, EventArgs.Empty);
             Draw();
         }
 
-        private void Grid_CheckedChanged(object sender, EventArgs e)
+        private void xYToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowGrid = Grid.Checked;
-            XYGridCB.Enabled = ShowGrid;
+            XYGrid = true;
+            xYToolStripMenuItem.Checked = true;
+            yZToolStripMenuItem.Checked = false;
             Draw();
         }
 
-        private void DrawSolid_CheckedChanged(object sender, EventArgs e)
+        private void yZToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RenderOptions.Solid = DrawSolid.Checked;
+            XYGrid = false;
+            xYToolStripMenuItem.Checked = false;
+            yZToolStripMenuItem.Checked = true;
+            Draw();
+        }
+
+        private void vissibleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowGrid = !vissibleToolStripMenuItem.Checked;
+            vissibleToolStripMenuItem.Checked = ShowGrid;
+            Draw();
+        }
+
+        private void solidToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenderOptions.Solid = true;
+            solidToolStripMenuItem.Checked = true;
+            wireframeToolStripMenuItem.Checked = false;
+            Draw();
+        }
+
+        private void wireframeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenderOptions.Solid = false;
+            solidToolStripMenuItem.Checked = false;
+            wireframeToolStripMenuItem.Checked = true;
+            Draw();
+        }
+
+        private void connectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenderOptions.ShowConnections = !RenderOptions.ShowConnections;
+            connectionsToolStripMenuItem.Checked = RenderOptions.ShowConnections;
+            Draw();
+        }
+
+        private void systemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenderOptions.ShowSystems = !RenderOptions.ShowSystems;
+            systemsToolStripMenuItem.Checked = RenderOptions.ShowSystems;
             Draw();
         }
     }

@@ -237,7 +237,7 @@ namespace EntityLocationRendering
                 }
                 GL.PopMatrix();
 
-                if (!RenderingOptions.Solid)
+                if (!RenderingOptions.Solid && RenderingOptions.ShowConnections)
                 {
                     SetSolid();
 

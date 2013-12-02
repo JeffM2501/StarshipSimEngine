@@ -31,15 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainSpliter = new System.Windows.Forms.SplitContainer();
-            this.DrawSolid = new System.Windows.Forms.CheckBox();
-            this.Grid = new System.Windows.Forms.CheckBox();
-            this.XYGridCB = new System.Windows.Forms.CheckBox();
-            this.OrthographicView = new System.Windows.Forms.CheckBox();
-            this.IsometricView = new System.Windows.Forms.Button();
-            this.SideView = new System.Windows.Forms.Button();
-            this.TopView = new System.Windows.Forms.Button();
-            this.CenterOnSelection = new System.Windows.Forms.Button();
-            this.ResetView = new System.Windows.Forms.Button();
             this.ZoomOut = new System.Windows.Forms.Button();
             this.ZoomIn = new System.Windows.Forms.Button();
             this.SpinUp = new System.Windows.Forms.Button();
@@ -70,9 +61,34 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.girdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vissibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renderingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.solidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wireframeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.presetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.topToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.frontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.isometricToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.orthographicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.perspectiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.focusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.focusSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetFocusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.locationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAllTraversalSpeedsToSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.MainSpliter)).BeginInit();
             this.MainSpliter.Panel1.SuspendLayout();
             this.MainSpliter.Panel2.SuspendLayout();
@@ -93,15 +109,6 @@
             // 
             // MainSpliter.Panel1
             // 
-            this.MainSpliter.Panel1.Controls.Add(this.DrawSolid);
-            this.MainSpliter.Panel1.Controls.Add(this.Grid);
-            this.MainSpliter.Panel1.Controls.Add(this.XYGridCB);
-            this.MainSpliter.Panel1.Controls.Add(this.OrthographicView);
-            this.MainSpliter.Panel1.Controls.Add(this.IsometricView);
-            this.MainSpliter.Panel1.Controls.Add(this.SideView);
-            this.MainSpliter.Panel1.Controls.Add(this.TopView);
-            this.MainSpliter.Panel1.Controls.Add(this.CenterOnSelection);
-            this.MainSpliter.Panel1.Controls.Add(this.ResetView);
             this.MainSpliter.Panel1.Controls.Add(this.ZoomOut);
             this.MainSpliter.Panel1.Controls.Add(this.ZoomIn);
             this.MainSpliter.Panel1.Controls.Add(this.SpinUp);
@@ -116,115 +123,6 @@
             this.MainSpliter.Size = new System.Drawing.Size(830, 454);
             this.MainSpliter.SplitterDistance = 586;
             this.MainSpliter.TabIndex = 0;
-            // 
-            // DrawSolid
-            // 
-            this.DrawSolid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DrawSolid.AutoSize = true;
-            this.DrawSolid.Location = new System.Drawing.Point(343, 432);
-            this.DrawSolid.Name = "DrawSolid";
-            this.DrawSolid.Size = new System.Drawing.Size(49, 17);
-            this.DrawSolid.TabIndex = 14;
-            this.DrawSolid.Text = "Solid";
-            this.DrawSolid.UseVisualStyleBackColor = true;
-            this.DrawSolid.CheckedChanged += new System.EventHandler(this.DrawSolid_CheckedChanged);
-            // 
-            // Grid
-            // 
-            this.Grid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Grid.AutoSize = true;
-            this.Grid.Checked = true;
-            this.Grid.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Grid.Location = new System.Drawing.Point(398, 433);
-            this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(45, 17);
-            this.Grid.TabIndex = 13;
-            this.Grid.Text = "Grid";
-            this.Grid.UseVisualStyleBackColor = true;
-            this.Grid.CheckedChanged += new System.EventHandler(this.Grid_CheckedChanged);
-            // 
-            // XYGridCB
-            // 
-            this.XYGridCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.XYGridCB.AutoSize = true;
-            this.XYGridCB.Checked = true;
-            this.XYGridCB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.XYGridCB.Location = new System.Drawing.Point(449, 432);
-            this.XYGridCB.Name = "XYGridCB";
-            this.XYGridCB.Size = new System.Drawing.Size(40, 17);
-            this.XYGridCB.TabIndex = 12;
-            this.XYGridCB.Text = "XY";
-            this.XYGridCB.UseVisualStyleBackColor = true;
-            this.XYGridCB.CheckedChanged += new System.EventHandler(this.XYGridCB_CheckedChanged);
-            // 
-            // OrthographicView
-            // 
-            this.OrthographicView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OrthographicView.AutoSize = true;
-            this.OrthographicView.Location = new System.Drawing.Point(495, 432);
-            this.OrthographicView.Name = "OrthographicView";
-            this.OrthographicView.Size = new System.Drawing.Size(52, 17);
-            this.OrthographicView.TabIndex = 11;
-            this.OrthographicView.Text = "Ortho";
-            this.OrthographicView.UseVisualStyleBackColor = true;
-            this.OrthographicView.CheckedChanged += new System.EventHandler(this.OrthographicView_CheckedChanged);
-            // 
-            // IsometricView
-            // 
-            this.IsometricView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.IsometricView.Location = new System.Drawing.Point(129, 427);
-            this.IsometricView.Name = "IsometricView";
-            this.IsometricView.Size = new System.Drawing.Size(39, 23);
-            this.IsometricView.TabIndex = 10;
-            this.IsometricView.Text = "ISO";
-            this.IsometricView.UseVisualStyleBackColor = true;
-            this.IsometricView.Click += new System.EventHandler(this.IsometricView_Click);
-            // 
-            // SideView
-            // 
-            this.SideView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SideView.Location = new System.Drawing.Point(84, 427);
-            this.SideView.Name = "SideView";
-            this.SideView.Size = new System.Drawing.Size(39, 23);
-            this.SideView.TabIndex = 9;
-            this.SideView.Text = "Side";
-            this.SideView.UseVisualStyleBackColor = true;
-            this.SideView.Click += new System.EventHandler(this.SideView_Click);
-            // 
-            // TopView
-            // 
-            this.TopView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TopView.Location = new System.Drawing.Point(39, 427);
-            this.TopView.Name = "TopView";
-            this.TopView.Size = new System.Drawing.Size(39, 23);
-            this.TopView.TabIndex = 8;
-            this.TopView.Text = "Top";
-            this.TopView.UseVisualStyleBackColor = true;
-            this.TopView.Click += new System.EventHandler(this.TopView_Click);
-            // 
-            // CenterOnSelection
-            // 
-            this.CenterOnSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CenterOnSelection.Font = new System.Drawing.Font("Wingdings 2", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.CenterOnSelection.Location = new System.Drawing.Point(256, 428);
-            this.CenterOnSelection.Name = "CenterOnSelection";
-            this.CenterOnSelection.Size = new System.Drawing.Size(30, 23);
-            this.CenterOnSelection.TabIndex = 7;
-            this.CenterOnSelection.Text = "8";
-            this.CenterOnSelection.UseVisualStyleBackColor = true;
-            this.CenterOnSelection.Click += new System.EventHandler(this.CenterOnSelection_Click);
-            // 
-            // ResetView
-            // 
-            this.ResetView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ResetView.Font = new System.Drawing.Font("Wingdings 2", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.ResetView.Location = new System.Drawing.Point(220, 428);
-            this.ResetView.Name = "ResetView";
-            this.ResetView.Size = new System.Drawing.Size(30, 23);
-            this.ResetView.TabIndex = 7;
-            this.ResetView.Text = "Ç";
-            this.ResetView.UseVisualStyleBackColor = true;
-            this.ResetView.Click += new System.EventHandler(this.ResetView_Click);
             // 
             // ZoomOut
             // 
@@ -462,6 +360,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.templatesToolStripMenuItem,
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -528,6 +427,190 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.girdToolStripMenuItem,
+            this.renderingToolStripMenuItem,
+            this.presetToolStripMenuItem,
+            this.projectionToolStripMenuItem,
+            this.focusToolStripMenuItem,
+            this.showToolStripMenuItem1});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // girdToolStripMenuItem
+            // 
+            this.girdToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.planeToolStripMenuItem,
+            this.vissibleToolStripMenuItem});
+            this.girdToolStripMenuItem.Name = "girdToolStripMenuItem";
+            this.girdToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.girdToolStripMenuItem.Text = "Grid";
+            // 
+            // planeToolStripMenuItem
+            // 
+            this.planeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xYToolStripMenuItem,
+            this.yZToolStripMenuItem});
+            this.planeToolStripMenuItem.Name = "planeToolStripMenuItem";
+            this.planeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.planeToolStripMenuItem.Text = "Plane";
+            // 
+            // xYToolStripMenuItem
+            // 
+            this.xYToolStripMenuItem.Name = "xYToolStripMenuItem";
+            this.xYToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
+            this.xYToolStripMenuItem.Text = "XY";
+            this.xYToolStripMenuItem.Click += new System.EventHandler(this.xYToolStripMenuItem_Click);
+            // 
+            // yZToolStripMenuItem
+            // 
+            this.yZToolStripMenuItem.Name = "yZToolStripMenuItem";
+            this.yZToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
+            this.yZToolStripMenuItem.Text = "YZ";
+            this.yZToolStripMenuItem.Click += new System.EventHandler(this.yZToolStripMenuItem_Click);
+            // 
+            // vissibleToolStripMenuItem
+            // 
+            this.vissibleToolStripMenuItem.Name = "vissibleToolStripMenuItem";
+            this.vissibleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.vissibleToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.vissibleToolStripMenuItem.Text = "Vissible";
+            this.vissibleToolStripMenuItem.Click += new System.EventHandler(this.vissibleToolStripMenuItem_Click);
+            // 
+            // renderingToolStripMenuItem
+            // 
+            this.renderingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.solidToolStripMenuItem,
+            this.wireframeToolStripMenuItem});
+            this.renderingToolStripMenuItem.Name = "renderingToolStripMenuItem";
+            this.renderingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renderingToolStripMenuItem.Text = "Rendering";
+            // 
+            // solidToolStripMenuItem
+            // 
+            this.solidToolStripMenuItem.Name = "solidToolStripMenuItem";
+            this.solidToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.solidToolStripMenuItem.Text = "Solid";
+            this.solidToolStripMenuItem.Click += new System.EventHandler(this.solidToolStripMenuItem_Click);
+            // 
+            // wireframeToolStripMenuItem
+            // 
+            this.wireframeToolStripMenuItem.Name = "wireframeToolStripMenuItem";
+            this.wireframeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.wireframeToolStripMenuItem.Text = "Wireframe";
+            this.wireframeToolStripMenuItem.Click += new System.EventHandler(this.wireframeToolStripMenuItem_Click);
+            // 
+            // presetToolStripMenuItem
+            // 
+            this.presetToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.topToolStripMenuItem,
+            this.sideToolStripMenuItem,
+            this.frontToolStripMenuItem,
+            this.isometricToolStripMenuItem});
+            this.presetToolStripMenuItem.Name = "presetToolStripMenuItem";
+            this.presetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.presetToolStripMenuItem.Text = "Preset";
+            // 
+            // topToolStripMenuItem
+            // 
+            this.topToolStripMenuItem.Name = "topToolStripMenuItem";
+            this.topToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.topToolStripMenuItem.Text = "Top";
+            this.topToolStripMenuItem.Click += new System.EventHandler(this.topToolStripMenuItem_Click);
+            // 
+            // sideToolStripMenuItem
+            // 
+            this.sideToolStripMenuItem.Name = "sideToolStripMenuItem";
+            this.sideToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.sideToolStripMenuItem.Text = "Side";
+            this.sideToolStripMenuItem.Click += new System.EventHandler(this.sideToolStripMenuItem_Click);
+            // 
+            // frontToolStripMenuItem
+            // 
+            this.frontToolStripMenuItem.Name = "frontToolStripMenuItem";
+            this.frontToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.frontToolStripMenuItem.Text = "Front";
+            this.frontToolStripMenuItem.Click += new System.EventHandler(this.frontToolStripMenuItem_Click);
+            // 
+            // isometricToolStripMenuItem
+            // 
+            this.isometricToolStripMenuItem.Name = "isometricToolStripMenuItem";
+            this.isometricToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.isometricToolStripMenuItem.Text = "Isometric";
+            this.isometricToolStripMenuItem.Click += new System.EventHandler(this.isometricToolStripMenuItem_Click);
+            // 
+            // projectionToolStripMenuItem
+            // 
+            this.projectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.orthographicToolStripMenuItem,
+            this.perspectiveToolStripMenuItem});
+            this.projectionToolStripMenuItem.Name = "projectionToolStripMenuItem";
+            this.projectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.projectionToolStripMenuItem.Text = "Projection";
+            // 
+            // orthographicToolStripMenuItem
+            // 
+            this.orthographicToolStripMenuItem.Name = "orthographicToolStripMenuItem";
+            this.orthographicToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.orthographicToolStripMenuItem.Text = "Orthographic";
+            this.orthographicToolStripMenuItem.Click += new System.EventHandler(this.orthographicToolStripMenuItem_Click);
+            // 
+            // perspectiveToolStripMenuItem
+            // 
+            this.perspectiveToolStripMenuItem.Name = "perspectiveToolStripMenuItem";
+            this.perspectiveToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.perspectiveToolStripMenuItem.Text = "Perspective";
+            this.perspectiveToolStripMenuItem.Click += new System.EventHandler(this.perspectiveToolStripMenuItem_Click);
+            // 
+            // focusToolStripMenuItem
+            // 
+            this.focusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.focusSelectedToolStripMenuItem,
+            this.resetFocusToolStripMenuItem});
+            this.focusToolStripMenuItem.Name = "focusToolStripMenuItem";
+            this.focusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.focusToolStripMenuItem.Text = "Focus";
+            // 
+            // focusSelectedToolStripMenuItem
+            // 
+            this.focusSelectedToolStripMenuItem.Name = "focusSelectedToolStripMenuItem";
+            this.focusSelectedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.focusSelectedToolStripMenuItem.Text = "Focus Selected";
+            this.focusSelectedToolStripMenuItem.Click += new System.EventHandler(this.focusSelectedToolStripMenuItem_Click);
+            // 
+            // resetFocusToolStripMenuItem
+            // 
+            this.resetFocusToolStripMenuItem.Name = "resetFocusToolStripMenuItem";
+            this.resetFocusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resetFocusToolStripMenuItem.Text = "Reset Focus";
+            this.resetFocusToolStripMenuItem.Click += new System.EventHandler(this.resetFocusToolStripMenuItem_Click);
+            // 
+            // showToolStripMenuItem1
+            // 
+            this.showToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectionsToolStripMenuItem,
+            this.systemsToolStripMenuItem});
+            this.showToolStripMenuItem1.Name = "showToolStripMenuItem1";
+            this.showToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.showToolStripMenuItem1.Text = "Show";
+            // 
+            // connectionsToolStripMenuItem
+            // 
+            this.connectionsToolStripMenuItem.Name = "connectionsToolStripMenuItem";
+            this.connectionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.connectionsToolStripMenuItem.Text = "Connections";
+            this.connectionsToolStripMenuItem.Click += new System.EventHandler(this.connectionsToolStripMenuItem_Click);
+            // 
+            // systemsToolStripMenuItem
+            // 
+            this.systemsToolStripMenuItem.Name = "systemsToolStripMenuItem";
+            this.systemsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.systemsToolStripMenuItem.Text = "Systems";
+            this.systemsToolStripMenuItem.Click += new System.EventHandler(this.systemsToolStripMenuItem_Click);
+            // 
             // templatesToolStripMenuItem
             // 
             this.templatesToolStripMenuItem.Name = "templatesToolStripMenuItem";
@@ -537,7 +620,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scaleToolStripMenuItem});
+            this.scaleToolStripMenuItem,
+            this.locationsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -545,9 +629,24 @@
             // scaleToolStripMenuItem
             // 
             this.scaleToolStripMenuItem.Name = "scaleToolStripMenuItem";
-            this.scaleToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.scaleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.scaleToolStripMenuItem.Text = "Scale";
             this.scaleToolStripMenuItem.Click += new System.EventHandler(this.scaleToolStripMenuItem_Click);
+            // 
+            // locationsToolStripMenuItem
+            // 
+            this.locationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAllTraversalSpeedsToSelectedToolStripMenuItem});
+            this.locationsToolStripMenuItem.Name = "locationsToolStripMenuItem";
+            this.locationsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.locationsToolStripMenuItem.Text = "Locations";
+            // 
+            // setAllTraversalSpeedsToSelectedToolStripMenuItem
+            // 
+            this.setAllTraversalSpeedsToSelectedToolStripMenuItem.Name = "setAllTraversalSpeedsToSelectedToolStripMenuItem";
+            this.setAllTraversalSpeedsToSelectedToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
+            this.setAllTraversalSpeedsToSelectedToolStripMenuItem.Text = "Set All Traversal Speeds to Selected";
+            this.setAllTraversalSpeedsToSelectedToolStripMenuItem.Click += new System.EventHandler(this.setAllTraversalSpeedsToSelectedToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -562,7 +661,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.MainSpliter.Panel1.ResumeLayout(false);
-            this.MainSpliter.Panel1.PerformLayout();
             this.MainSpliter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainSpliter)).EndInit();
             this.MainSpliter.ResumeLayout(false);
@@ -610,19 +708,35 @@
         private System.Windows.Forms.Button ZoomIn;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scaleToolStripMenuItem;
-        private System.Windows.Forms.Button ResetView;
-        private System.Windows.Forms.Button CenterOnSelection;
-        private System.Windows.Forms.Button IsometricView;
-        private System.Windows.Forms.Button SideView;
-        private System.Windows.Forms.Button TopView;
-        private System.Windows.Forms.CheckBox OrthographicView;
         private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.CheckBox XYGridCB;
-        private System.Windows.Forms.CheckBox Grid;
-        private System.Windows.Forms.CheckBox DrawSolid;
         private System.Windows.Forms.ToolStripMenuItem newConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteConnectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem girdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renderingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem solidToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wireframeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem presetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem topToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem frontToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isometricToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem orthographicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem perspectiveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem focusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem focusSelectedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetFocusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem connectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem planeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xYToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yZToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vissibleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem locationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAllTraversalSpeedsToSelectedToolStripMenuItem;
     }
 }
 

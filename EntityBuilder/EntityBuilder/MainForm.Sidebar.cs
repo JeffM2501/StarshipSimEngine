@@ -219,12 +219,6 @@ namespace EntityBuilder
 
         private void ComponentsList_AfterSelect(object sender, TreeViewEventArgs e)
         {
- /*           if (ComponentsList.SelectedNode != null)
-                ComponentsList.SelectedImageIndex = ComponentsList.SelectedNode.ImageIndex;
-
-            ComponentsList.ExpandAll();
-  */
-
             if (ComponentsList.SelectedNode != null)
                 LoadInspector(ComponentsList.SelectedNode.Tag);
             else
