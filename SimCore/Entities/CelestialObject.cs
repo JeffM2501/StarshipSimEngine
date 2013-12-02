@@ -17,8 +17,7 @@ namespace SimCore.Entities
             BlackHole,
             ParticleCloud,
             SpacialWarp,
-            Planet,
-            Moon,
+            PlanetaryBody,
             Nova,
         }
         public Categories Category = Categories.Unknown;
@@ -52,11 +51,42 @@ namespace SimCore.Entities
 
     public class Planet : CelestialObject
     {
+        public enum SizeClasses
+        {
+            Unknown,
+            Asteroid,
+            Moon,
+            Dwarf,
+            TerestrialSmall,
+            TerestrialMedium,
+            TerestrialLarge,
+            IceGiant,
+            GasGiant,
+            GasSuperGiant,
+        }
+        public SizeClasses SizeClass = SizeClasses.Unknown;
+
+        public enum HabitatClasses
+        {
+            Unknown,
+            ClassD, // airless moon or planetoid
+            ClassH, // unstable atmosphere for oxygen based organic life
+            ClassJ, // Hydrocarbon Gas Giant similar to Jupiter
+            ClassK, // Low pressure world, habitable with pressure domes
+            ClassL, // Marginally habitable, non-nitrogen based noble gas, 
+            ClassM, // Baseline habitation, earth like
+            ClassN, // sulfuric atmosphere
+            ClassT, // Other uninhabitable
+            ClassY, // Special "demon" classification for exotic planets
+        }
+        public HabitatClasses HabitatClass = HabitatClasses.Unknown;
+
         public List<Person> Population = new List<Person>();
+        public double OribitRadius = 0;
 
         public Planet() : base()
         {
-            Category = Categories.Planet;
+            Category = Categories.PlanetaryBody;
         }
     }
 }
