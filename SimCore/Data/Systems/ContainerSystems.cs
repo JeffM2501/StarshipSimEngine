@@ -108,5 +108,22 @@ namespace SimCore.Data.Systems
         public int MaxCapacity = 0;
         public StarShip.StarShipSizeClasses MaxShipClass = StarShip.StarShipSizeClasses.None;
         public List<StarShip> DockedShips = new List<StarShip>();
+
+        public class ServiceCraftInfo
+        {
+            public StarShip Craft = null;
+
+            public enum Dispostions
+            {
+                Docked,
+                OnMission,
+                Missing,
+                Maintenance,
+            }
+
+            public Dispostions Disposition = Dispostions.Missing;
+        }
+
+        public List<ServiceCraftInfo> ServiceCraft = new List<ServiceCraftInfo>();
     }
 }
