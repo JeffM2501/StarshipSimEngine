@@ -79,8 +79,7 @@ namespace EntityBuilder.Inspectors
                 return;
 
             TheLocation.Name = LocationName.Text;
-            ItemName = TheLocation.Name;
-            CallNameChanged(TheLocation);
+            CallNameChanged(this);
         }
 
         private void ShapeList_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,7 +89,7 @@ namespace EntityBuilder.Inspectors
 
             TheLocation.Shape = (Entity.InternalLocation.LocaionShapes)ShapeList.SelectedItem;
 
-            CallInfoChanged(TheLocation);
+            CallInfoChanged(this);
         }
     }
 }

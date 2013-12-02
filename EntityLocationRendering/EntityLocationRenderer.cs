@@ -22,7 +22,7 @@ namespace EntityLocationRendering
 
         // connector sizes
         public float CenterRadius = 0.25f;
-        public float ConnectorRadius = 0.5f;
+        public float ConnectorRadius = 0.35f;
     }
 
     public class EntityLocationRenderer

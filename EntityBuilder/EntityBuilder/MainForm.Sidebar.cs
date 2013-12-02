@@ -76,12 +76,6 @@ namespace EntityBuilder
             Draw();
         }
 
-        private void ComponentViewModeList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComponentsList.Nodes.Clear();
-            BuildLocationList();
-        }
-
         public void AddSystemsToNode(IEnumerable<BaseSystem> systemList, TreeNode root, int locID)
         {
             foreach (BaseSystem system in systemList)
@@ -126,6 +120,7 @@ namespace EntityBuilder
 
         public void BuildLocationList()
         {
+            ComponentsList.Nodes.Clear();
             foreach (Entity.InternalLocation loc in TheEntity.Locations)
             {
                 TreeNode node = AddLocatioNode(loc);
@@ -147,6 +142,7 @@ namespace EntityBuilder
                 AddSystemsToNode(TheEntity.TractorBeams, node, loc.Index);
                 AddSystemsToNode(TheEntity.Computers, node, loc.Index);
             }
+            ComponentsList.ExpandAll();
         }
 
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -157,7 +153,6 @@ namespace EntityBuilder
             TheEntity.Locations.Add(location);
 
             TreeNode node = AddLocatioNode(location);
-            ComponentsList.Nodes.Add(node);
             ComponentsList.SelectedNode = node;
 
             Dirty();
@@ -224,8 +219,11 @@ namespace EntityBuilder
 
         private void ComponentsList_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (ComponentsList.SelectedNode != null)
+ /*           if (ComponentsList.SelectedNode != null)
                 ComponentsList.SelectedImageIndex = ComponentsList.SelectedNode.ImageIndex;
+
+            ComponentsList.ExpandAll();
+  */
 
             if (ComponentsList.SelectedNode != null)
                 LoadInspector(ComponentsList.SelectedNode.Tag);

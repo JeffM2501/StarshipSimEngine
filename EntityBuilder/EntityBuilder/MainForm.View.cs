@@ -43,7 +43,7 @@ namespace EntityBuilder
             Renderer = new EntityLocationRenderer(TheEntity);
             Renderer.LineWidth = Prefs.GetPrefs().LineWidth;
             Renderer.GetColorForLocation = GetColorForLocation;
-
+            Renderer.GetColorForConnection = GetColorForConnection;
             ResetColors();
             //RenderOptions.Solid = true;
            
@@ -69,7 +69,24 @@ namespace EntityBuilder
 
             if (loc == selectedLoc)
                 return SelectionColor;
+
+            Entity.InternalLocation.ConnectionInfo selectedConnection = GetSelectedConnection();
+            if (selectedConnection != null && TheEntity.Locations[selectedConnection.TargetIndex] == loc)
+                return Color.Yellow;
+
             return DeselectedColor;
+        }
+
+        protected Color GetColorForConnection(Entity.InternalLocation location, Entity.InternalLocation.ConnectionInfo connection, int connectionIndex)
+        {
+            if (connection == null)
+                return Color.CadetBlue;
+
+            Entity.InternalLocation.ConnectionInfo selectedConnection = GetSelectedConnection();
+
+            if (selectedConnection == connection)
+                return Color.Green;
+            return Color.LightBlue;
         }
 
         private void Visualisation_Load(object sender, EventArgs e)

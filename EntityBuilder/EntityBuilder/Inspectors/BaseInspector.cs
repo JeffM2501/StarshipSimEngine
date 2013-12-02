@@ -13,8 +13,6 @@ namespace EntityBuilder.Inspectors
 {
     public partial class BaseInspector : UserControl
     {
-        public string ItemName { get; protected set; }
-
         public event EventHandler NameChanged;
         public event EventHandler InfoChanged;
 

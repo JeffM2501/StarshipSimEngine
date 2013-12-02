@@ -66,8 +66,8 @@ namespace EntityBuilder
         protected void EntityChanged()
         {
             this.Text = TheEntity.Name;
-            SetupRendering();
             BuildLocationList();
+            SetupRendering();
         }
 
         public void Dirty()
