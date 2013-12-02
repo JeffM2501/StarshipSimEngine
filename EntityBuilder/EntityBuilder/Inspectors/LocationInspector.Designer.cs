@@ -38,7 +38,10 @@
             this.ConnectionListMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TraversalSpeed = new System.Windows.Forms.NumericUpDown();
             this.ConnectionListMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TraversalSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // LocationName
@@ -114,10 +117,37 @@
             this.deleteConnectionToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.deleteConnectionToolStripMenuItem.Text = "Delete Connection";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 430);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Traversal Speed";
+            // 
+            // TraversalSpeed
+            // 
+            this.TraversalSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TraversalSpeed.DecimalPlaces = 2;
+            this.TraversalSpeed.Location = new System.Drawing.Point(95, 428);
+            this.TraversalSpeed.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.TraversalSpeed.Name = "TraversalSpeed";
+            this.TraversalSpeed.Size = new System.Drawing.Size(94, 20);
+            this.TraversalSpeed.TabIndex = 7;
+            this.TraversalSpeed.ValueChanged += new System.EventHandler(this.TraversalSpeed_ValueChanged);
+            // 
             // LocationInspector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.TraversalSpeed);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.GeoSize);
             this.Controls.Add(this.ShapeList);
             this.Controls.Add(this.label1);
@@ -125,9 +155,10 @@
             this.Controls.Add(this.Origin);
             this.Controls.Add(this.LocationName);
             this.Name = "LocationInspector";
-            this.Size = new System.Drawing.Size(198, 434);
+            this.Size = new System.Drawing.Size(198, 484);
             this.Load += new System.EventHandler(this.LocationInspector_Load);
             this.ConnectionListMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TraversalSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +175,7 @@
         private System.Windows.Forms.ContextMenuStrip ConnectionListMenu;
         private System.Windows.Forms.ToolStripMenuItem newConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteConnectionToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown TraversalSpeed;
     }
 }

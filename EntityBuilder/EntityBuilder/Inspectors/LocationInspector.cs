@@ -42,6 +42,8 @@ namespace EntityBuilder.Inspectors
 
             if (Location != null)
             {
+                TraversalSpeed.Value = (decimal)TheLocation.TraversalSpeed;
+
                 LocationName.Text = TheLocation.Name;
                 ShapeList.SelectedItem = TheLocation.Shape;
 
@@ -89,6 +91,15 @@ namespace EntityBuilder.Inspectors
 
             TheLocation.Shape = (Entity.InternalLocation.LocaionShapes)ShapeList.SelectedItem;
 
+            CallInfoChanged(this);
+        }
+
+        private void TraversalSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            if (TheLocation.TraversalSpeed == (double)TraversalSpeed.Value)
+                return;
+
+            TheLocation.TraversalSpeed = (double)TraversalSpeed.Value;
             CallInfoChanged(this);
         }
     }
