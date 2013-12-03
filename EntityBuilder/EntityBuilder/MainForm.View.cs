@@ -76,9 +76,16 @@ namespace EntityBuilder
         {
             Prefs prefs = Prefs.GetPrefs();
 
-            BackgroundColor = Color.FromArgb(prefs.BackgroundColor[0], prefs.BackgroundColor[1], prefs.BackgroundColor[2]);
-            MajorGridColor = Color.FromArgb(prefs.MajorGridColor[0], prefs.MajorGridColor[1], prefs.MajorGridColor[2]);
-            MinorGridColor = Color.FromArgb(prefs.MinorGridColor[0], prefs.MinorGridColor[1], prefs.MinorGridColor[2]);
+            try
+            {
+                BackgroundColor = Color.FromArgb(prefs.BackgroundColor[0], prefs.BackgroundColor[1], prefs.BackgroundColor[2]);
+                MajorGridColor = Color.FromArgb(prefs.MajorGridColor[0], prefs.MajorGridColor[1], prefs.MajorGridColor[2]);
+                MinorGridColor = Color.FromArgb(prefs.MinorGridColor[0], prefs.MinorGridColor[1], prefs.MinorGridColor[2]);
+            }
+            catch (System.Exception ex)
+            {
+            	
+            }
 
             GL.ClearColor(BackgroundColor);
         }
