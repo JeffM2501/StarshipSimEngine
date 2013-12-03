@@ -121,26 +121,14 @@ namespace EntityBuilder
         public void BuildLocationList()
         {
             ComponentsList.Nodes.Clear();
+            BaseSystem[] systemList = TheEntity.GetSystemList();
+
             foreach (Entity.InternalLocation loc in TheEntity.Locations)
             {
                 TreeNode node = AddLocatioNode(loc);
 
                 AddConnectionNodes(loc, node);
-
-                AddSystemsToNode(TheEntity.Engines, node, loc.Index);
-                AddSystemsToNode(TheEntity.StorageSystems, node, loc.Index);
-                AddSystemsToNode(TheEntity.FluidTanks, node, loc.Index);
-                AddSystemsToNode(TheEntity.PropulsionSystems, node, loc.Index);
-                AddSystemsToNode(TheEntity.NavigationSystems, node, loc.Index);
-                AddSystemsToNode(TheEntity.DefensiveSystems, node, loc.Index);
-                AddSystemsToNode(TheEntity.MedicalSystems, node, loc.Index);
-                AddSystemsToNode(TheEntity.LifeSupportDistrobutions, node, loc.Index);
-                AddSystemsToNode(TheEntity.LifeSupportRecyclers, node, loc.Index);
-                AddSystemsToNode(TheEntity.Hangars, node, loc.Index);
-                AddSystemsToNode(TheEntity.Sensors, node, loc.Index);
-                AddSystemsToNode(TheEntity.Transporters, node, loc.Index);
-                AddSystemsToNode(TheEntity.TractorBeams, node, loc.Index);
-                AddSystemsToNode(TheEntity.Computers, node, loc.Index);
+                AddSystemsToNode(systemList, node, loc.Index);
             }
             ComponentsList.ExpandAll();
         }
