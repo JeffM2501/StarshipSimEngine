@@ -184,6 +184,11 @@ namespace EntityBuilder
             Dirty();
         }
 
+        private void newToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void ComponentContextMenu_Opening(object sender, CancelEventArgs e)
         {
             ComponentContextMenu.Enabled = TheEntity != null;
