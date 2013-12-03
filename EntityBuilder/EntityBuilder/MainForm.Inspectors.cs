@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using SimCore.Entities;
+using SimCore.Data.Systems;
 
 using EntityBuilder.Inspectors;
 
@@ -18,6 +19,7 @@ namespace EntityBuilder
         {
             InspectorMap.Add(typeof(Entity.InternalLocation), typeof(LocationInspector));
             InspectorMap.Add(typeof(Entity.InternalLocation.ConnectionInfo), typeof(ConnectionInspector));
+            InspectorMap.Add(typeof(BaseSystem), typeof(BaseSystemInspector));
         }
 
         public void LoadInspector(object item)
@@ -31,6 +33,8 @@ namespace EntityBuilder
 
             if (InspectorMap.ContainsKey(item.GetType()))
                 inspector = (BaseInspector)Activator.CreateInstance(InspectorMap[item.GetType()]);
+            else if (item as BaseSystem != null)
+                inspector = (BaseInspector)Activator.CreateInstance(InspectorMap[typeof(BaseSystem)]);
             else
             {
                 inspector = new LocationInspector();
