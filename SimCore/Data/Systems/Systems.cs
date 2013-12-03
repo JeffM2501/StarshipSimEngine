@@ -33,6 +33,7 @@ namespace SimCore.Data.Systems
         public double BaseEfectivness = 1;
 
         public int LocationID = -1;
+        public Vector3d SystemLocation = Vector3d.Zero;
 
         public UInt64 ControlComputer = UInt64.MaxValue;
     }
