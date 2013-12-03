@@ -119,5 +119,131 @@ namespace SimCore.Entities
         // or operationally like a shuttle to a ship 
         public UInt64 ParrentID = UInt64.MaxValue;
 
+        // the highest systemID used on this item
+        public UInt64 LastSystemID = UInt64.MinValue;
+
+        protected Dictionary<UInt64, BaseSystem> SystemCache = null;
+
+        public BaseSystem[] GetSystemList()
+        {
+            if (SystemCache == null)
+                RebuildSystemCache();
+
+            return SystemCache.Values.ToArray();
+        }
+
+        public void RebuildSystemCache()
+        {
+            SystemCache = new Dictionary<UInt64, BaseSystem>();
+
+            AddSystemsToCache(Engines);
+            AddSystemsToCache(StorageSystems);
+            AddSystemsToCache(PropulsionSystems); 
+            AddSystemsToCache(NavigationSystems);
+            AddSystemsToCache(DefensiveSystems);
+            AddSystemsToCache(OffensiveSystems);
+            AddSystemsToCache(MedicalSystems);
+            AddSystemsToCache(LifeSupportDistrobutions);
+            AddSystemsToCache(LifeSupportRecyclers);
+            AddSystemsToCache(Hangars);
+            AddSystemsToCache(Communications);
+            AddSystemsToCache(Sensors);
+            AddSystemsToCache(Transporters);
+            AddSystemsToCache(TractorBeams);
+            AddSystemsToCache(Computers);
+        }
+
+        protected void AddSystemsToCache(IEnumerable<BaseSystem> systems)
+        {
+            foreach (BaseSystem sys in systems)
+                SystemCache.Add(sys.SystemID,sys);
+        }
+
+        protected bool AddSystemIfTypeMatch<T>(List<T> list, BaseSystem system) where T : BaseSystem
+        {
+            T s = system as T;
+
+            if (s == null)
+                return false;
+
+            list.Add(s);
+            SystemCache.Add(system.SystemID, system);
+            return true;
+        }
+
+        protected void RemoveSystemIfExists<T>(List<T> list, BaseSystem system) where T : BaseSystem
+        {
+            if (system as T != null && list.Contains(system))
+                list.Remove(system as T);
+        }
+
+        public void RemoveSystem(BaseSystem system) 
+        {
+            RemoveSystemIfExists<GenerationSystem>(Engines, system);
+            RemoveSystemIfExists<StorageSystem>(StorageSystems, system);
+            RemoveSystemIfExists<FluidTankSystem>(FluidTanks, system);
+            RemoveSystemIfExists<PropulsionSystem>(PropulsionSystems, system);
+            RemoveSystemIfExists<NavigationSystem>(NavigationSystems, system);
+            RemoveSystemIfExists<DefensiveSystem>(DefensiveSystems, system);
+            RemoveSystemIfExists<OffensiveSystem>(OffensiveSystems, system);
+            RemoveSystemIfExists<MedicalSystem>(MedicalSystems, system);
+            RemoveSystemIfExists<LifeSupportDistrobutionSystem>(LifeSupportDistrobutions, system);
+            RemoveSystemIfExists<LifeSupportRecycleSystem>(LifeSupportRecyclers, system);
+            RemoveSystemIfExists<HangarSystem>(Hangars, system);
+            RemoveSystemIfExists<CommunicationSystem>(Communications, system);
+            RemoveSystemIfExists<SensorSystem>(Sensors, system); 
+            RemoveSystemIfExists<TransporterSystem>(Transporters, system);  
+            RemoveSystemIfExists<TractorBeamSystem>(TractorBeams, system);
+            RemoveSystemIfExists<ComputerSystem>(Computers, system);
+                
+            if (SystemCache.ContainsKey(system.SystemID))
+                SystemCache.Remove(system.SystemID);
+        }
+
+        public void AddSystem(BaseSystem system)
+        {
+            if (GetSystemList().Contains(system))
+                return;
+
+            system.SystemID = LastSystemID;
+            LastSystemID++;
+
+            if (AddSystemIfTypeMatch<GenerationSystem>(Engines,system))
+                return;
+            else if (AddSystemIfTypeMatch<StorageSystem>(StorageSystems, system))
+                return;
+            else if (AddSystemIfTypeMatch<FluidTankSystem>(FluidTanks, system))
+                return;
+            else if (AddSystemIfTypeMatch<PropulsionSystem>(PropulsionSystems, system))
+                return;
+            else if (AddSystemIfTypeMatch<NavigationSystem>(NavigationSystems, system))
+                return;
+            else if (AddSystemIfTypeMatch<DefensiveSystem>(DefensiveSystems, system))
+                return;
+            else if (AddSystemIfTypeMatch<OffensiveSystem>(OffensiveSystems, system))
+                return;
+            else if (AddSystemIfTypeMatch<MedicalSystem>(MedicalSystems, system))
+                return;
+            else if (AddSystemIfTypeMatch<LifeSupportDistrobutionSystem>(LifeSupportDistrobutions, system))
+                return;
+            else if (AddSystemIfTypeMatch<LifeSupportRecycleSystem>(LifeSupportRecyclers, system))
+                return;
+            else if (AddSystemIfTypeMatch<HangarSystem>(Hangars, system))
+                return;
+            else if (AddSystemIfTypeMatch<CommunicationSystem>(Communications, system))
+                return;
+            else if (AddSystemIfTypeMatch<SensorSystem>(Sensors, system))
+                return;
+            else if (AddSystemIfTypeMatch<TransporterSystem>(Transporters, system))
+                return;
+            else if (AddSystemIfTypeMatch<TractorBeamSystem>(TractorBeams, system))
+                return;
+            else if (AddSystemIfTypeMatch<ComputerSystem>(Computers, system))
+                return;
+
+
+            // system is unknown, do something?
+        }
+
     }
 }
