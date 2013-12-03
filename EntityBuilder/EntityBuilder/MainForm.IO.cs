@@ -116,7 +116,7 @@ namespace EntityBuilder
             {
                 serialType = typeof(CelestialObject);
                 CelestialObject celestial = GetCelestial();
-                if (celestial.Category == CelestialObject.Categories.Planet)
+                if (celestial.Category == CelestialObject.Categories.PlanetaryBody)
                     serialType = typeof(Planet);
             }
             else if (TheEntity.EntityType == Entity.EntityTypes.Ship)
@@ -142,7 +142,7 @@ namespace EntityBuilder
                 }
                 else
                 {
-                    if (selector.CelestialCategory == CelestialObject.Categories.Planet)
+                    if (selector.CelestialCategory == CelestialObject.Categories.PlanetaryBody)
                         TheEntity = new Planet();
                     else
                     {
