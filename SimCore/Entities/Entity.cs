@@ -132,6 +132,17 @@ namespace SimCore.Entities
             return SystemCache.Values.ToArray();
         }
 
+        public BaseSystem GetSystemByID(UInt64 id)
+        {
+            if (SystemCache == null)
+                RebuildSystemCache();
+
+            if (SystemCache.ContainsKey(id))
+                return SystemCache[id];
+
+            return null;
+        }
+
         public void RebuildSystemCache()
         {
             SystemCache = new Dictionary<UInt64, BaseSystem>();
