@@ -53,7 +53,7 @@ namespace SimCore.Entities
     {
         public enum SizeClasses
         {
-            Unknown,
+            Unknown = 0,
             Asteroid,
             Moon,
             Dwarf,
@@ -68,7 +68,7 @@ namespace SimCore.Entities
 
         public enum HabitatClasses
         {
-            Unknown,
+            Unknown = 0,
             ClassD, // airless moon or planetoid
             ClassH, // unstable atmosphere for oxygen based organic life
             ClassJ, // Hydrocarbon Gas Giant similar to Jupiter
