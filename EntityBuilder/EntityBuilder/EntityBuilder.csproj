@@ -74,6 +74,12 @@
     <Compile Include="Inspectors\BaseInspector.Designer.cs">
       <DependentUpon>BaseInspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inspectors\BaseSystemInspector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inspectors\BaseSystemInspector.Designer.cs">
+      <DependentUpon>BaseSystemInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inspectors\ConnectionInspector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EntityTypeSelector.resx">
       <DependentUpon>EntityTypeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inspectors\BaseSystemInspector.resx">
+      <DependentUpon>BaseSystemInspector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inspectors\ConnectionInspector.resx">
       <DependentUpon>ConnectionInspector.cs</DependentUpon>
