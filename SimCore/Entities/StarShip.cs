@@ -9,6 +9,8 @@ namespace SimCore.Entities
 {
     public class StarShip : Entity
     {
+        public UInt64 OwnerFaction = UInt64.MaxValue;
+
         public enum StarShipSizeClasses
         {
             None = 0,

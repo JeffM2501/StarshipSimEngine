@@ -8,6 +8,12 @@ using SimCore.Actors;
 
 namespace SimCore.Entities
 {
+    public class FactionInfluence
+    {
+        public UInt64 FactionID = UInt64.MaxValue;
+        public double Influence = 0;
+    }
+
     public class CelestialObject : Entity
     {
         public enum Categories
@@ -42,6 +48,8 @@ namespace SimCore.Entities
         public double RadiationIntensity = 0;
 
         public LifeSignData Life = new LifeSignData();
+
+        public List<FactionInfluence> Factions = new List<FactionInfluence>();
 
         public CelestialObject()
         {
