@@ -37,9 +37,18 @@ namespace EntityBuilder
                 inspector = (BaseInspector)Activator.CreateInstance(InspectorMap[typeof(BaseSystem)]);
             else
             {
-                inspector = new LocationInspector();
-                item = GetSelectedLocation();
+                if (item == TheEntity)
+                    inspector = new BaseEntityInspector();
+                else
+                {
+                    inspector = new LocationInspector();
+                    item = GetSelectedLocation();
+                }
+               
             }
+
+            if (inspector == null)
+                return;
 
             inspector.Set(item,TheEntity);
             InspectorArea.Controls.Add(inspector);

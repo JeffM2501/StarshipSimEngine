@@ -16,8 +16,8 @@ namespace EntityBuilder.Inspectors
 {
     public partial class BaseSystemInspector : BaseInspector
     {
-        protected BaseSystem TheBaseSysem = null;
-        public BaseSystemInspector()
+        protected BaseSystem TheBaseSystem = null;
+        public BaseSystemInspector() : base()
         {
             InitializeComponent();
         }
@@ -25,10 +25,10 @@ namespace EntityBuilder.Inspectors
         public override void Set(object item, Entity ent)
         {
             TheEntity = ent;
-            TheBaseSysem = item as BaseSystem;
+            TheBaseSystem = item as BaseSystem;
         }
 
-        public override string GetItemName() { return GetSystemName(TheBaseSysem); }
+        public override string GetItemName() { return GetSystemName(TheBaseSystem); }
 
         public static string GetSystemName(BaseSystem system)
         {
@@ -37,53 +37,53 @@ namespace EntityBuilder.Inspectors
 
         private void BaseSystemInspector_Load(object sender, EventArgs e)
         {
-            SystemName.Text = TheBaseSysem.Name;
+            SystemName.Text = TheBaseSystem.Name;
 
-            SystemLocation.Set(TheBaseSysem.SystemLocation);
+            SystemLocation.Set(TheBaseSystem.SystemLocation);
             SystemLocation.ValueChanged += new EventHandler(SystemLocation_ValueChanged);
 
             foreach (ComputerSystem computer in TheEntity.Computers)
                 ControlComputer.Items.Add(computer);
 
-            ControlComputer.SelectedItem = TheEntity.GetSystemByID(TheBaseSysem.ControlComputer);
+            ControlComputer.SelectedItem = TheEntity.GetSystemByID(TheBaseSystem.ControlComputer);
         }
 
         void SystemLocation_ValueChanged(object sender, EventArgs e)
         {
-            TheBaseSysem.SystemLocation = SystemLocation.Vector;
+            TheBaseSystem.SystemLocation = SystemLocation.Vector;
             CallInfoChanged(this);
         }
 
         private void SystemName_TextChanged(object sender, EventArgs e)
         {
-            TheBaseSysem.Name = SystemName.Text;
+            TheBaseSystem.Name = SystemName.Text;
             CallNameChanged(this);
         }
 
         private void Draw_ValueChanged(object sender, EventArgs e)
         {
-            if (TheBaseSysem.MaxPowerDraw == (double)Draw.Value)
+            if (TheBaseSystem.MaxPowerDraw == (double)Draw.Value)
                 return;
 
-            TheBaseSysem.MaxPowerDraw = (double)Draw.Value;
+            TheBaseSystem.MaxPowerDraw = (double)Draw.Value;
             CallInfoChanged(this);
         }
 
         private void MaxBuffer_ValueChanged(object sender, EventArgs e)
         {
-            if (TheBaseSysem.MaxPowerBuffer == (double)MaxBuffer.Value)
+            if (TheBaseSystem.MaxPowerBuffer == (double)MaxBuffer.Value)
                 return;
 
-            TheBaseSysem.MaxPowerBuffer = (double)MaxBuffer.Value;
+            TheBaseSystem.MaxPowerBuffer = (double)MaxBuffer.Value;
             CallInfoChanged(this);
         }
 
         private void BaseEffectivness_ValueChanged(object sender, EventArgs e)
         {
-            if (TheBaseSysem.BaseEfectivness == (double)BaseEffectivness.Value)
+            if (TheBaseSystem.BaseEfectivness == (double)BaseEffectivness.Value)
                 return;
 
-            TheBaseSysem.BaseEfectivness = (double)BaseEffectivness.Value;
+            TheBaseSystem.BaseEfectivness = (double)BaseEffectivness.Value;
             CallInfoChanged(this);
         }
 
@@ -93,10 +93,10 @@ namespace EntityBuilder.Inspectors
             if (selectedComp == null)
                 return;
 
-            if (TheBaseSysem.ControlComputer == selectedComp.SystemID)
+            if (TheBaseSystem.ControlComputer == selectedComp.SystemID)
                 return;
 
-            TheBaseSysem.ControlComputer = selectedComp.SystemID;
+            TheBaseSystem.ControlComputer = selectedComp.SystemID;
             CallInfoChanged(this);
         }
     }
