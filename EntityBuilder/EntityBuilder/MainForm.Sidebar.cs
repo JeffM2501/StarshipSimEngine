@@ -17,6 +17,8 @@ namespace EntityBuilder
 {
     partial class MainForm
     {
+        protected TreeNode EntityRootNode = null;
+
         protected void InitSidebar()
         {
             InitInspectors();
@@ -24,8 +26,11 @@ namespace EntityBuilder
 
         protected TreeNode GetSelectedLocationTreeNode()
         {
+            if (EntityRootNode == null)
+                return null;
+
             Entity.InternalLocation loc = GetSelectedLocation();
-            foreach (TreeNode node in ComponentsList.Nodes)
+            foreach (TreeNode node in EntityRootNode.Nodes)
             {
                 if (node.Tag == loc)
                     return node;
@@ -76,6 +81,19 @@ namespace EntityBuilder
             Draw();
         }
 
+        protected TreeNode AddSystemNode(BaseSystem system, TreeNode locNode)
+        {
+            if (locNode == null)
+                return null;
+
+            TreeNode node = new TreeNode(BaseSystemInspector.GetSystemName(system));
+            node.Tag = system;
+            node.ImageIndex = 1;
+            locNode.Nodes.Add(node);
+
+            return node;
+        }
+
         public void AddSystemsToNode(IEnumerable<BaseSystem> systemList, TreeNode root, int locID)
         {
             foreach (BaseSystem system in systemList)
@@ -83,9 +101,7 @@ namespace EntityBuilder
                 if (system.LocationID != locID)
                     continue;
 
-                TreeNode node = new TreeNode(system.Name);
-                node.Tag = system;
-                root.Nodes.Add(node);
+                AddSystemNode(system, root);
             }
         }
 
@@ -107,7 +123,7 @@ namespace EntityBuilder
             TreeNode node = new TreeNode(loc.ToString());
             node.Tag = loc;
             node.ImageIndex = 11;
-            ComponentsList.Nodes.Add(node);
+            EntityRootNode.Nodes.Add(node);
 
             return node;
         }
@@ -121,6 +137,13 @@ namespace EntityBuilder
         public void BuildLocationList()
         {
             ComponentsList.Nodes.Clear();
+
+            EntityRootNode = new TreeNode(TheEntity.Name);
+            EntityRootNode.Tag = TheEntity;
+            EntityRootNode.ImageIndex = 13;
+
+            ComponentsList.Nodes.Add(EntityRootNode);
+
             BaseSystem[] systemList = TheEntity.GetSystemList();
 
             foreach (Entity.InternalLocation loc in TheEntity.Locations)
@@ -163,7 +186,7 @@ namespace EntityBuilder
 
             TreeNode node = new TreeNode(location.ToString());
             node.Tag = location;
-            ComponentsList.Nodes.Add(node);
+            EntityRootNode.Nodes.Add(node);
             ComponentsList.SelectedNode = node;
 
             Dirty();
@@ -186,7 +209,23 @@ namespace EntityBuilder
 
         private void newToolStripMenuItem2_Click(object sender, EventArgs e)
         {
+            Entity.InternalLocation currentLoc = GetSelectedLocation();
+            if (currentLoc == null)
+                return;
 
+            SystemTypeSelector selector = new SystemTypeSelector();
+            if (selector.ShowDialog(this) == DialogResult.OK)
+            {
+                BaseSystem system = Activator.CreateInstance(selector.SystemType) as BaseSystem;
+
+                system.Name = "New " + system.GetType().Name;
+                system.LocationID = currentLoc.Index;
+                TheEntity.AddSystem(system);
+
+                ComponentsList.SelectedNode = AddSystemNode(system, GetSelectedLocationTreeNode());
+
+                Dirty();
+            }
         }
 
         private void ComponentContextMenu_Opening(object sender, CancelEventArgs e)

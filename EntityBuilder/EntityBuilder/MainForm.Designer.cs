@@ -251,7 +251,7 @@
             this.locationToolStripMenuItem,
             this.systemToolStripMenuItem});
             this.ComponentContextMenu.Name = "ComponentContextMenu";
-            this.ComponentContextMenu.Size = new System.Drawing.Size(153, 70);
+            this.ComponentContextMenu.Size = new System.Drawing.Size(121, 48);
             this.ComponentContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ComponentContextMenu_Opening);
             // 
             // locationToolStripMenuItem
@@ -263,7 +263,7 @@
             this.newConnectionToolStripMenuItem,
             this.deleteConnectionToolStripMenuItem});
             this.locationToolStripMenuItem.Name = "locationToolStripMenuItem";
-            this.locationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.locationToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.locationToolStripMenuItem.Text = "Location";
             this.locationToolStripMenuItem.DropDownOpened += new System.EventHandler(this.locationToolStripMenuItem_DropDownOpened);
             // 
@@ -307,27 +307,27 @@
             this.deleteToolStripMenuItem1,
             this.moveToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.systemToolStripMenuItem.Text = "System";
             this.systemToolStripMenuItem.DropDownOpening += new System.EventHandler(this.systemToolStripMenuItem_DropDownOpening);
             // 
             // newToolStripMenuItem2
             // 
             this.newToolStripMenuItem2.Name = "newToolStripMenuItem2";
-            this.newToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
             this.newToolStripMenuItem2.Text = "New";
             this.newToolStripMenuItem2.Click += new System.EventHandler(this.newToolStripMenuItem2_Click);
             // 
             // deleteToolStripMenuItem1
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem1.Text = "Delete";
             // 
             // moveToolStripMenuItem
             // 
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            this.moveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.moveToolStripMenuItem.Text = "Move";
             // 
             // ComponentImages
@@ -347,6 +347,7 @@
             this.ComponentImages.Images.SetKeyName(10, "kthememgr.ico");
             this.ComponentImages.Images.SetKeyName(11, "kbounce.ico");
             this.ComponentImages.Images.SetKeyName(12, "camera_test.png");
+            this.ComponentImages.Images.SetKeyName(13, "mini_circle.png");
             // 
             // InspectorArea
             // 

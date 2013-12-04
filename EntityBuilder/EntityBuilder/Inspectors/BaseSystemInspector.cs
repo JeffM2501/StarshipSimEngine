@@ -39,12 +39,6 @@ namespace EntityBuilder.Inspectors
         {
             SystemName.Text = TheBaseSysem.Name;
 
-            HostLocation.Items.Clear();
-            foreach (Entity.InternalLocation loc in TheEntity.Locations)
-                HostLocation.Items.Add(loc);
-
-            HostLocation.SelectedIndex = TheBaseSysem.LocationID;
-
             SystemLocation.Set(TheBaseSysem.SystemLocation);
             SystemLocation.ValueChanged += new EventHandler(SystemLocation_ValueChanged);
 
@@ -64,12 +58,6 @@ namespace EntityBuilder.Inspectors
         {
             TheBaseSysem.Name = SystemName.Text;
             CallNameChanged(this);
-        }
-
-        private void SystemLocation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            TheBaseSysem.LocationID = HostLocation.SelectedIndex;
-            CallInfoChanged(this);
         }
 
         private void Draw_ValueChanged(object sender, EventArgs e)

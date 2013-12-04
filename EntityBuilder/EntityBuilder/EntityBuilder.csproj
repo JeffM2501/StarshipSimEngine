@@ -92,6 +92,12 @@
     <Compile Include="Inspectors\LocationInspector.Designer.cs">
       <DependentUpon>LocationInspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inspectors\Systems\ComputerInspector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inspectors\Systems\ComputerInspector.Designer.cs">
+      <DependentUpon>ComputerInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,12 @@
     <Compile Include="Prefs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemTypeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemTypeSelector.Designer.cs">
+      <DependentUpon>SystemTypeSelector.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Controls\QuaternionEditor.resx">
       <DependentUpon>QuaternionEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +160,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SystemTypeSelector.resx">
+      <DependentUpon>SystemTypeSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -173,7 +188,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Inspectors\Systems\" />
     <Folder Include="Tools\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
