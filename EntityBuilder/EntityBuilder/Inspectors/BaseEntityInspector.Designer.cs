@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.ParrentID = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.Radius = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ParrentID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Radius)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -49,35 +49,42 @@
             // 
             this.ParrentID.Location = new System.Drawing.Point(62, 0);
             this.ParrentID.Maximum = new decimal(new int[] {
-            1215752192,
-            23,
+            999999999,
+            0,
             0,
             0});
+            this.ParrentID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.ParrentID.Name = "ParrentID";
             this.ParrentID.Size = new System.Drawing.Size(120, 20);
             this.ParrentID.TabIndex = 1;
+            this.ParrentID.ValueChanged += new System.EventHandler(this.ParrentID_ValueChanged);
             // 
-            // numericUpDown1
+            // Radius
             // 
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.Radius.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(62, 26);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            1316134911,
-            2328,
+            this.Radius.Location = new System.Drawing.Point(62, 26);
+            this.Radius.Maximum = new decimal(new int[] {
+            99999999,
+            0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1316134911,
-            2328,
+            this.Radius.Minimum = new decimal(new int[] {
+            99999999,
+            0,
             0,
             -2147483648});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 3;
+            this.Radius.Name = "Radius";
+            this.Radius.Size = new System.Drawing.Size(120, 20);
+            this.Radius.TabIndex = 3;
+            this.Radius.ValueChanged += new System.EventHandler(this.Radius_ValueChanged);
             // 
             // label2
             // 
@@ -92,14 +99,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.Radius);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ParrentID);
             this.Controls.Add(this.label1);
             this.Name = "BaseEntityInspector";
             this.Size = new System.Drawing.Size(185, 54);
             ((System.ComponentModel.ISupportInitialize)(this.ParrentID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Radius)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,7 +116,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown ParrentID;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown Radius;
         private System.Windows.Forms.Label label2;
     }
 }

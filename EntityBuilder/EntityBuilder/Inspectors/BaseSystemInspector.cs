@@ -26,6 +26,19 @@ namespace EntityBuilder.Inspectors
         {
             TheEntity = ent;
             TheBaseSystem = item as BaseSystem;
+
+            if (TheBaseSystem == null)
+                return;
+
+            SystemName.Text = TheBaseSystem.Name;
+
+            SystemLocation.Set(TheBaseSystem.SystemLocation);
+            SystemLocation.ValueChanged += new EventHandler(SystemLocation_ValueChanged);
+
+            foreach (ComputerSystem computer in TheEntity.Computers)
+                ControlComputer.Items.Add(computer);
+
+            ControlComputer.SelectedItem = TheEntity.GetSystemByID(TheBaseSystem.ControlComputer);
         }
 
         public override string GetItemName() { return GetSystemName(TheBaseSystem); }
@@ -37,15 +50,6 @@ namespace EntityBuilder.Inspectors
 
         private void BaseSystemInspector_Load(object sender, EventArgs e)
         {
-            SystemName.Text = TheBaseSystem.Name;
-
-            SystemLocation.Set(TheBaseSystem.SystemLocation);
-            SystemLocation.ValueChanged += new EventHandler(SystemLocation_ValueChanged);
-
-            foreach (ComputerSystem computer in TheEntity.Computers)
-                ControlComputer.Items.Add(computer);
-
-            ControlComputer.SelectedItem = TheEntity.GetSystemByID(TheBaseSystem.ControlComputer);
         }
 
         void SystemLocation_ValueChanged(object sender, EventArgs e)

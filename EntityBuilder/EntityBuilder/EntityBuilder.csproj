@@ -92,6 +92,18 @@
     <Compile Include="Inspectors\ConnectionInspector.Designer.cs">
       <DependentUpon>ConnectionInspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inspectors\Dialogs\FuelConsumptionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inspectors\Dialogs\FuelConsumptionEditor.Designer.cs">
+      <DependentUpon>FuelConsumptionEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inspectors\Entities\ShipEntityInspector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inspectors\Entities\ShipEntityInspector.Designer.cs">
+      <DependentUpon>ShipEntityInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inspectors\LocationInspector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,6 +115,12 @@
     </Compile>
     <Compile Include="Inspectors\Systems\ComputerInspector.Designer.cs">
       <DependentUpon>ComputerInspector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inspectors\Systems\GeneratorInspector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inspectors\Systems\GeneratorInspector.Designer.cs">
+      <DependentUpon>GeneratorInspector.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -153,8 +171,20 @@
     <EmbeddedResource Include="Inspectors\ConnectionInspector.resx">
       <DependentUpon>ConnectionInspector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Inspectors\Dialogs\FuelConsumptionEditor.resx">
+      <DependentUpon>FuelConsumptionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inspectors\Entities\ShipEntityInspector.resx">
+      <DependentUpon>ShipEntityInspector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inspectors\LocationInspector.resx">
       <DependentUpon>LocationInspector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inspectors\Systems\ComputerInspector.resx">
+      <DependentUpon>ComputerInspector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inspectors\Systems\GeneratorInspector.resx">
+      <DependentUpon>GeneratorInspector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -8,6 +8,8 @@ using SimCore.Entities;
 using SimCore.Data.Systems;
 
 using EntityBuilder.Inspectors;
+using EntityBuilder.Inspectors.Entities;
+using EntityBuilder.Inspectors.Systems;
 
 namespace EntityBuilder
 {
@@ -19,7 +21,13 @@ namespace EntityBuilder
         {
             InspectorMap.Add(typeof(Entity.InternalLocation), typeof(LocationInspector));
             InspectorMap.Add(typeof(Entity.InternalLocation.ConnectionInfo), typeof(ConnectionInspector));
+
+            InspectorMap.Add(typeof(Entity), typeof(BaseEntityInspector));
+            InspectorMap.Add(typeof(StarShip), typeof(ShipEntityInspector));
+
             InspectorMap.Add(typeof(BaseSystem), typeof(BaseSystemInspector));
+            InspectorMap.Add(typeof(ComputerSystem), typeof(ComputerInspector));
+            InspectorMap.Add(typeof(GenerationSystem), typeof(GeneratorInspector));
         }
 
         public void LoadInspector(object item)
