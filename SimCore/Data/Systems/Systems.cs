@@ -48,6 +48,8 @@ namespace SimCore.Data.Systems
             Communications,
             Medical,
             Fire,
+            Navigation,
+
         }
         public ComputerTypes ComputerType = ComputerTypes.Unknown;
 
@@ -80,7 +82,12 @@ namespace SimCore.Data.Systems
             public double Quantity = 0;
 
             public FluidTypes FuelType = FluidTypes.Unknown;
-            public List<int> SupplySystems = new List<int>();
+            public List<UInt64> SupplySystems = new List<UInt64>();
+
+            public override string ToString()
+            {
+                return FuelType.ToString();
+            }
         }
 
         public List<FuelConsumption> FuelConsumptions = new List<FuelConsumption>();
