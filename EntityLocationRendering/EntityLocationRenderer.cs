@@ -6,6 +6,7 @@ using System.Drawing;
 
 using SimCore.Entities;
 using SimCore.Data;
+using SimCore.Data.Systems;
 using SimCore.Actors;
 
 using OpenTK;
@@ -23,6 +24,7 @@ namespace EntityLocationRendering
         // connector sizes
         public float CenterRadius = 0.125f;
         public float ConnectorRadius = 0.25f;
+        public float SystemRadius = 0.5f;
     }
 
     public class EntityLocationRenderer
@@ -31,9 +33,11 @@ namespace EntityLocationRendering
 
         public delegate Color LocationColorCallback(Entity.InternalLocation location);
         public delegate Color ConnectionColorCallback(Entity.InternalLocation location, Entity.InternalLocation.ConnectionInfo connection, int connectionIndex);
-        
+        public delegate Color SystemColorCallback(Entity.InternalLocation location, BaseSystem system);
+     
         public LocationColorCallback GetColorForLocation;
         public ConnectionColorCallback GetColorForConnection;
+        public SystemColorCallback GetColorForSystem;
 
         public float LineWidth = 1;
 
@@ -42,6 +46,7 @@ namespace EntityLocationRendering
             TheEntity = ent;
             GetColorForLocation = DefaultLocationColorCallback;
             GetColorForConnection = DefaultConnectionColorCallback;
+            GetColorForSystem = DefaultSystemColorCallback;
         }
 
         protected Color DefaultLocationColorCallback(Entity.InternalLocation location)
@@ -53,6 +58,12 @@ namespace EntityLocationRendering
         {
             return connectionIndex < 0 ? Color.Blue : Color.SkyBlue;
         }
+
+        protected Color DefaultSystemColorCallback(Entity.InternalLocation location, BaseSystem system)
+        {
+            return Color.Red;
+        }
+
 
         public static void DrawOriginMarker(float size)
         {
@@ -190,6 +201,8 @@ namespace EntityLocationRendering
 
             bool useLighting = SetOptions();
 
+            BaseSystem[] systemList = TheEntity.GetSystemList();
+
             foreach (Entity.InternalLocation loc in TheEntity.Locations)
             {
                 GL.PushMatrix();
@@ -235,6 +248,26 @@ namespace EntityLocationRendering
                         DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z);
                         break;
                 }
+
+                if (RenderingOptions.ShowSystems)
+                {
+                    SetSolid();
+                    foreach (BaseSystem system in systemList)
+                    {
+                        if (system.LocationID == loc.Index)
+                        {
+                            GL.Color3(GetColorForSystem(loc, system));
+                            GL.PushMatrix();
+
+                            GL.Translate(system.SystemLocation.X, system.SystemLocation.Y, system.SystemLocation.Z);
+                            Glu.Sphere(QuadricCache, RenderingOptions.SystemRadius, 12, 12);
+                            GL.PopMatrix();
+
+                        }
+                    }
+                    SetOptions();
+                }
+
                 GL.PopMatrix();
 
                 if (!RenderingOptions.Solid && RenderingOptions.ShowConnections)
