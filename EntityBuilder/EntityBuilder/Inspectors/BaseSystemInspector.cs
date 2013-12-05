@@ -30,7 +30,7 @@ namespace EntityBuilder.Inspectors
             if (TheBaseSystem == null)
                 return;
 
-            SystemName.Text = TheBaseSystem.Name;
+            SystemName.Text = TheBaseSystem.SystemName;
 
             SystemLocation.Set(TheBaseSystem.SystemLocation);
             SystemLocation.ValueChanged += new EventHandler(SystemLocation_ValueChanged);
@@ -45,7 +45,7 @@ namespace EntityBuilder.Inspectors
 
         public static string GetSystemName(BaseSystem system)
         {
-            return system.Name;
+            return system.SystemName;
         }
 
         private void BaseSystemInspector_Load(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace EntityBuilder.Inspectors
 
         private void SystemName_TextChanged(object sender, EventArgs e)
         {
-            TheBaseSystem.Name = SystemName.Text;
+            TheBaseSystem.SystemName = SystemName.Text;
             CallNameChanged(this);
         }
 

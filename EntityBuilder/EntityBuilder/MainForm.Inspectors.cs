@@ -28,6 +28,7 @@ namespace EntityBuilder
             InspectorMap.Add(typeof(BaseSystem), typeof(BaseSystemInspector));
             InspectorMap.Add(typeof(ComputerSystem), typeof(ComputerInspector));
             InspectorMap.Add(typeof(GenerationSystem), typeof(GeneratorInspector));
+            InspectorMap.Add(typeof(FluidTankSystem), typeof(FluidTankInspector));
         }
 
         public void LoadInspector(object item)
@@ -52,7 +53,6 @@ namespace EntityBuilder
                     inspector = new LocationInspector();
                     item = GetSelectedLocation();
                 }
-               
             }
 
             if (inspector == null)

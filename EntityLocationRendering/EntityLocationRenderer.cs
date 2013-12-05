@@ -218,13 +218,15 @@ namespace EntityLocationRendering
                 DrawOriginMarker(1);
 
                 GL.Color3(GetColorForLocation(loc));
-
+                GL.PushMatrix();
                 switch (loc.Shape)
                 {
                     case Entity.InternalLocation.LocaionShapes.Rectangular:
+
                         GL.Scale(loc.Size.X * 0.5f, loc.Size.Y * 0.5f, loc.Size.Z); 
                         GL.Rotate(45, Vector3.UnitZ);
                         DrawCylinder(1, 1, 1, 4);
+ 
                         break;
 
                     case Entity.InternalLocation.LocaionShapes.Sphere:
@@ -248,6 +250,7 @@ namespace EntityLocationRendering
                         DrawCylinder(loc.Size.X, loc.Size.Y, loc.Size.Z);
                         break;
                 }
+                GL.PopMatrix();
 
                 if (RenderingOptions.ShowSystems)
                 {

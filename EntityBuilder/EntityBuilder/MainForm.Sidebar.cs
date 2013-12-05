@@ -218,7 +218,7 @@ namespace EntityBuilder
             {
                 BaseSystem system = Activator.CreateInstance(selector.SystemType) as BaseSystem;
 
-                system.Name = "New " + system.GetType().Name;
+                system.SystemName = "New " + system.GetType().Name;
                 system.LocationID = currentLoc.Index;
                 TheEntity.AddSystem(system);
 

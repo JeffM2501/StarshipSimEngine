@@ -116,6 +116,12 @@
     <Compile Include="Inspectors\Systems\ComputerInspector.Designer.cs">
       <DependentUpon>ComputerInspector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inspectors\Systems\FluidTankInspector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inspectors\Systems\FluidTankInspector.Designer.cs">
+      <DependentUpon>FluidTankInspector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inspectors\Systems\GeneratorInspector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inspectors\Systems\ComputerInspector.resx">
       <DependentUpon>ComputerInspector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inspectors\Systems\FluidTankInspector.resx">
+      <DependentUpon>FluidTankInspector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inspectors\Systems\GeneratorInspector.resx">
       <DependentUpon>GeneratorInspector.cs</DependentUpon>

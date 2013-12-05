@@ -19,7 +19,7 @@ namespace SimCore.Data.Systems
     public class BaseSystem
     {
         public UInt64 SystemID = UInt64.MaxValue;
-        public string Name = string.Empty;
+        public string SystemName = string.Empty;
 
         public SystemStatusInfo Status = new SystemStatusInfo();
         public SystemStatusInfo PowerConnection = new SystemStatusInfo();
@@ -36,6 +36,11 @@ namespace SimCore.Data.Systems
         public Vector3d SystemLocation = Vector3d.Zero;
 
         public UInt64 ControlComputer = UInt64.MaxValue;
+
+        public override string ToString()
+        {
+            return SystemName;
+        }
     }
 
     public class ComputerSystem : BaseSystem

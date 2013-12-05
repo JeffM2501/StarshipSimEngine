@@ -149,6 +149,7 @@ namespace SimCore.Entities
 
             AddSystemsToCache(Engines);
             AddSystemsToCache(StorageSystems);
+            AddSystemsToCache(FluidTanks);
             AddSystemsToCache(PropulsionSystems); 
             AddSystemsToCache(NavigationSystems);
             AddSystemsToCache(DefensiveSystems);
