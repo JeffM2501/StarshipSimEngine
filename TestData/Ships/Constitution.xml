@@ -1544,7 +1544,7 @@
   <Engines>
     <GenerationSystem>
       <SystemID>1</SystemID>
-      <Name>Backup Fusion Generator 1</Name>
+      <SystemName>Backup Fusion Generator 1</SystemName>
       <Status>
         <OperationalStatus>0</OperationalStatus>
         <FunctionalStatus>0</FunctionalStatus>
@@ -1574,7 +1574,7 @@
           <ConsumptionRate>1</ConsumptionRate>
           <Capacity>10</Capacity>
           <Quantity>0.025</Quantity>
-          <FuelType>Hydrogen</FuelType>
+          <FuelType>Fuel</FuelType>
           <SupplySystems />
         </FuelConsumption>
       </FuelConsumptions>
@@ -1582,7 +1582,39 @@
     </GenerationSystem>
   </Engines>
   <StorageSystems />
-  <FluidTanks />
+  <FluidTanks>
+    <FluidTankSystem>
+      <SystemID>3</SystemID>
+      <SystemName>Primary Deuterium Tank</SystemName>
+      <Status>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </Status>
+      <PowerConnection>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </PowerConnection>
+      <PowerConsumption>0</PowerConsumption>
+      <MaxPowerBuffer>-1</MaxPowerBuffer>
+      <BufferedPower>0</BufferedPower>
+      <MaxPowerDraw>0</MaxPowerDraw>
+      <BaseEfectivness>1</BaseEfectivness>
+      <LocationID>14</LocationID>
+      <SystemLocation>
+        <X>-0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </SystemLocation>
+      <ControlComputer>18446744073709551615</ControlComputer>
+      <TankType>Fuel</TankType>
+      <FluidPurity>1</FluidPurity>
+      <MaxCapacity>10000</MaxCapacity>
+      <Quantity>10000</Quantity>
+      <MaxFlowRate>100</MaxFlowRate>
+    </FluidTankSystem>
+  </FluidTanks>
   <PropulsionSystems />
   <NavigationSystems />
   <DefensiveSystems />
@@ -1598,7 +1630,7 @@
   <Computers>
     <ComputerSystem>
       <SystemID>0</SystemID>
-      <Name>Astrogator</Name>
+      <SystemName>Astrogator</SystemName>
       <Status>
         <OperationalStatus>0</OperationalStatus>
         <FunctionalStatus>0</FunctionalStatus>
@@ -1629,7 +1661,7 @@
     <PendingTreaties />
   </Diplomatics>
   <ParrentID>18446744073709551615</ParrentID>
-  <LastSystemID>2</LastSystemID>
+  <LastSystemID>4</LastSystemID>
   <OwnerFaction>18446744073709551615</OwnerFaction>
   <SizeClass>Medium</SizeClass>
   <Crew />
