@@ -1541,7 +1541,46 @@
       <Stations />
     </InternalLocation>
   </Locations>
-  <Engines />
+  <Engines>
+    <GenerationSystem>
+      <SystemID>1</SystemID>
+      <Name>Backup Fusion Generator 1</Name>
+      <Status>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </Status>
+      <PowerConnection>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </PowerConnection>
+      <PowerConsumption>0</PowerConsumption>
+      <MaxPowerBuffer>-1</MaxPowerBuffer>
+      <BufferedPower>0</BufferedPower>
+      <MaxPowerDraw>0</MaxPowerDraw>
+      <BaseEfectivness>1</BaseEfectivness>
+      <LocationID>3</LocationID>
+      <SystemLocation>
+        <X>8</X>
+        <Y>6</Y>
+        <Z>0</Z>
+      </SystemLocation>
+      <ControlComputer>18446744073709551615</ControlComputer>
+      <GenerationType>Fusion</GenerationType>
+      <PowerGeneration>5</PowerGeneration>
+      <FuelConsumptions>
+        <FuelConsumption>
+          <ConsumptionRate>1</ConsumptionRate>
+          <Capacity>10</Capacity>
+          <Quantity>0.025</Quantity>
+          <FuelType>Hydrogen</FuelType>
+          <SupplySystems />
+        </FuelConsumption>
+      </FuelConsumptions>
+      <Byproducts />
+    </GenerationSystem>
+  </Engines>
   <StorageSystems />
   <FluidTanks />
   <PropulsionSystems />
@@ -1556,11 +1595,43 @@
   <Sensors />
   <Transporters />
   <TractorBeams />
-  <Computers />
+  <Computers>
+    <ComputerSystem>
+      <SystemID>0</SystemID>
+      <Name>Astrogator</Name>
+      <Status>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </Status>
+      <PowerConnection>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </PowerConnection>
+      <PowerConsumption>0</PowerConsumption>
+      <MaxPowerBuffer>10</MaxPowerBuffer>
+      <BufferedPower>0</BufferedPower>
+      <MaxPowerDraw>1</MaxPowerDraw>
+      <BaseEfectivness>1</BaseEfectivness>
+      <LocationID>0</LocationID>
+      <SystemLocation>
+        <X>0</X>
+        <Y>-2</Y>
+        <Z>0</Z>
+      </SystemLocation>
+      <ControlComputer>18446744073709551615</ControlComputer>
+      <ComputerType>Unknown</ComputerType>
+      <ComputationFactor>1</ComputationFactor>
+    </ComputerSystem>
+  </Computers>
   <Diplomatics>
     <PendingTreaties />
   </Diplomatics>
-  <SizeClass>None</SizeClass>
+  <ParrentID>18446744073709551615</ParrentID>
+  <LastSystemID>2</LastSystemID>
+  <OwnerFaction>18446744073709551615</OwnerFaction>
+  <SizeClass>Medium</SizeClass>
   <Crew />
   <Passengers />
   <Hostiles />
