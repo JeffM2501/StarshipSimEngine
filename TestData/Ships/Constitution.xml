@@ -1564,7 +1564,7 @@
       <SystemLocation>
         <X>8</X>
         <Y>6</Y>
-        <Z>0</Z>
+        <Z>0.5</Z>
       </SystemLocation>
       <ControlComputer>18446744073709551615</ControlComputer>
       <GenerationType>Fusion</GenerationType>
@@ -1575,7 +1575,49 @@
           <Capacity>10</Capacity>
           <Quantity>0.025</Quantity>
           <FuelType>Fuel</FuelType>
-          <SupplySystems />
+          <SupplySystems>
+            <unsignedLong>3</unsignedLong>
+          </SupplySystems>
+        </FuelConsumption>
+      </FuelConsumptions>
+      <Byproducts />
+    </GenerationSystem>
+    <GenerationSystem>
+      <SystemID>4</SystemID>
+      <SystemName>Backup Fusion Generator 2</SystemName>
+      <Status>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </Status>
+      <PowerConnection>
+        <OperationalStatus>0</OperationalStatus>
+        <FunctionalStatus>0</FunctionalStatus>
+        <Reliability>1</Reliability>
+      </PowerConnection>
+      <PowerConsumption>0</PowerConsumption>
+      <MaxPowerBuffer>-1</MaxPowerBuffer>
+      <BufferedPower>0</BufferedPower>
+      <MaxPowerDraw>0</MaxPowerDraw>
+      <BaseEfectivness>1</BaseEfectivness>
+      <LocationID>3</LocationID>
+      <SystemLocation>
+        <X>-8</X>
+        <Y>6</Y>
+        <Z>0.5</Z>
+      </SystemLocation>
+      <ControlComputer>18446744073709551615</ControlComputer>
+      <GenerationType>Fusion</GenerationType>
+      <PowerGeneration>0</PowerGeneration>
+      <FuelConsumptions>
+        <FuelConsumption>
+          <ConsumptionRate>1</ConsumptionRate>
+          <Capacity>10</Capacity>
+          <Quantity>0.03</Quantity>
+          <FuelType>Fuel</FuelType>
+          <SupplySystems>
+            <unsignedLong>3</unsignedLong>
+          </SupplySystems>
         </FuelConsumption>
       </FuelConsumptions>
       <Byproducts />
@@ -1605,7 +1647,7 @@
       <SystemLocation>
         <X>-0</X>
         <Y>0</Y>
-        <Z>0</Z>
+        <Z>1</Z>
       </SystemLocation>
       <ControlComputer>18446744073709551615</ControlComputer>
       <TankType>Fuel</TankType>
@@ -1650,7 +1692,7 @@
       <SystemLocation>
         <X>0</X>
         <Y>-2</Y>
-        <Z>0</Z>
+        <Z>0.5</Z>
       </SystemLocation>
       <ControlComputer>18446744073709551615</ControlComputer>
       <ComputerType>Unknown</ComputerType>
@@ -1661,7 +1703,7 @@
     <PendingTreaties />
   </Diplomatics>
   <ParrentID>18446744073709551615</ParrentID>
-  <LastSystemID>4</LastSystemID>
+  <LastSystemID>5</LastSystemID>
   <OwnerFaction>18446744073709551615</OwnerFaction>
   <SizeClass>Medium</SizeClass>
   <Crew />
