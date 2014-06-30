@@ -34,7 +34,7 @@ namespace CoolantTest
                         fs.Close();
 
                         if (s != null)
-                            return s;
+                            return HookUpShip(s);
                     }
                     catch(SystemException /*e*/)
                     {
@@ -74,19 +74,23 @@ namespace CoolantTest
             ship.Cooler.AddReservoir(new CoolantSystem.Reservoir(100));
             ship.Cooler.AddReservoir(new CoolantSystem.Reservoir(100));
 
+            if (dirToCheck.Exists)
+                ship.Save(file);
+
+            return HookUpShip(ship);
+        }
+
+        private static SampleShip HookUpShip(SampleShip ship)
+        {
             ship.Cooler.ConnectedSystems = ship.Systems;
 
             float avalableCoolant = ship.Cooler.UnallocatedCoolant();
 
-            foreach(ShipSystem system in ship.Systems)
+            foreach (ShipSystem system in ship.Systems)
             {
                 system.SetDesiredPower(system.MinimumPower);
-                ship.Cooler.SetSystemCoolant(system,avalableCoolant/ship.Systems.Count);
+                ship.Cooler.SetSystemCoolant(system, avalableCoolant / ship.Systems.Count);
             }
-
-            if (dirToCheck.Exists)
-                ship.Save(file);
-
             return ship;
         }
 

@@ -29,7 +29,7 @@ namespace ShipSystems
         public bool Essential = false;
         public float MinimumPower = 0;
 
-        public float AmbientCooling = 10;
+        public float AmbientCooling = 0.125f;
 
         public float CurrentCoolantFlow
         {

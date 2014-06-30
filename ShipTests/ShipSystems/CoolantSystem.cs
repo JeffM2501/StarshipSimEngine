@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace ShipSystems
 {
@@ -38,6 +40,7 @@ namespace ShipSystems
 
         public List<Reservoir> Reservoirs = new List<Reservoir>();
 
+        [XmlIgnoreAttribute]
         public List<ShipSystem> ConnectedSystems = new List<ShipSystem>();
 
         public void AddReservoir(Reservoir reservoir)
@@ -58,10 +61,12 @@ namespace ShipSystems
 
             powerHeat -= system.AmbientCooling * time;
 
-            if (powerHeat < 0)
-                powerHeat = 0;
+            float newHeat = system.CurrentTemp + powerHeat - (system.AmbientCooling * time);
 
-            return system.CurrentTemp + powerHeat;
+            if (newHeat < 0)
+                newHeat = 0;
+
+            return newHeat;
         }
 
         public float TotalCoolantInAction()
