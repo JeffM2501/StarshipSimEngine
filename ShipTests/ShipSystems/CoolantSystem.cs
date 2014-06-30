@@ -276,11 +276,6 @@ namespace ShipSystems
             // pull off what the heatsync can do
             float heatToRemove = HeatSyncRemovalFactor * time;
 
-            if (heatToRemove < deltaTemp)
-            {
-                int i = 0;
-            }
-
             if (heatToRemove > CurrentTemp)
                 CurrentTemp = 0;
             else
