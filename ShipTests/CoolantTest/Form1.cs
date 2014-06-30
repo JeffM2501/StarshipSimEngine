@@ -128,6 +128,18 @@ namespace CoolantTest
                 CoolantInSystem.Text = Ship.Cooler.TotalCoolantInAction().ToString();
                 UnAllocatedCoolantValue.Text = Ship.Cooler.UnallocatedCoolant().ToString();
 
+                TempDelta.Text = string.Empty;
+                if (Ship.Cooler.TempDelta > 0.01f)
+                {
+                    TempDelta.Text = "5";
+                    TempDelta.ForeColor = Color.Red;
+                }
+                if (Ship.Cooler.TempDelta < -0.01f)
+                {
+                    TempDelta.Text = "6";
+                    TempDelta.ForeColor = Color.Blue;
+                }
+
                 foreach (ShipSystemInspector i in ShipSystems.Controls)
                     i.DoUpdate();
 

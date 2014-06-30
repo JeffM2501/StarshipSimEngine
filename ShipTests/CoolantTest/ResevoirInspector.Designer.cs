@@ -39,6 +39,7 @@
             this.Flush = new System.Windows.Forms.Button();
             this.Fill = new System.Windows.Forms.Button();
             this.ToSystem = new System.Windows.Forms.Button();
+            this.TempDelta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CoolantBar
@@ -69,10 +70,10 @@
             // 
             // TempBar
             // 
-            this.TempBar.Location = new System.Drawing.Point(112, 34);
+            this.TempBar.Location = new System.Drawing.Point(112, 57);
             this.TempBar.MarqueeAnimationSpeed = 0;
             this.TempBar.Name = "TempBar";
-            this.TempBar.Size = new System.Drawing.Size(35, 142);
+            this.TempBar.Size = new System.Drawing.Size(35, 119);
             this.TempBar.TabIndex = 3;
             // 
             // TempLable
@@ -141,10 +142,22 @@
             this.ToSystem.UseVisualStyleBackColor = true;
             this.ToSystem.Click += new System.EventHandler(this.ToSystem_Click);
             // 
+            // TempDelta
+            // 
+            this.TempDelta.AutoSize = true;
+            this.TempDelta.Font = new System.Drawing.Font("Webdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.TempDelta.ForeColor = System.Drawing.Color.Red;
+            this.TempDelta.Location = new System.Drawing.Point(116, 35);
+            this.TempDelta.Name = "TempDelta";
+            this.TempDelta.Size = new System.Drawing.Size(25, 19);
+            this.TempDelta.TabIndex = 20;
+            this.TempDelta.Text = "5";
+            // 
             // ResevoirInspector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.TempDelta);
             this.Controls.Add(this.ToSystem);
             this.Controls.Add(this.Fill);
             this.Controls.Add(this.Flush);
@@ -176,5 +189,6 @@
         private System.Windows.Forms.Button Flush;
         private System.Windows.Forms.Button Fill;
         private System.Windows.Forms.Button ToSystem;
+        private System.Windows.Forms.Label TempDelta;
     }
 }

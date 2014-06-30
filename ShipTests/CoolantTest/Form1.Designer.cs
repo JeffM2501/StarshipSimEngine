@@ -42,6 +42,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.HeatSinkFactor = new System.Windows.Forms.NumericUpDown();
             this.CoolantGroup = new System.Windows.Forms.GroupBox();
+            this.VentCoolant = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CoolantToVent = new System.Windows.Forms.NumericUpDown();
             this.CoolantInSystem = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.TempBar = new CoolantTest.VerticalProgressBar();
@@ -49,15 +52,13 @@
             this.CoolantBar = new CoolantTest.VerticalProgressBar();
             this.UnAllocatedCoolantValue = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.CoolantToVent = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.VentCoolant = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ShutdownAll = new System.Windows.Forms.Button();
-            this.NominalAll = new System.Windows.Forms.Button();
-            this.SplitCool = new System.Windows.Forms.Button();
-            this.BallanceCool = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.BallanceCool = new System.Windows.Forms.Button();
+            this.SplitCool = new System.Windows.Forms.Button();
+            this.NominalAll = new System.Windows.Forms.Button();
+            this.ShutdownAll = new System.Windows.Forms.Button();
+            this.TempDelta = new System.Windows.Forms.Label();
             this.ReservoirsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeatSinkFactor)).BeginInit();
@@ -188,6 +189,7 @@
             // CoolantGroup
             // 
             this.CoolantGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CoolantGroup.Controls.Add(this.TempDelta);
             this.CoolantGroup.Controls.Add(this.VentCoolant);
             this.CoolantGroup.Controls.Add(this.label5);
             this.CoolantGroup.Controls.Add(this.CoolantToVent);
@@ -212,6 +214,32 @@
             this.CoolantGroup.TabStop = false;
             this.CoolantGroup.Text = "Cooling System";
             // 
+            // VentCoolant
+            // 
+            this.VentCoolant.Location = new System.Drawing.Point(81, 248);
+            this.VentCoolant.Name = "VentCoolant";
+            this.VentCoolant.Size = new System.Drawing.Size(75, 23);
+            this.VentCoolant.TabIndex = 20;
+            this.VentCoolant.Text = "Vent";
+            this.VentCoolant.UseVisualStyleBackColor = true;
+            this.VentCoolant.Click += new System.EventHandler(this.VentCoolant_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 232);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Coolant Loss Simulation";
+            // 
+            // CoolantToVent
+            // 
+            this.CoolantToVent.Location = new System.Drawing.Point(9, 251);
+            this.CoolantToVent.Name = "CoolantToVent";
+            this.CoolantToVent.Size = new System.Drawing.Size(66, 20);
+            this.CoolantToVent.TabIndex = 18;
+            // 
             // CoolantInSystem
             // 
             this.CoolantInSystem.Location = new System.Drawing.Point(156, 35);
@@ -231,10 +259,10 @@
             // 
             // TempBar
             // 
-            this.TempBar.Location = new System.Drawing.Point(115, 35);
+            this.TempBar.Location = new System.Drawing.Point(115, 58);
             this.TempBar.MarqueeAnimationSpeed = 0;
             this.TempBar.Name = "TempBar";
-            this.TempBar.Size = new System.Drawing.Size(35, 142);
+            this.TempBar.Size = new System.Drawing.Size(35, 119);
             this.TempBar.TabIndex = 9;
             // 
             // UnallocatedCoolantBar
@@ -265,32 +293,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // CoolantToVent
-            // 
-            this.CoolantToVent.Location = new System.Drawing.Point(9, 251);
-            this.CoolantToVent.Name = "CoolantToVent";
-            this.CoolantToVent.Size = new System.Drawing.Size(66, 20);
-            this.CoolantToVent.TabIndex = 18;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 232);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 13);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Coolant Loss Simulation";
-            // 
-            // VentCoolant
-            // 
-            this.VentCoolant.Location = new System.Drawing.Point(81, 248);
-            this.VentCoolant.Name = "VentCoolant";
-            this.VentCoolant.Size = new System.Drawing.Size(75, 23);
-            this.VentCoolant.TabIndex = 20;
-            this.VentCoolant.Text = "Vent";
-            this.VentCoolant.UseVisualStyleBackColor = true;
-            this.VentCoolant.Click += new System.EventHandler(this.VentCoolant_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -306,35 +308,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Actions";
             // 
-            // ShutdownAll
+            // button1
             // 
-            this.ShutdownAll.Location = new System.Drawing.Point(6, 19);
-            this.ShutdownAll.Name = "ShutdownAll";
-            this.ShutdownAll.Size = new System.Drawing.Size(135, 23);
-            this.ShutdownAll.TabIndex = 0;
-            this.ShutdownAll.Text = "Shutdown All Systems";
-            this.ShutdownAll.UseVisualStyleBackColor = true;
-            this.ShutdownAll.Click += new System.EventHandler(this.ShutdownAll_Click);
-            // 
-            // NominalAll
-            // 
-            this.NominalAll.Location = new System.Drawing.Point(6, 48);
-            this.NominalAll.Name = "NominalAll";
-            this.NominalAll.Size = new System.Drawing.Size(135, 23);
-            this.NominalAll.TabIndex = 1;
-            this.NominalAll.Text = "All Systems to Nominal";
-            this.NominalAll.UseVisualStyleBackColor = true;
-            this.NominalAll.Click += new System.EventHandler(this.NominalAll_Click);
-            // 
-            // SplitCool
-            // 
-            this.SplitCool.Location = new System.Drawing.Point(6, 77);
-            this.SplitCool.Name = "SplitCool";
-            this.SplitCool.Size = new System.Drawing.Size(135, 23);
-            this.SplitCool.TabIndex = 2;
-            this.SplitCool.Text = "Split Coolant";
-            this.SplitCool.UseVisualStyleBackColor = true;
-            this.SplitCool.Click += new System.EventHandler(this.SplitCool_Click);
+            this.button1.Location = new System.Drawing.Point(6, 135);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(135, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Ballance Used Coolant";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // BallanceCool
             // 
@@ -346,15 +328,46 @@
             this.BallanceCool.UseVisualStyleBackColor = true;
             this.BallanceCool.Click += new System.EventHandler(this.BallanceCool_Click);
             // 
-            // button1
+            // SplitCool
             // 
-            this.button1.Location = new System.Drawing.Point(6, 135);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Ballance Used Coolant";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.SplitCool.Location = new System.Drawing.Point(6, 77);
+            this.SplitCool.Name = "SplitCool";
+            this.SplitCool.Size = new System.Drawing.Size(135, 23);
+            this.SplitCool.TabIndex = 2;
+            this.SplitCool.Text = "Split Coolant";
+            this.SplitCool.UseVisualStyleBackColor = true;
+            this.SplitCool.Click += new System.EventHandler(this.SplitCool_Click);
+            // 
+            // NominalAll
+            // 
+            this.NominalAll.Location = new System.Drawing.Point(6, 48);
+            this.NominalAll.Name = "NominalAll";
+            this.NominalAll.Size = new System.Drawing.Size(135, 23);
+            this.NominalAll.TabIndex = 1;
+            this.NominalAll.Text = "All Systems to Nominal";
+            this.NominalAll.UseVisualStyleBackColor = true;
+            this.NominalAll.Click += new System.EventHandler(this.NominalAll_Click);
+            // 
+            // ShutdownAll
+            // 
+            this.ShutdownAll.Location = new System.Drawing.Point(6, 19);
+            this.ShutdownAll.Name = "ShutdownAll";
+            this.ShutdownAll.Size = new System.Drawing.Size(135, 23);
+            this.ShutdownAll.TabIndex = 0;
+            this.ShutdownAll.Text = "Shutdown All Systems";
+            this.ShutdownAll.UseVisualStyleBackColor = true;
+            this.ShutdownAll.Click += new System.EventHandler(this.ShutdownAll_Click);
+            // 
+            // TempDelta
+            // 
+            this.TempDelta.AutoSize = true;
+            this.TempDelta.Font = new System.Drawing.Font("Webdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.TempDelta.ForeColor = System.Drawing.Color.Red;
+            this.TempDelta.Location = new System.Drawing.Point(121, 36);
+            this.TempDelta.Name = "TempDelta";
+            this.TempDelta.Size = new System.Drawing.Size(25, 19);
+            this.TempDelta.TabIndex = 21;
+            this.TempDelta.Text = "5";
             // 
             // Form1
             // 
@@ -409,6 +422,7 @@
         private System.Windows.Forms.Button NominalAll;
         private System.Windows.Forms.Button ShutdownAll;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label TempDelta;
     }
 }
 

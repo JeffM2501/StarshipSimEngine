@@ -52,6 +52,18 @@ namespace CoolantTest
 
             TempBar.Value = (int)InspectedReservoir.Temurature;
             TempValue.Text = InspectedReservoir.Temurature.ToString();
+
+            TempDelta.Text = string.Empty;
+            if (InspectedReservoir.TempDelta > 0.01f)
+            {
+                TempDelta.Text = "5";
+                TempDelta.ForeColor = Color.Red;
+            }
+            if (InspectedReservoir.TempDelta < -0.01f)
+            {
+                TempDelta.Text = "6";
+                TempDelta.ForeColor = Color.Blue;
+            }
         }
 
         private void Connected_CheckedChanged(object sender, EventArgs e)

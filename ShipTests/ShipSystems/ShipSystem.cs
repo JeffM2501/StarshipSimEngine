@@ -17,6 +17,8 @@ namespace ShipSystems
         public float NominalTemp = 100;
         public float CurrentTemp = 0;
 
+        public float TempDelta = 0;
+
         public float NominalPower = 100;
         public float MaxPower = 300;
         public float CurrentPower = 0;

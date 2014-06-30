@@ -87,6 +87,18 @@ namespace CoolantTest
             else
                 TempBar.Value = (int)InspectedSystem.CurrentTemp;
             TempValue.Text = InspectedSystem.CurrentTemp.ToString();
+
+            TempDelta.Text = string.Empty;
+            if (InspectedSystem.TempDelta > 0.01f)
+            {
+                TempDelta.Text = "5";
+                TempDelta.ForeColor = Color.Red;
+            }
+            if (InspectedSystem.TempDelta < -0.01f)
+            {
+                TempDelta.Text = "6";
+                TempDelta.ForeColor = Color.Blue;
+            }
         }
 
         private void PowerTrack_Scroll(object sender, EventArgs e)
@@ -147,12 +159,17 @@ namespace CoolantTest
 
         public void SetDesiredPower(float value)
         {
+            if (value > PowerTrack.Maximum)
+                value = PowerTrack.Maximum;
+
             PowerTrack.Value = (int)value;
             PowerTrack_Scroll(this, EventArgs.Empty);
         }
 
         public void SetDesiredCoolant(float value)
         {
+            if (value > CoolantTrack.Maximum)
+                value = CoolantTrack.Maximum;
             CoolantTrack.Value = (int)value;
             CoolantTrack_Scroll(this, EventArgs.Empty);
         }

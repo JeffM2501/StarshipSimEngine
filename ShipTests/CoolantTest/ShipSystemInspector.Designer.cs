@@ -46,6 +46,7 @@
             this.DoublePower = new System.Windows.Forms.Button();
             this.MaxPower = new System.Windows.Forms.Button();
             this.EssentialLabel = new System.Windows.Forms.Label();
+            this.TempDelta = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CoolantTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PowerTrack)).BeginInit();
             this.SuspendLayout();
@@ -159,10 +160,10 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.TempBar.Enabled = false;
             this.TempBar.ForeColor = System.Drawing.Color.Maroon;
-            this.TempBar.Location = new System.Drawing.Point(98, 43);
+            this.TempBar.Location = new System.Drawing.Point(98, 59);
             this.TempBar.MarqueeAnimationSpeed = 0;
             this.TempBar.Name = "TempBar";
-            this.TempBar.Size = new System.Drawing.Size(35, 265);
+            this.TempBar.Size = new System.Drawing.Size(35, 249);
             this.TempBar.TabIndex = 4;
             this.TempBar.Value = 50;
             // 
@@ -240,10 +241,22 @@
             this.EssentialLabel.TabIndex = 17;
             this.EssentialLabel.Text = "Essential";
             // 
+            // TempDelta
+            // 
+            this.TempDelta.AutoSize = true;
+            this.TempDelta.Font = new System.Drawing.Font("Webdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.TempDelta.ForeColor = System.Drawing.Color.Red;
+            this.TempDelta.Location = new System.Drawing.Point(105, 37);
+            this.TempDelta.Name = "TempDelta";
+            this.TempDelta.Size = new System.Drawing.Size(25, 19);
+            this.TempDelta.TabIndex = 19;
+            this.TempDelta.Text = "5";
+            // 
             // ShipSystemInspector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.TempDelta);
             this.Controls.Add(this.EssentialLabel);
             this.Controls.Add(this.MaxPower);
             this.Controls.Add(this.DoublePower);
@@ -291,5 +304,6 @@
         private System.Windows.Forms.Button DoublePower;
         private System.Windows.Forms.Button MaxPower;
         private System.Windows.Forms.Label EssentialLabel;
+        private System.Windows.Forms.Label TempDelta;
     }
 }

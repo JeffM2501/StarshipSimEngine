@@ -51,6 +51,22 @@ namespace CoolantTest
             ship.Systems.Add(new ShipSystem("Sensors"));
             ship.Systems.Add(new ShipSystem("Missiles"));
 
+            ShipSystem fSheilds = new ShipSystem("Forward Shields");
+            fSheilds.MaxCoolantFlow = 200;
+            fSheilds.NominalPower = 200;
+            fSheilds.MaxPower = 400;
+            fSheilds.ActivationHeat = 100;
+            fSheilds.NominalTemp = 200;
+            ship.Systems.Add(fSheilds);
+
+            ShipSystem rSheilds = new ShipSystem("Rear Shields");
+            rSheilds.MaxCoolantFlow = 200;
+            rSheilds.NominalPower = 300;
+            rSheilds.MaxPower = 400;
+            rSheilds.ActivationHeat = 100;
+            rSheilds.NominalTemp = 200;
+            ship.Systems.Add(rSheilds);
+
             ShipSystem ftl = new ShipSystem("FTL");
             ftl.MaxCoolantFlow = 300;
             ftl.NominalPower = 1000;

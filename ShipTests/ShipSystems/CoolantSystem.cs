@@ -27,6 +27,9 @@ namespace ShipSystems
 
             public float Temurature = 0;
 
+            [XmlIgnoreAttribute]
+            public float TempDelta = 0;
+
             public bool Connected = false;
 
             public Reservoir() { }
@@ -131,6 +134,9 @@ namespace ShipSystems
             reservoir.TotalCoolant -= actualAmmount;
             TotalCoolant += actualAmmount;
 
+            if (reservoir.TotalCoolant <= 0)
+                reservoir.Temurature = 0;
+
             return reservoir.TotalCoolant;
         }
 
@@ -229,9 +235,8 @@ namespace ShipSystems
 
             foreach (ShipSystem system in ConnectedSystems)
             {
-                if (system.DesiredCoolantFlow != system.CurrentCoolantFlow) // try to give them what they want
-                    SetSystemCoolant(system, system.DesiredCoolantFlow);    // TODO, figure out how much desired but unallocated coolant systems needs and fill them proportionally
-                
+                float oldTemp = system.CurrentTemp;
+
                 float systemTemp = ComputeSystemTemp(system, time);
 
                 if (system.CurrentCoolantFlow > 0)
@@ -259,9 +264,12 @@ namespace ShipSystems
   
                     deltaTemp += heatRemoved / coolantPool; // spread it out over the coolant pool
                 }
-        
-               system.CurrentTemp = systemTemp;
+
+                system.TempDelta = systemTemp - system.CurrentTemp;
+                system.CurrentTemp = systemTemp;
             }
+
+            float startTemp = CurrentTemp;
 
             CurrentTemp += deltaTemp;
 
@@ -278,11 +286,18 @@ namespace ShipSystems
             else
                 CurrentTemp -= heatToRemove;
 
+            TempDelta = CurrentTemp - startTemp;
+
             // all connected reserves get our temp
             foreach (Reservoir r in Reservoirs)
             {
                 if (r.Connected)
+                {
                     r.Temurature = CurrentTemp;
+                    r.TempDelta = TempDelta;
+                }
+                else
+                    r.TempDelta = 0;
             }
 
             base.Update(time);
