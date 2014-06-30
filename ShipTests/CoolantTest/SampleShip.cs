@@ -61,7 +61,7 @@ namespace CoolantTest
 
             ShipSystem rSheilds = new ShipSystem("Rear Shields");
             rSheilds.MaxCoolantFlow = 200;
-            rSheilds.NominalPower = 300;
+            rSheilds.NominalPower = 200;
             rSheilds.MaxPower = 400;
             rSheilds.ActivationHeat = 100;
             rSheilds.NominalTemp = 200;
@@ -83,7 +83,6 @@ namespace CoolantTest
             beams.ActivationHeat = 100;
             beams.NominalTemp = 200;
             ship.Systems.Add(beams);
-
 
             ship.Cooler.MaxCoolant = 200;
             ship.Cooler.TotalCoolant = 100;
