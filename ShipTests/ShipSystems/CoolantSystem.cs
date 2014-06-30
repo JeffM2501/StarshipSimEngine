@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ShipSystems
 {
@@ -11,9 +10,9 @@ namespace ShipSystems
         public float MaxCoolant = 100;
         public float TotalCoolant = 100;
 
-        public float NominalHeatTransfer = 10;
+        public float NominalHeatTransfer = 1.5f;
 
-        public float HeatSyncRemovalFactor = 100;
+        public float HeatSyncRemovalFactor = 3;
 
         public class Reservoir
         {
@@ -53,6 +52,11 @@ namespace ShipSystems
                 powerHeat += extraHeat;
             }
 
+            powerHeat -= system.AmbientCooling * time;
+
+            if (powerHeat < 0)
+                powerHeat = 0;
+
             return system.CurrentTemp + powerHeat;
         }
 
@@ -74,7 +78,7 @@ namespace ShipSystems
             foreach (ShipSystem system in ConnectedSystems)
                 usedCoolant += system.CurrentCoolantFlow;
 
-            return TotalCoolant;
+            return TotalCoolantInAction() - usedCoolant;
         }
 
         protected ShipSystem FindSystem(string name)
@@ -92,18 +96,11 @@ namespace ShipSystems
             if (system == null)
                 return 0;
 
-            system.CurrentCoolantFlow = 0;
-
             float actualCoolant = desiredCoolant;
             if (actualCoolant > system.MaxCoolantFlow)
                 actualCoolant = system.MaxCoolantFlow;
 
-            float availableCoolant = UnallocatedCoolant();
-
-            if (actualCoolant > availableCoolant)
-                actualCoolant = availableCoolant;
-
-            system.CurrentCoolantFlow = actualCoolant;
+            system.DesiredCoolantFlow = actualCoolant;  // cap at he max
             return actualCoolant;
         }
 
@@ -180,8 +177,10 @@ namespace ShipSystems
 
         public float RefillReserve(Reservoir reservoir, float amount) // assumes a flush of any hot coolant in the reserve
         {
-            if (!FlushReserve(reservoir))
+            if (reservoir == null || reservoir.Connected)
                 return 0;
+
+            FlushReserve(reservoir);
 
             if (amount > reservoir.MaxCoolant)
                 amount = reservoir.MaxCoolant;
@@ -190,37 +189,80 @@ namespace ShipSystems
             return reservoir.TotalCoolant;
         }
 
+        protected void ComputeActualCoolantLevels()
+        {
+            float neededCoolant = 0;
+            foreach (ShipSystem system in ConnectedSystems)
+            {
+                neededCoolant += system.DesiredCoolantFlow;
+                system.EfectiveCoolantFlowFactor = 1;
+            }
+                
+            float avalableCoolant = TotalCoolantInAction();
+
+            if (neededCoolant > avalableCoolant)
+            {
+                // compute a factor
+                float factor = avalableCoolant / neededCoolant;
+
+                foreach (ShipSystem system in ConnectedSystems)
+                    system.EfectiveCoolantFlowFactor = factor;
+            }
+        }
+
         public override void Update( float time)
         {
             float deltaTemp = 0;
 
-            float coolantPool = TotalCoolantInAction();
+            ComputeActualCoolantLevels();
+
+            float coolantPool = TotalCoolantInAction() * 0.25f;
 
             foreach (ShipSystem system in ConnectedSystems)
             {
+                if (system.DesiredCoolantFlow != system.CurrentCoolantFlow) // try to give them what they want
+                    SetSystemCoolant(system, system.DesiredCoolantFlow);    // TODO, figure out how much desired but unallocated coolant systems needs and fill them proportionally
+                
                 float systemTemp = ComputeSystemTemp(system, time);
 
                 if (system.CurrentCoolantFlow > 0)
                 {
                     // how much heat can we remove from this system
-                    float heatRemoved = system.CurrentCoolantFlow * NominalHeatTransfer * time;
+                    float coolantEfficeny = 0;
+                    if ( systemTemp > CurrentTemp)
+                    {
+                        float coolantToSystemTempDelta = systemTemp - CurrentTemp;
+                        coolantEfficeny = coolantToSystemTempDelta / systemTemp;
+                    }
+                    
+                    float heatRemoved = system.CurrentCoolantFlow * (NominalHeatTransfer*coolantEfficeny) * time;
 
                     if (heatRemoved > systemTemp)
                     {
                         heatRemoved = systemTemp;
-                        system.CurrentTemp = 0;
+                        systemTemp = 0;
                     }
                     else
-                        system.CurrentTemp -= heatRemoved;
+                        systemTemp -= heatRemoved;
 
+                    if (systemTemp < 0)
+                        systemTemp = 0;
+  
                     deltaTemp += heatRemoved / coolantPool; // spread it out over the coolant pool
                 }
+        
+               system.CurrentTemp = systemTemp;
             }
 
-            CurrentTemp = deltaTemp;
+            CurrentTemp += deltaTemp;
 
             // pull off what the heatsync can do
             float heatToRemove = HeatSyncRemovalFactor * time;
+
+            if (heatToRemove < deltaTemp)
+            {
+                int i = 0;
+            }
 
             if (heatToRemove > CurrentTemp)
                 CurrentTemp = 0;

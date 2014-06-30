@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using ShipSystems;
@@ -22,11 +21,11 @@ namespace CoolantTest
             InitializeComponent();
         }
 
-        public ResevoirInspector(CoolantSystem coolant, int reservoirID)
+        public ResevoirInspector(CoolantSystem coolant, int index)
         {
             InitializeComponent();
             InspectedCoolant = coolant;
-            Setup(coolant.Reservoirs[reservoirID]);
+            Setup(coolant.Reservoirs[index]);
         }
 
         public void Setup(CoolantSystem.Reservoir reservoir)
@@ -57,6 +56,9 @@ namespace CoolantTest
 
         private void Connected_CheckedChanged(object sender, EventArgs e)
         {
+             if (InspectedReservoir.TotalCoolant <= 0)
+                 Connected.Checked = false;
+
             if (Connected.Checked == InspectedReservoir.Connected)
                 return;
 
@@ -69,16 +71,29 @@ namespace CoolantTest
         private void Flush_Click(object sender, EventArgs e)
         {
             InspectedCoolant.FlushReserve(InspectedReservoir);
+            if (InspectedReservoir.TotalCoolant <= 0)
+            {
+                Connected.Checked = false;
+                Connected_CheckedChanged(this, EventArgs.Empty);
+            }
         }
 
         private void Fill_Click(object sender, EventArgs e)
         {
             InspectedCoolant.RefillReserve(InspectedReservoir, InspectedReservoir.MaxCoolant);
+
+           
         }
 
         private void ToSystem_Click(object sender, EventArgs e)
         {
             InspectedCoolant.TransferFromReserveToSystem(InspectedReservoir, InspectedReservoir.TotalCoolant);
+
+            if (InspectedReservoir.TotalCoolant <= 0)
+            {
+                Connected.Checked = false;
+                Connected_CheckedChanged(this, EventArgs.Empty);
+            }
         }
     }
 }

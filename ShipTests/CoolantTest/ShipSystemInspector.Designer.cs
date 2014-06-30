@@ -41,6 +41,11 @@
             this.TempBar = new CoolantTest.VerticalProgressBar();
             this.PowerBar = new CoolantTest.VerticalProgressBar();
             this.DoActivate = new System.Windows.Forms.Button();
+            this.NominalPower = new System.Windows.Forms.Button();
+            this.MinPower = new System.Windows.Forms.Button();
+            this.DoublePower = new System.Windows.Forms.Button();
+            this.MaxPower = new System.Windows.Forms.Button();
+            this.EssentialLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CoolantTrack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PowerTrack)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +72,7 @@
             // PowerValue
             // 
             this.PowerValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.PowerValue.Location = new System.Drawing.Point(3, 343);
+            this.PowerValue.Location = new System.Drawing.Point(3, 314);
             this.PowerValue.Name = "PowerValue";
             this.PowerValue.ReadOnly = true;
             this.PowerValue.Size = new System.Drawing.Size(38, 20);
@@ -76,7 +81,7 @@
             // TempValue
             // 
             this.TempValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TempValue.Location = new System.Drawing.Point(98, 343);
+            this.TempValue.Location = new System.Drawing.Point(98, 314);
             this.TempValue.Name = "TempValue";
             this.TempValue.ReadOnly = true;
             this.TempValue.Size = new System.Drawing.Size(35, 20);
@@ -94,7 +99,7 @@
             // CoolantValue
             // 
             this.CoolantValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CoolantValue.Location = new System.Drawing.Point(139, 343);
+            this.CoolantValue.Location = new System.Drawing.Point(139, 314);
             this.CoolantValue.Name = "CoolantValue";
             this.CoolantValue.ReadOnly = true;
             this.CoolantValue.Size = new System.Drawing.Size(44, 20);
@@ -103,7 +108,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(140, 24);
+            this.label3.Location = new System.Drawing.Point(136, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 8;
@@ -117,7 +122,7 @@
             this.CoolantTrack.Name = "CoolantTrack";
             this.CoolantTrack.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.CoolantTrack.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CoolantTrack.Size = new System.Drawing.Size(45, 294);
+            this.CoolantTrack.Size = new System.Drawing.Size(45, 265);
             this.CoolantTrack.TabIndex = 10;
             this.CoolantTrack.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.CoolantTrack.Scroll += new System.EventHandler(this.CoolantTrack_Scroll);
@@ -130,7 +135,7 @@
             this.PowerTrack.Name = "PowerTrack";
             this.PowerTrack.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.PowerTrack.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PowerTrack.Size = new System.Drawing.Size(45, 294);
+            this.PowerTrack.Size = new System.Drawing.Size(45, 265);
             this.PowerTrack.TabIndex = 11;
             this.PowerTrack.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.PowerTrack.Scroll += new System.EventHandler(this.PowerTrack_Scroll);
@@ -144,7 +149,7 @@
             this.CoolantBar.Location = new System.Drawing.Point(139, 43);
             this.CoolantBar.MarqueeAnimationSpeed = 0;
             this.CoolantBar.Name = "CoolantBar";
-            this.CoolantBar.Size = new System.Drawing.Size(44, 294);
+            this.CoolantBar.Size = new System.Drawing.Size(44, 265);
             this.CoolantBar.TabIndex = 7;
             this.CoolantBar.Value = 50;
             // 
@@ -157,7 +162,7 @@
             this.TempBar.Location = new System.Drawing.Point(98, 43);
             this.TempBar.MarqueeAnimationSpeed = 0;
             this.TempBar.Name = "TempBar";
-            this.TempBar.Size = new System.Drawing.Size(35, 294);
+            this.TempBar.Size = new System.Drawing.Size(35, 265);
             this.TempBar.TabIndex = 4;
             this.TempBar.Value = 50;
             // 
@@ -169,7 +174,7 @@
             this.PowerBar.Location = new System.Drawing.Point(3, 43);
             this.PowerBar.MarqueeAnimationSpeed = 0;
             this.PowerBar.Name = "PowerBar";
-            this.PowerBar.Size = new System.Drawing.Size(38, 294);
+            this.PowerBar.Size = new System.Drawing.Size(38, 265);
             this.PowerBar.TabIndex = 1;
             this.PowerBar.Value = 50;
             // 
@@ -185,10 +190,65 @@
             this.DoActivate.UseVisualStyleBackColor = true;
             this.DoActivate.Click += new System.EventHandler(this.Activate_Click);
             // 
+            // NominalPower
+            // 
+            this.NominalPower.Location = new System.Drawing.Point(64, 340);
+            this.NominalPower.Name = "NominalPower";
+            this.NominalPower.Size = new System.Drawing.Size(58, 23);
+            this.NominalPower.TabIndex = 13;
+            this.NominalPower.Text = "Nominal";
+            this.NominalPower.UseVisualStyleBackColor = true;
+            this.NominalPower.Click += new System.EventHandler(this.NominalPower_Click);
+            // 
+            // MinPower
+            // 
+            this.MinPower.Location = new System.Drawing.Point(0, 340);
+            this.MinPower.Name = "MinPower";
+            this.MinPower.Size = new System.Drawing.Size(58, 23);
+            this.MinPower.TabIndex = 14;
+            this.MinPower.Text = "Min";
+            this.MinPower.UseVisualStyleBackColor = true;
+            this.MinPower.Click += new System.EventHandler(this.MinPower_Click);
+            // 
+            // DoublePower
+            // 
+            this.DoublePower.Location = new System.Drawing.Point(128, 340);
+            this.DoublePower.Name = "DoublePower";
+            this.DoublePower.Size = new System.Drawing.Size(34, 23);
+            this.DoublePower.TabIndex = 15;
+            this.DoublePower.Text = "2X";
+            this.DoublePower.UseVisualStyleBackColor = true;
+            this.DoublePower.Click += new System.EventHandler(this.DoublePower_Click);
+            // 
+            // MaxPower
+            // 
+            this.MaxPower.Location = new System.Drawing.Point(168, 340);
+            this.MaxPower.Name = "MaxPower";
+            this.MaxPower.Size = new System.Drawing.Size(39, 23);
+            this.MaxPower.TabIndex = 16;
+            this.MaxPower.Text = "Max";
+            this.MaxPower.UseVisualStyleBackColor = true;
+            this.MaxPower.Click += new System.EventHandler(this.MaxPower_Click);
+            // 
+            // EssentialLabel
+            // 
+            this.EssentialLabel.AutoSize = true;
+            this.EssentialLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.EssentialLabel.Location = new System.Drawing.Point(43, 317);
+            this.EssentialLabel.Name = "EssentialLabel";
+            this.EssentialLabel.Size = new System.Drawing.Size(49, 13);
+            this.EssentialLabel.TabIndex = 17;
+            this.EssentialLabel.Text = "Essential";
+            // 
             // ShipSystemInspector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.EssentialLabel);
+            this.Controls.Add(this.MaxPower);
+            this.Controls.Add(this.DoublePower);
+            this.Controls.Add(this.MinPower);
+            this.Controls.Add(this.NominalPower);
             this.Controls.Add(this.DoActivate);
             this.Controls.Add(this.PowerTrack);
             this.Controls.Add(this.CoolantTrack);
@@ -226,5 +286,10 @@
         private System.Windows.Forms.TrackBar CoolantTrack;
         private System.Windows.Forms.TrackBar PowerTrack;
         private System.Windows.Forms.Button DoActivate;
+        private System.Windows.Forms.Button NominalPower;
+        private System.Windows.Forms.Button MinPower;
+        private System.Windows.Forms.Button DoublePower;
+        private System.Windows.Forms.Button MaxPower;
+        private System.Windows.Forms.Label EssentialLabel;
     }
 }
