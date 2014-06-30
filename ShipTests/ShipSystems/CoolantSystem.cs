@@ -14,6 +14,8 @@ namespace ShipSystems
 
         public float HeatSyncRemovalFactor = 3;
 
+        public CoolantSystem() { }
+
         public class Reservoir
         {
             public int ID = 0;
@@ -24,6 +26,8 @@ namespace ShipSystems
             public float Temurature = 0;
 
             public bool Connected = false;
+
+            public Reservoir() { }
 
             public Reservoir(float max)
             {

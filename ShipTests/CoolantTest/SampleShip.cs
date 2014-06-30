@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 using ShipSystems;
 
@@ -12,14 +15,41 @@ namespace CoolantTest
         public List<ShipSystem> Systems = new List<ShipSystem>();
         public CoolantSystem Cooler = new CoolantSystem();
 
-        public void Setup()
-        {
-            Systems.Clear();
+        public static string ShipXMLFile = "Ship.xml";
 
-            Systems.Add(new ShipSystem("Thrusters"));
-            Systems.Add(new ShipSystem("LifeSupport",true,25));
-            Systems.Add(new ShipSystem("Sensors"));
-            Systems.Add(new ShipSystem("Missiles"));
+        public static SampleShip Setup(DirectoryInfo dirToCheck)
+        {
+            FileInfo file = null;
+
+            if (dirToCheck.Exists)
+            {
+                file = new FileInfo(Path.Combine(dirToCheck.FullName, ShipXMLFile));
+                if (file.Exists)
+                {
+                    try
+                    {
+                        XmlSerializer xml = new XmlSerializer(typeof(SampleShip));
+                        FileStream fs = file.OpenRead();
+                        SampleShip s = xml.Deserialize(fs) as SampleShip;
+                        fs.Close();
+
+                        if (s != null)
+                            return s;
+                    }
+                    catch(SystemException /*e*/)
+                    {
+
+                    }
+                }
+            }
+           
+            SampleShip ship = new SampleShip();
+            ship.Systems.Clear();
+
+            ship.Systems.Add(new ShipSystem("Thrusters"));
+            ship.Systems.Add(new ShipSystem("LifeSupport",true,25));
+            ship.Systems.Add(new ShipSystem("Sensors"));
+            ship.Systems.Add(new ShipSystem("Missiles"));
 
             ShipSystem ftl = new ShipSystem("FTL");
             ftl.MaxCoolantFlow = 300;
@@ -28,7 +58,7 @@ namespace CoolantTest
             ftl.HeatDamageFactor = 0.01f;
             ftl.NominalTemp = 400;
             ftl.HeatGeneratedPerSecondPerPower = 0.05f;
-            Systems.Add(ftl);
+            ship.Systems.Add(ftl);
 
             ShipSystem beams = new ShipSystem("Beams");
             beams.MaxCoolantFlow = 200;
@@ -36,25 +66,44 @@ namespace CoolantTest
             beams.MaxPower = 1000;
             beams.ActivationHeat = 100;
             beams.NominalTemp = 200;
-            Systems.Add(beams);
+            ship.Systems.Add(beams);
 
 
-            Cooler.MaxCoolant = 200;
-            Cooler.TotalCoolant = 100;
-            Cooler.AddReservoir(new CoolantSystem.Reservoir(100));
-            Cooler.AddReservoir(new CoolantSystem.Reservoir(100));
+            ship.Cooler.MaxCoolant = 200;
+            ship.Cooler.TotalCoolant = 100;
+            ship.Cooler.AddReservoir(new CoolantSystem.Reservoir(100));
+            ship.Cooler.AddReservoir(new CoolantSystem.Reservoir(100));
 
-            Cooler.ConnectedSystems = Systems;
+            ship.Cooler.ConnectedSystems = ship.Systems;
 
-            float avalableCoolant = Cooler.UnallocatedCoolant();
+            float avalableCoolant = ship.Cooler.UnallocatedCoolant();
 
-            foreach(ShipSystem system in Systems)
+            foreach(ShipSystem system in ship.Systems)
             {
                 system.SetDesiredPower(system.MinimumPower);
-                Cooler.SetSystemCoolant(system,avalableCoolant/Systems.Count);
+                ship.Cooler.SetSystemCoolant(system,avalableCoolant/ship.Systems.Count);
             }
+
+            if (dirToCheck.Exists)
+                ship.Save(file);
+
+            return ship;
         }
 
+        public void Save(FileInfo file)
+        {
+            try
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(SampleShip));
+                FileStream fs = file.OpenWrite();
+                xml.Serialize(fs,this);
+                fs.Close();
+            }
+            catch(SystemException e)
+            {
+
+            }
+        }
 
         public void Update(float time)
         {

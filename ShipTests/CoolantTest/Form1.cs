@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.IO;
 
 using ShipSystems;
 
@@ -30,10 +31,11 @@ namespace CoolantTest
             InitializeComponent();
             UpdateFunction = new UpdateFunctionDef(DoUpdate);
         }
+         
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Ship.Setup();
+            Ship = SampleShip.Setup(new DirectoryInfo(Path.GetDirectoryName(Application.ExecutablePath)));
 
             foreach (ShipSystem system in Ship.Systems)
             {
