@@ -39,17 +39,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.HeatSinkFactor = new System.Windows.Forms.NumericUpDown();
             this.CoolantGroup = new System.Windows.Forms.GroupBox();
+            this.TempDelta = new System.Windows.Forms.Label();
             this.VentCoolant = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.CoolantToVent = new System.Windows.Forms.NumericUpDown();
             this.CoolantInSystem = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.TempBar = new CoolantTest.VerticalProgressBar();
-            this.UnallocatedCoolantBar = new CoolantTest.VerticalProgressBar();
-            this.CoolantBar = new CoolantTest.VerticalProgressBar();
             this.UnAllocatedCoolantValue = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -58,13 +55,25 @@
             this.SplitCool = new System.Windows.Forms.Button();
             this.NominalAll = new System.Windows.Forms.Button();
             this.ShutdownAll = new System.Windows.Forms.Button();
-            this.TempDelta = new System.Windows.Forms.Label();
+            this.EngineGroup = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.verticalProgressBar1 = new CoolantTest.VerticalProgressBar();
+            this.TempBar = new CoolantTest.VerticalProgressBar();
+            this.UnallocatedCoolantBar = new CoolantTest.VerticalProgressBar();
+            this.CoolantBar = new CoolantTest.VerticalProgressBar();
+            this.powerTempControl1 = new CoolantTest.PowerTempControl();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.verticalProgressBar2 = new CoolantTest.VerticalProgressBar();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.ReservoirsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeatSinkFactor)).BeginInit();
             this.CoolantGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoolantToVent)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.EngineGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // ShipSystems
@@ -140,11 +149,11 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(405, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(205, 210);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(131, 132);
+            this.pictureBox1.Size = new System.Drawing.Size(51, 38);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -152,20 +161,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(402, 19);
+            this.label2.Location = new System.Drawing.Point(131, 209);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "Heat Sink";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(403, 174);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Removed";
             // 
             // HeatSinkFactor
             // 
@@ -175,7 +175,7 @@
             0,
             0,
             196608});
-            this.HeatSinkFactor.Location = new System.Drawing.Point(462, 172);
+            this.HeatSinkFactor.Location = new System.Drawing.Point(134, 228);
             this.HeatSinkFactor.Maximum = new decimal(new int[] {
             10,
             0,
@@ -198,7 +198,6 @@
             this.CoolantGroup.Controls.Add(this.label1);
             this.CoolantGroup.Controls.Add(this.HeatSinkFactor);
             this.CoolantGroup.Controls.Add(this.TempBar);
-            this.CoolantGroup.Controls.Add(this.label3);
             this.CoolantGroup.Controls.Add(this.UnallocatedCoolantBar);
             this.CoolantGroup.Controls.Add(this.CoolantBar);
             this.CoolantGroup.Controls.Add(this.label2);
@@ -207,16 +206,28 @@
             this.CoolantGroup.Controls.Add(this.pictureBox1);
             this.CoolantGroup.Controls.Add(this.CoolantValue);
             this.CoolantGroup.Controls.Add(this.TempValue);
-            this.CoolantGroup.Location = new System.Drawing.Point(666, 414);
+            this.CoolantGroup.Location = new System.Drawing.Point(936, 414);
             this.CoolantGroup.Name = "CoolantGroup";
-            this.CoolantGroup.Size = new System.Drawing.Size(542, 278);
+            this.CoolantGroup.Size = new System.Drawing.Size(272, 278);
             this.CoolantGroup.TabIndex = 17;
             this.CoolantGroup.TabStop = false;
             this.CoolantGroup.Text = "Cooling System";
+            this.CoolantGroup.Enter += new System.EventHandler(this.CoolantGroup_Enter);
+            // 
+            // TempDelta
+            // 
+            this.TempDelta.AutoSize = true;
+            this.TempDelta.Font = new System.Drawing.Font("Webdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.TempDelta.ForeColor = System.Drawing.Color.Red;
+            this.TempDelta.Location = new System.Drawing.Point(121, 36);
+            this.TempDelta.Name = "TempDelta";
+            this.TempDelta.Size = new System.Drawing.Size(25, 19);
+            this.TempDelta.TabIndex = 21;
+            this.TempDelta.Text = "5";
             // 
             // VentCoolant
             // 
-            this.VentCoolant.Location = new System.Drawing.Point(81, 248);
+            this.VentCoolant.Location = new System.Drawing.Point(9, 250);
             this.VentCoolant.Name = "VentCoolant";
             this.VentCoolant.Size = new System.Drawing.Size(75, 23);
             this.VentCoolant.TabIndex = 20;
@@ -227,7 +238,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 232);
+            this.label5.Location = new System.Drawing.Point(6, 209);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 13);
             this.label5.TabIndex = 19;
@@ -235,7 +246,7 @@
             // 
             // CoolantToVent
             // 
-            this.CoolantToVent.Location = new System.Drawing.Point(9, 251);
+            this.CoolantToVent.Location = new System.Drawing.Point(9, 228);
             this.CoolantToVent.Name = "CoolantToVent";
             this.CoolantToVent.Size = new System.Drawing.Size(66, 20);
             this.CoolantToVent.TabIndex = 18;
@@ -257,30 +268,6 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Unallocated Coolant";
             // 
-            // TempBar
-            // 
-            this.TempBar.Location = new System.Drawing.Point(115, 58);
-            this.TempBar.MarqueeAnimationSpeed = 0;
-            this.TempBar.Name = "TempBar";
-            this.TempBar.Size = new System.Drawing.Size(35, 119);
-            this.TempBar.TabIndex = 9;
-            // 
-            // UnallocatedCoolantBar
-            // 
-            this.UnallocatedCoolantBar.Location = new System.Drawing.Point(156, 61);
-            this.UnallocatedCoolantBar.MarqueeAnimationSpeed = 0;
-            this.UnallocatedCoolantBar.Name = "UnallocatedCoolantBar";
-            this.UnallocatedCoolantBar.Size = new System.Drawing.Size(100, 116);
-            this.UnallocatedCoolantBar.TabIndex = 7;
-            // 
-            // CoolantBar
-            // 
-            this.CoolantBar.Location = new System.Drawing.Point(9, 35);
-            this.CoolantBar.MarqueeAnimationSpeed = 0;
-            this.CoolantBar.Name = "CoolantBar";
-            this.CoolantBar.Size = new System.Drawing.Size(100, 142);
-            this.CoolantBar.TabIndex = 7;
-            // 
             // UnAllocatedCoolantValue
             // 
             this.UnAllocatedCoolantValue.Location = new System.Drawing.Point(156, 183);
@@ -301,7 +288,7 @@
             this.groupBox1.Controls.Add(this.SplitCool);
             this.groupBox1.Controls.Add(this.NominalAll);
             this.groupBox1.Controls.Add(this.ShutdownAll);
-            this.groupBox1.Location = new System.Drawing.Point(513, 414);
+            this.groupBox1.Location = new System.Drawing.Point(432, 414);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(147, 278);
             this.groupBox1.TabIndex = 18;
@@ -358,22 +345,119 @@
             this.ShutdownAll.UseVisualStyleBackColor = true;
             this.ShutdownAll.Click += new System.EventHandler(this.ShutdownAll_Click);
             // 
-            // TempDelta
+            // EngineGroup
             // 
-            this.TempDelta.AutoSize = true;
-            this.TempDelta.Font = new System.Drawing.Font("Webdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.TempDelta.ForeColor = System.Drawing.Color.Red;
-            this.TempDelta.Location = new System.Drawing.Point(121, 36);
-            this.TempDelta.Name = "TempDelta";
-            this.TempDelta.Size = new System.Drawing.Size(25, 19);
-            this.TempDelta.TabIndex = 21;
-            this.TempDelta.Text = "5";
+            this.EngineGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EngineGroup.Controls.Add(this.textBox2);
+            this.EngineGroup.Controls.Add(this.label6);
+            this.EngineGroup.Controls.Add(this.verticalProgressBar2);
+            this.EngineGroup.Controls.Add(this.textBox3);
+            this.EngineGroup.Controls.Add(this.powerTempControl1);
+            this.EngineGroup.Controls.Add(this.label3);
+            this.EngineGroup.Controls.Add(this.verticalProgressBar1);
+            this.EngineGroup.Controls.Add(this.textBox1);
+            this.EngineGroup.Location = new System.Drawing.Point(585, 414);
+            this.EngineGroup.Name = "EngineGroup";
+            this.EngineGroup.Size = new System.Drawing.Size(345, 278);
+            this.EngineGroup.TabIndex = 19;
+            this.EngineGroup.TabStop = false;
+            this.EngineGroup.Text = "Engine";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Fuel";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 251);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(32, 20);
+            this.textBox1.TabIndex = 14;
+            // 
+            // verticalProgressBar1
+            // 
+            this.verticalProgressBar1.Location = new System.Drawing.Point(6, 36);
+            this.verticalProgressBar1.MarqueeAnimationSpeed = 0;
+            this.verticalProgressBar1.Name = "verticalProgressBar1";
+            this.verticalProgressBar1.Size = new System.Drawing.Size(32, 208);
+            this.verticalProgressBar1.TabIndex = 12;
+            // 
+            // TempBar
+            // 
+            this.TempBar.Location = new System.Drawing.Point(115, 58);
+            this.TempBar.MarqueeAnimationSpeed = 0;
+            this.TempBar.Name = "TempBar";
+            this.TempBar.Size = new System.Drawing.Size(35, 119);
+            this.TempBar.TabIndex = 9;
+            // 
+            // UnallocatedCoolantBar
+            // 
+            this.UnallocatedCoolantBar.Location = new System.Drawing.Point(156, 61);
+            this.UnallocatedCoolantBar.MarqueeAnimationSpeed = 0;
+            this.UnallocatedCoolantBar.Name = "UnallocatedCoolantBar";
+            this.UnallocatedCoolantBar.Size = new System.Drawing.Size(100, 116);
+            this.UnallocatedCoolantBar.TabIndex = 7;
+            // 
+            // CoolantBar
+            // 
+            this.CoolantBar.Location = new System.Drawing.Point(9, 35);
+            this.CoolantBar.MarqueeAnimationSpeed = 0;
+            this.CoolantBar.Name = "CoolantBar";
+            this.CoolantBar.Size = new System.Drawing.Size(100, 142);
+            this.CoolantBar.TabIndex = 7;
+            // 
+            // powerTempControl1
+            // 
+            this.powerTempControl1.Location = new System.Drawing.Point(44, 19);
+            this.powerTempControl1.Name = "powerTempControl1";
+            this.powerTempControl1.Size = new System.Drawing.Size(238, 256);
+            this.powerTempControl1.TabIndex = 22;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(291, 29);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(35, 20);
+            this.textBox2.TabIndex = 26;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(288, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 13);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Available";
+            // 
+            // verticalProgressBar2
+            // 
+            this.verticalProgressBar2.Location = new System.Drawing.Point(291, 51);
+            this.verticalProgressBar2.MarqueeAnimationSpeed = 0;
+            this.verticalProgressBar2.Name = "verticalProgressBar2";
+            this.verticalProgressBar2.Size = new System.Drawing.Size(35, 186);
+            this.verticalProgressBar2.TabIndex = 23;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(291, 243);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(35, 20);
+            this.textBox3.TabIndex = 25;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1220, 698);
+            this.Controls.Add(this.EngineGroup);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CoolantGroup);
             this.Controls.Add(this.ReservoirsGroup);
@@ -389,6 +473,8 @@
             this.CoolantGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoolantToVent)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.EngineGroup.ResumeLayout(false);
+            this.EngineGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -405,7 +491,6 @@
         private VerticalProgressBar CoolantBar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown HeatSinkFactor;
         private System.Windows.Forms.GroupBox CoolantGroup;
         private System.Windows.Forms.Timer timer1;
@@ -423,6 +508,15 @@
         private System.Windows.Forms.Button ShutdownAll;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label TempDelta;
+        private System.Windows.Forms.GroupBox EngineGroup;
+        private System.Windows.Forms.Label label3;
+        private VerticalProgressBar verticalProgressBar1;
+        private System.Windows.Forms.TextBox textBox1;
+        private PowerTempControl powerTempControl1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label6;
+        private VerticalProgressBar verticalProgressBar2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 

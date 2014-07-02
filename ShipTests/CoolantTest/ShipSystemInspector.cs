@@ -15,19 +15,9 @@ namespace CoolantTest
     {
         public ShipSystem InspectedSystem = null;
 
-        public class ShipSystemValueEventArgs : EventArgs
-        {
-            public float Value;
-
-            public ShipSystemValueEventArgs (float value)
-            {
-                Value = value;
-            }
-        }
-
-        public event EventHandler<ShipSystemValueEventArgs> SetPower;
-        public event EventHandler<ShipSystemValueEventArgs> SetCoolant;
-        public event EventHandler<ShipSystemValueEventArgs> Activate;
+        public event EventHandler<PowerTempControl.ValueEventArgs> SetPower;
+        public event EventHandler<PowerTempControl.ValueEventArgs> SetCoolant;
+        public event EventHandler<PowerTempControl.ValueEventArgs> Activate;
 
         public ShipSystemInspector()
         {
@@ -46,132 +36,99 @@ namespace CoolantTest
 
             SystemName.Text = InspectedSystem.SystemName;
 
-            PowerBar.Maximum = (int)system.MaxPower;
-            PowerBar.Minimum = 0;
+            PowerTemp.Setup(system.MaxPower, system.MaxCoolantFlow, system.NominalTemp * 3, system.Essential);
 
-            PowerTrack.Maximum = PowerBar.Maximum;
-            PowerTrack.Minimum = PowerBar.Minimum;
-
-            PowerTrack.Value = (int)system.DesiredPower;
-
-            CoolantBar.Maximum = (int)system.MaxCoolantFlow;
-            CoolantBar.Minimum = 0;
-
-            CoolantTrack.Maximum = CoolantBar.Maximum;
-            CoolantTrack.Minimum = CoolantBar.Minimum;
-            CoolantTrack.Value = (int)system.DesiredCoolantFlow;
-
-            TempBar.Maximum = (int)system.NominalTemp * 3;
-            TempBar.Minimum = 0;
-
+            PowerTemp.SetPower += PowerTemp_SetPower;
+            PowerTemp.SetCoolant += PowerTemp_SetCoolant;
+ 
             DoActivate.Visible = system.ActivationHeat > 0;
-
+ 
             if (system.ActivationHeat > 0)
                 SystemName.Width -= DoActivate.Width + 4;
 
-            EssentialLabel.Visible = InspectedSystem.Essential;
+            DoUpdate();
+        }
+
+        
+        void PowerTemp_SetPower(object sender, PowerTempControl.ValueEventArgs e)
+        {
+             if (InspectedSystem.Essential && e.Value < InspectedSystem.MinimumPower)
+             {
+                 SetDesiredPower(InspectedSystem.MinimumPower);
+                 return;
+             }
+
+             if (e.Value == InspectedSystem.DesiredPower)
+                 return;
+
+             if (SetPower != null)
+                 SetPower(this, e);
+
+             DoUpdate();
+        }
+
+
+        void PowerTemp_SetCoolant(object sender, PowerTempControl.ValueEventArgs e)
+        {
+            if (e.Value == InspectedSystem.DesiredCoolantFlow)
+                return;
+
+            if (SetCoolant != null)
+                SetCoolant(this, e);
 
             DoUpdate();
         }
 
         public void DoUpdate()
         {
-            PowerBar.Value = (int)InspectedSystem.CurrentPower;
-            PowerValue.Text = InspectedSystem.CurrentPower.ToString();
-
-            CoolantBar.Value = (int)InspectedSystem.CurrentCoolantFlow;
-            CoolantValue.Text = InspectedSystem.CurrentCoolantFlow.ToString();
-
-            if (InspectedSystem.CurrentTemp > TempBar.Maximum)
-                TempBar.Value = TempBar.Maximum;
-            else
-                TempBar.Value = (int)InspectedSystem.CurrentTemp;
-            TempValue.Text = InspectedSystem.CurrentTemp.ToString();
-
-            TempDelta.Text = string.Empty;
-            if (InspectedSystem.TempDelta > 0.01f)
-            {
-                TempDelta.Text = "5";
-                TempDelta.ForeColor = Color.Red;
-            }
-            if (InspectedSystem.TempDelta < -0.01f)
-            {
-                TempDelta.Text = "6";
-                TempDelta.ForeColor = Color.Blue;
-            }
-        }
-
-        private void PowerTrack_Scroll(object sender, EventArgs e)
-        {
-            if (InspectedSystem.Essential && PowerTrack.Value < InspectedSystem.MinimumPower)
-            { 
-                SetDesiredPower(InspectedSystem.MinimumPower);
-                return;
-            }
-
-            if (PowerTrack.Value == InspectedSystem.DesiredPower)
-                return;
-
-            if (SetPower != null)
-                SetPower(this, new ShipSystemValueEventArgs(PowerTrack.Value));
-
-            DoUpdate();
-        }
-
-        private void CoolantTrack_Scroll(object sender, EventArgs e)
-        {
-            if (CoolantTrack.Value == InspectedSystem.DesiredCoolantFlow)
-                return;
-
-            if (SetCoolant != null)
-                SetCoolant(this, new ShipSystemValueEventArgs(CoolantTrack.Value));
-
-            DoUpdate();
+            PowerTemp.SetDisplayPower(InspectedSystem.CurrentPower);
+            PowerTemp.SetDisplayCoolant(InspectedSystem.CurrentCoolantFlow);
+            PowerTemp.SetDisplayTemp(InspectedSystem.CurrentTemp);
+            PowerTemp.SetDisplayTempDelta(InspectedSystem.TempDelta);
         }
 
         private void Activate_Click(object sender, EventArgs e)
         {
             if (Activate != null)
-                Activate(this, new ShipSystemValueEventArgs(1));
+                Activate(this, new PowerTempControl.ValueEventArgs(1));
 
             DoUpdate();
         }
 
-        private void NominalPower_Click(object sender, EventArgs e)
-        {
-            SetDesiredPower(InspectedSystem.NominalPower);
-        }
+         private void NominalPower_Click(object sender, EventArgs e)
+         {
+             SetDesiredPower(InspectedSystem.NominalPower);
+         }
+ 
+         private void MinPower_Click(object sender, EventArgs e)
+         {
+             SetDesiredPower(InspectedSystem.MinimumPower);
+         }
+ 
+         private void DoublePower_Click(object sender, EventArgs e)
+         {
+             SetDesiredPower(InspectedSystem.NominalPower * 2);
+         }
+ 
+         private void MaxPower_Click(object sender, EventArgs e)
+         {
+             SetDesiredPower(InspectedSystem.MaxPower);
+         }
+ 
+         public void SetDesiredPower(float value)
+         {
+              if (value > InspectedSystem.MaxPower)
+                  value = InspectedSystem.MaxPower;
 
-        private void MinPower_Click(object sender, EventArgs e)
-        {
-            SetDesiredPower(InspectedSystem.MinimumPower);
-        }
+              PowerTemp.SetInputPower(value);
+         }
+ 
+         public void SetDesiredCoolant(float value)
+         {
+             if (value > InspectedSystem.MaxCoolantFlow)
+                 value = InspectedSystem.MaxCoolantFlow;
 
-        private void DoublePower_Click(object sender, EventArgs e)
-        {
-            SetDesiredPower(InspectedSystem.NominalPower * 2);
-        }
-
-        private void MaxPower_Click(object sender, EventArgs e)
-        {
-            SetDesiredPower(InspectedSystem.MaxPower);
-        }
-
-        public void SetDesiredPower(float value)
-        {
-            if (value > PowerTrack.Maximum)
-                value = PowerTrack.Maximum;
-
-            PowerTrack.Value = (int)value;
-            PowerTrack_Scroll(this, EventArgs.Empty);
-        }
-
-        public void SetDesiredCoolant(float value)
-        {
-            if (value > CoolantTrack.Maximum)
-                value = CoolantTrack.Maximum;
-            CoolantTrack.Value = (int)value;
-            CoolantTrack_Scroll(this, EventArgs.Empty);
-        }
+             PowerTemp.SetInputCoolant(value);
+         }
     }
 }

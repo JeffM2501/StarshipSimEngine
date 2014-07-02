@@ -14,6 +14,7 @@ namespace CoolantTest
     {
         public List<ShipSystem> Systems = new List<ShipSystem>();
         public CoolantSystem Cooler = new CoolantSystem();
+        public PowerSystem Engine = new PowerSystem();
 
         public static string ShipXMLFile = "Ship.xml";
 
@@ -98,6 +99,7 @@ namespace CoolantTest
         private static SampleShip HookUpShip(SampleShip ship)
         {
             ship.Cooler.ConnectedSystems = ship.Systems;
+            ship.Engine.ConnectedSystems = ship.Systems;
 
             float avalableCoolant = ship.Cooler.UnallocatedCoolant();
 
@@ -118,7 +120,7 @@ namespace CoolantTest
                 xml.Serialize(fs,this);
                 fs.Close();
             }
-            catch(SystemException e)
+            catch(SystemException /*e*/)
             {
 
             }

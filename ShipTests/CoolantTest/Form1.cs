@@ -74,7 +74,7 @@ namespace CoolantTest
                 return (float)(Clock.ElapsedMilliseconds * 0.001f);
         }
 
-        void inspector_Activate(object sender, ShipSystemInspector.ShipSystemValueEventArgs e)
+        void inspector_Activate(object sender, PowerTempControl.ValueEventArgs e)
         {
             ShipSystemInspector inspector = sender as ShipSystemInspector;
             if (inspector == null || inspector.InspectedSystem == null)
@@ -84,7 +84,7 @@ namespace CoolantTest
                 inspector.InspectedSystem.Activate();
         }
 
-        void inspector_SetPower(object sender, ShipSystemInspector.ShipSystemValueEventArgs e)
+        void inspector_SetPower(object sender, PowerTempControl.ValueEventArgs e)
         {
             ShipSystemInspector inspector = sender as ShipSystemInspector;
             if (inspector == null || inspector.InspectedSystem == null)
@@ -94,7 +94,7 @@ namespace CoolantTest
                 Ship.SetSystemDesiredPower(inspector.InspectedSystem, e.Value);
         }
 
-        void inspector_SetCoolant(object sender, ShipSystemInspector.ShipSystemValueEventArgs e)
+        void inspector_SetCoolant(object sender, PowerTempControl.ValueEventArgs e)
         {
             ShipSystemInspector inspector = sender as ShipSystemInspector;
             if (inspector == null || inspector.InspectedSystem == null)
@@ -182,7 +182,6 @@ namespace CoolantTest
             {
                 foreach (ShipSystemInspector i in ShipSystems.Controls)
                     func(i, i.InspectedSystem);
-
             }
         }
 
@@ -238,6 +237,11 @@ namespace CoolantTest
             }
 
             DoForEachSystem(delegate(ShipSystemInspector i, ShipSystem s) { i.SetDesiredCoolant((i.InspectedSystem.CurrentTemp > 0 || i.InspectedSystem.CurrentPower > 0) ? (i.InspectedSystem.MaxCoolantFlow / weightedTotal) * availCool : 0); });
+        }
+
+        private void CoolantGroup_Enter(object sender, EventArgs e)
+        {
+
         }
 
     }
