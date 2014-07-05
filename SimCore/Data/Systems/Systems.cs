@@ -16,6 +16,52 @@ namespace SimCore.Data.Systems
         public double Reliability = 1.0;
     }
 
+    public class SystemThermalProperties
+    {
+        //Heat Generation
+        public double HeatGeneration = 0.35;
+        public double OverPowerHeatGeneration= 1.1;
+
+        public double ActivationHeat = 0;
+
+        //Automatic Cooling
+        public double MountCooling = 0.125;
+
+        //Coolant Flow
+        public double MaxCoolantFlowRate = 100;
+        public double CurrentCoolantFlowFactor = 0;
+        public double DesiredCoolantFlowFactor = 0;
+
+        public double CurrentCoolantFlowRate { get { return MaxCoolantFlowRate * CurrentCoolantFlowFactor; } }
+
+        // Temperature
+        public double NominalTemperature = 100;
+        public double CurrentTemperature = 0;
+    }
+
+    public class SystemPowerProperties
+    {
+        public double MaxPowerDraw = 0;
+        public double NominalPowerDraw = 0;
+        public double MinPowerDraw = 0;
+
+        public double CurrentPowerFactor = 0;
+        public double DesiredPowerFactor = 0;
+
+        public double CurrentPowerDraw { get { return NominalPowerDraw * CurrentPowerFactor; } }
+
+        public double MaxPowerBuffer = -1;
+        public double BufferedPower = 0;
+        public double MaxBufferChargeRate = 0;
+        public double CurrentBufferChargeFactor = 0;
+    }
+
+    public class ContainerProperties
+    {
+        public double MaxCapacity = 0;
+        public double CurrentCapacity = 0;
+    }
+
     public class BaseSystem
     {
         public UInt64 SystemID = UInt64.MaxValue;
@@ -24,11 +70,10 @@ namespace SimCore.Data.Systems
         public SystemStatusInfo Status = new SystemStatusInfo();
         public SystemStatusInfo PowerConnection = new SystemStatusInfo();
 
-        public double PowerConsumption = 0;
+        public SystemThermalProperties ThermalInfo = new SystemThermalProperties();
+        public SystemPowerProperties PowerInfo = new SystemPowerProperties();
 
-        public double MaxPowerBuffer = -1;
-        public double BufferedPower = 0;
-        public double MaxPowerDraw = 0;
+        public bool Essential = false;
 
         public double BaseEfectivness = 1;
 
@@ -41,6 +86,8 @@ namespace SimCore.Data.Systems
         {
             return SystemName;
         }
+
+        public virtual void OnSystemsChanged(Entities.Entity entity) { }
     }
 
     public class ComputerSystem : BaseSystem
@@ -77,14 +124,13 @@ namespace SimCore.Data.Systems
         }
         public GenerationTypes GenerationType = GenerationTypes.Unknown;
 
-        public double PowerGeneration = 0;
+        public double NominalPowerGenerationFactor = 1;
 
         public class FuelConsumption
         {
             public double ConsumptionRate = 0;
 
-            public double Capacity = 0;
-            public double Quantity = 0;
+            public ContainerProperties Conainer = new ContainerProperties();
 
             public FluidTypes FuelType = FluidTypes.Unknown;
             public List<UInt64> SupplySystems = new List<UInt64>();
@@ -111,8 +157,7 @@ namespace SimCore.Data.Systems
         }
 
         public MedicalSystemTypes SystemType = MedicalSystemTypes.Unkown;
-        public double Capacity = 0;
-        public double Quantity = 0;
+        public ContainerProperties Conainer = new ContainerProperties();
     }
 
     public class LifeSupportSystem : BaseSystem
@@ -142,8 +187,8 @@ namespace SimCore.Data.Systems
 
     public class CommunicationSystem : BaseSystem
     {
-        public double MaxRange = 0;
-        public double MaxBandwith = 0;
+        public double NominalRange = 0;
+        public double NominalBandwith = 0;
     }
 
     public class SensorSystem : BaseSystem
@@ -159,8 +204,8 @@ namespace SimCore.Data.Systems
         }
         public SensorSystemType SensorType = SensorSystemType.Unkown;
 
-        public double MaxRange = 0;
-        public double BaseScanTime = 0;
+        public double NominalRange = 0;
+        public double NominalScanTime = 0;
     }
 
     public class NavigationSystem : BaseSystem
@@ -175,9 +220,10 @@ namespace SimCore.Data.Systems
 
     public class TransporterSystem : BaseSystem
     {
-        public double MaxRange = 0;
-        public double TransportTime = 0;
-        public double MassCapacity = 0;
+        public double NominalRange = 0;
+        public double NominalTransportTime = 0;
+
+        public ContainerProperties Capacity = new ContainerProperties();
 
         public double TransportStatusParamater = 0;
 
@@ -185,15 +231,28 @@ namespace SimCore.Data.Systems
         {
             Cargo = 0,
             Personell,
+            Munitions,
         }
         public ContentTypes ContentType = ContentTypes.Cargo;
+
+        public enum TransportModes
+        {
+            Offline = 0,
+            Idle,
+            Inbound,
+            Outbound,
+        }
+        public TransportModes CurrentTransportMode = TransportModes.Offline;
+
+        public UInt64 Target = 0;
+
         public List<Actor> Contents = new List<Actor>();
     }
 
     public class TractorBeamSystem : BaseSystem
     {
-        public double MaxRange = 0;
-        public double MaxForce = 0;
+        public double NominalRange = 0;
+        public double NominalForce = 0;
 
         public UInt64 AttachedItem = UInt64.MaxValue;
     }

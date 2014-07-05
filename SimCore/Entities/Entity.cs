@@ -132,6 +132,32 @@ namespace SimCore.Entities
             return SystemCache.Values.ToArray();
         }
 
+        public T[] FindSystemsOfType<T>() where T : BaseSystem
+        {
+            List<T> s = new List<T>();
+
+            foreach (BaseSystem sys in GetSystemList())
+            {
+                T p = sys as T;
+                if (p != null)
+                    s.Add(p);
+            }
+            return s.ToArray();
+        }
+
+        public List<T> FindSystemsOfTypeByIDs<T>(List<UInt64> ids) where T : BaseSystem
+        {
+            List<T> s = new List<T>();
+
+            foreach (UInt64 id in ids)
+            {
+                T p = GetSystemByID(id) as T;
+                if (p != null)
+                    s.Add(p);
+            }
+            return s;
+        }
+
         public BaseSystem GetSystemByID(UInt64 id)
         {
             if (SystemCache == null)
@@ -180,6 +206,10 @@ namespace SimCore.Entities
 
             list.Add(s);
             SystemCache.Add(system.SystemID, system);
+
+            foreach (BaseSystem ys in GetSystemList())
+                ys.OnSystemsChanged(this);
+
             return true;
         }
 
@@ -210,6 +240,10 @@ namespace SimCore.Entities
                 
             if (SystemCache.ContainsKey(system.SystemID))
                 SystemCache.Remove(system.SystemID);
+
+            RebuildSystemCache();
+            foreach (BaseSystem s in GetSystemList())
+                s.OnSystemsChanged(this);
         }
 
         public void AddSystem(BaseSystem system)

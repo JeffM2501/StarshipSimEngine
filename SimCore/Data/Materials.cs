@@ -18,6 +18,7 @@ namespace SimCore.Data
         Fuel,
         AntiMater,
         Energy,
+        Coolant,
     }
 
     public enum BulkMaterialTypes

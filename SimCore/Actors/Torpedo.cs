@@ -21,14 +21,17 @@ namespace SimCore.Actors
         public double MaxCharge = 0.0;
         public double Charge = 0.0;
 
+        public double ChargeRate = -1;
+
         public double DamageFactor = 0.0;
 
         public double Acceleration = 0.0;
         public double RotationSpeed = 0.0;
 
         public double Speed = 0.0;
+
         public bool UseFTLScale = false;
 
-        public Vector2d Orientation = Vector2d.Zero;
+        public Quaternion Orientation = Quaternion.Identity;
     }
 }

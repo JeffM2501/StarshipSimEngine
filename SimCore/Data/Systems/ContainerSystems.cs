@@ -97,10 +97,36 @@ namespace SimCore.Data.Systems
         public FluidTypes TankType = FluidTypes.Unknown;
         public double FluidPurity = 1.0;
 
-        public double MaxCapacity = 0;
-        public double Quantity = 0;
+        public ContainerProperties Contents = new ContainerProperties();
 
-        public double MaxFlowRate = 0;
+        public double NominalFlowRate = 0;
+    }
+
+    public class ResevoirSystem : FluidTankSystem
+    {
+        public bool Connected = false;
+    }
+
+    public class HeatSinkSystem : BaseSystem
+    {
+        public double NominalTemperatureRemoved = 2.5;
+    }
+
+    public class CoolantSystem : ResevoirSystem
+    {
+        public List<UInt64> Resevoirs = new List<UInt64>();
+        public List<UInt64> HeatSinks = new List<UInt64>();
+
+        protected List<ResevoirSystem> ResevoirsCache = new List<ResevoirSystem>();
+        protected List<HeatSinkSystem> HeatSinkCache = new List<HeatSinkSystem>();
+
+        public double NominalHeatTrasnfer = 1.5;
+
+        public override void OnSystemsChanged(Entity entity)
+        {
+            ResevoirsCache = entity.FindSystemsOfTypeByIDs<ResevoirSystem>(Resevoirs);
+            HeatSinkCache = entity.FindSystemsOfTypeByIDs<HeatSinkSystem>(HeatSinks);
+        }
     }
 
     public class HangarSystem : BaseSystem

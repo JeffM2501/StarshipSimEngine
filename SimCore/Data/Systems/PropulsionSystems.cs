@@ -27,12 +27,10 @@ namespace SimCore.Data.Systems
 
         public bool UseFTLScale = false;
 
-        public double ChargeBuffer = 0;
-        public double MaxChargeRate = 0;
         public double PowerToThrustFactor = 0;
 
-        public double MaxAcceleration = 0;
-        public double MaxSpeed = 0;
+        public double NominalAcceleration = 0;
+        public double NominalSpeed = 0;
 
         public List<GenerationSystem.FuelConsumption> FuelConsumptions = new List<GenerationSystem.FuelConsumption>();
     }
