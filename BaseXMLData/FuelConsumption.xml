@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<FuelConsumption xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ConsumptionRate>0</ConsumptionRate>
-  <Capacity>0</Capacity>
-  <Quantity>0</Quantity>
-  <FuelType>Unknown</FuelType>
-  <SupplySystems />
-</FuelConsumption>

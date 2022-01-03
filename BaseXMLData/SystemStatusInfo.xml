@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<SystemStatusInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <OperationalStatus>0</OperationalStatus>
-  <FunctionalStatus>0</FunctionalStatus>
-  <Reliability>1</Reliability>
-</SystemStatusInfo>

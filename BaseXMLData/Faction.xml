@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<Faction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name />
-  <ID>18446744073709551615</ID>
-  <InfluencedSectors />
-  <GovermentType>Unknown</GovermentType>
-  <Interactions />
-  <DefaultInteractionType>Unknown</DefaultInteractionType>
-</Faction>
