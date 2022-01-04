@@ -34,11 +34,7 @@ project "data"
     location "build"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
-    vpaths 
-    {
-        ["Header Files"] = { "data/*.h", "data/include/**.h"},
-        ["Source Files/*"] = {"data/**.cpp"},
-    }
+	includedirs { "data/include"}
     files {"data/**.h", "data/**.cpp"}
 
 group "Modules"
@@ -48,11 +44,7 @@ project "sim_controller"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
     includedirs { "data/include", "modules/communications/include", "modules/engineering/include", "modules/helm/include", "modules/medical/include", "modules/navigation/include", "modules/sciences/include", "modules/sim_controller/include"}
-    vpaths 
-    {
-        ["Header Files"] = { "modules/sim_controller/*.h", "modules/sim_controller/include/**.h"},
-        ["Source Files/*"] = {"modules/sim_controller/**.cpp"},
-    }
+
     files {"modules/sim_controller/**.h", "modules/sim_controller/**.cpp"}
     
 project "sciences"
@@ -61,11 +53,6 @@ project "sciences"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
 	includedirs { "data/include", "modules/communications/include", "modules/engineering/include", "modules/helm/include", "modules/medical/include", "modules/navigation/include", "modules/sciences/include", "modules/sim_controller/include"}
-    vpaths 
-    {
-        ["Header Files"] = { "modules/sciences/*.h", "modules/sciences/include/**.h"},
-        ["Source Files/*"] = {"modules/sciences/**.cpp"},
-    }
     files {"modules/sciences/**.h", "modules/sciences/**.cpp"}
     
 project "navigation"
@@ -74,11 +61,6 @@ project "navigation"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
 	includedirs { "data/include", "modules/communications/include", "modules/engineering/include", "modules/helm/include", "modules/medical/include", "modules/navigation/include", "modules/sciences/include", "modules/sim_controller/include"}
-    vpaths 
-    {
-        ["Header Files"] = { "modules/navigation/*.h", "modules/navigation/include/**.h"},
-        ["Source Files/*"] = {"modules/navigation/**.cpp"},
-    }
     files {"modules/navigation/**.h", "modules/navigation/**.cpp"}
     
 project "medical"
@@ -87,11 +69,6 @@ project "medical"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
 	includedirs { "data/include", "modules/communications/include", "modules/engineering/include", "modules/helm/include", "modules/medical/include", "modules/navigation/include", "modules/sciences/include", "modules/sim_controller/include"}
-    vpaths 
-    {
-        ["Header Files"] = { "modules/medical/*.h", "modules/medical/include/**.h"},
-        ["Source Files/*"] = {"modules/medical/**.cpp"},
-    }
     files {"modules/medical/**.h", "modules/medical/**.cpp"}
 
 project "helm"
@@ -100,11 +77,6 @@ project "helm"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
     includedirs { "data/include", "modules/communications/include", "modules/engineering/include", "modules/helm/include", "modules/medical/include", "modules/navigation/include", "modules/sciences/include", "modules/sim_controller/include"}
-    vpaths 
-    {
-        ["Header Files"] = { "modules/helm/*.h", "modules/helm/include/**.h"},
-        ["Source Files/*"] = {"modules/helm/**.cpp"},
-    }
     files {"modules/helm/**.h", "modules/helm/**.cpp"}
 
 project "engineering"
@@ -113,11 +85,6 @@ project "engineering"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
     includedirs { "data/include", "modules/communications/include", "modules/engineering/include", "modules/helm/include", "modules/medical/include", "modules/navigation/include", "modules/sciences/include", "modules/sim_controller/include"}
-    vpaths 
-    {
-        ["Header Files"] = { "modules/engineering/*.h", "modules/engineering/include/**.h"},
-        ["Source Files/*"] = {"modules/engineering/**.cpp"},
-    }
     files {"modules/engineering/**.h", "modules/engineering/**.cpp"}
     
 project "communications"
@@ -126,11 +93,6 @@ project "communications"
     language "C"
     targetdir "bin/%{cfg.buildcfg}"
 	includedirs { "data/include", "modules/communications/include", "modules/engineering/include", "modules/helm/include", "modules/medical/include", "modules/navigation/include", "modules/sciences/include", "modules/sim_controller/include"}
-    vpaths 
-    {
-        ["Header Files"] = { "modules/communications/*.h", "modules/communications/include/**.h"},
-        ["Source Files/*"] = {"modules/communications/**.cpp"},
-    }
     files {"modules/communications/**.h", "modules/communications/**.cpp"}
     
 group ""
