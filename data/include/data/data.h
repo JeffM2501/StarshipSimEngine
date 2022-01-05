@@ -100,17 +100,21 @@ public:
 	{
 	}
 
-	FloatingPointVariable(const char* name, double defalt)
+	FloatingPointVariable(const char* name, double defaultValue)
 		: DataVariable(name, DataVariableTypes::Integer)
-		, Value(defalt)
+		, Value(defaultValue)
+		, Default(defaultValue)
 	{
 	}
 
 	inline double GetValueFloatingPoint() override { return Value; }
 	inline void SetValue(double value) override { Value = value; }
 
+	inline void RestoreDefault() override { Value = Default; Dirty = false; }
+
 protected:
 	double Value = 0;
+	double Default = 0;
 };
 
 class FlagVariable : public DataVariable
@@ -121,17 +125,21 @@ public:
 	{
 	}
 
-	FlagVariable(const char* name, bool defalt)
+	FlagVariable(const char* name, bool defaultValue)
 		: DataVariable(name, DataVariableTypes::Flag)
-		, Value(defalt)
+		, Value(defaultValue)
+		, Default(defaultValue)
 	{
 	}
 
 	inline bool GetValueFlag() override { return Value; }
 	inline void SetValue(bool value) override { Value = value; }
 
+	inline void RestoreDefault() override { Value = Default; Dirty = false; }
+
 protected:
 	bool Value = false;
+	bool Default = false;
 };
 
 class StringVariable : public DataVariable
@@ -142,17 +150,21 @@ public:
 	{
 	}
 
-	StringVariable(const char* name, const std::string& defalt)
+	StringVariable(const char* name, const std::string& defaultValue)
 		: DataVariable(name, DataVariableTypes::String)
-		, Value(defalt)
+		, Value(defaultValue)
+		,Default(defaultValue)
 	{
 	}
 
 	inline const char* GetValueString() override { return Value.c_str(); }
 	inline void SetValue(const char* value) override { Value = value; }
 
+	inline void RestoreDefault() override { Value = Default; Dirty = false; }
+
 protected:
 	std::string Value;
+	std::string Default;
 };
 
 class ListVariable : public DataVariable
@@ -265,3 +277,28 @@ public:
 protected:
 	std::map<int, DataVariable::Ptr> Values;
 };
+
+class DataPath
+{
+public:
+	std::vector<std::string> Path;
+
+	void Append(const std::string& pathElement);
+	
+	DataPath() {}
+	DataPath(const std::string& p0);
+	DataPath(const std::string& p0, const std::string& p1);
+	DataPath(const std::string& p0, const std::string& p1, const std::string& p2);
+	DataPath(const std::string& p0, const std::string& p1, const std::string& p2, const std::string& p3);
+};
+
+class DataSet
+{
+public:
+	DataPath Path;
+	std::map<std::string, DataVariable::Ptr> Variables;
+	std::map<std::string, DataSet> ChildSets;
+};
+
+DataVariable::Ptr GetVariable(const DataPath& path, const std::string& name);
+DataVariable::Ptr CreateVariable(const DataPath& path, DataVariable::Ptr variable);
