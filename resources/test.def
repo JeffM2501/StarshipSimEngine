@@ -1,0 +1,14 @@
+struct TestStruct
+{
+	float AFloat = 10;
+	int AInt = 1234;
+	std::string AString = "Some Text Data";
+	TestStruct2 StructField;
+}
+
+struct TestStruct2
+{
+	char AChar = 'c';
+	int BInt = 9876;
+	std::string SomeData = "More Text Data";
+}
