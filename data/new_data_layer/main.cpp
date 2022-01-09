@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "TestData.h"
+#include "Test.h"
 
 
 void DumpStructure(Data::StructurePtr structPtr, int indent)

@@ -10,6 +10,11 @@ namespace StructureDb
 		StructureCallbacks.insert_or_assign(structureName, callbkack);
 	}
 
+	bool IsStructure(const std::string& structureName)
+	{
+		return StructureCallbacks.find(structureName) != StructureCallbacks.end();
+	}
+
 	Data::StructurePtr CreateStructure(const std::string& structure, const std::string& name, Data::StructurePtr parent)
 	{
 		auto itr = StructureCallbacks.find(structure);

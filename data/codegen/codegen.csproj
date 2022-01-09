@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(TargetDir)*.exe $(SolutionDir)bin\$(ConfigurationName)\*.exe&#xD;&#xA;copy $(TargetDir)*.dll $(SolutionDir)bin\$(ConfigurationName)\*.dll&#xD;&#xA;copy $(TargetDir)*.json $(SolutionDir)bin\$(ConfigurationName)\*.json" />
+  </Target>
+
+</Project>

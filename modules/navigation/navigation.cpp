@@ -1,4 +1,4 @@
-#include "navigation.h"
+#include "navigation/module.h"
 
 void UpdateNavigation()
 {

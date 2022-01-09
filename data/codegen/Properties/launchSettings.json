@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "codegen": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\jeffm\\Desktop\\StarshipSimEngine\\resources\\Test.def\""
+    }
+  }
+}

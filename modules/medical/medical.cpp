@@ -1,4 +1,4 @@
-#include "medical.h"
+#include "medical/module.h"
 
 void UpdateMedical()
 {

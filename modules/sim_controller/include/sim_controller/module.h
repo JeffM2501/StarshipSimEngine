@@ -2,5 +2,3 @@
 
 void InitSimController();
 void UpdateSimController();
-
-v

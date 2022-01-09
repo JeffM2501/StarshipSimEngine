@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "controller.h"
+#include "sim_controller/module.h"
 
 int main()
 {

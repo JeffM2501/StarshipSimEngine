@@ -1,0 +1,42 @@
+ import sim_data.h
+
+struct PositionalData
+{
+	Vector3D Location;
+	Vector3D Velocity;
+	double Speed = 0;
+}
+
+struct LifeformData
+{
+	uint64_t Quantity = 0;
+	LifeformTypes LifeformType;
+	int Intelligence = 0;
+}
+
+struct PhysicalData
+{
+	double Radius = 0;
+	double Mass = 0;
+	RadiationType Type;
+	double Intensity = 0;
+}
+
+struct CelestialObject
+{
+	int ID;
+	std::string Name;
+	bool Charted = false;
+	CelstialClassifications Classification;
+	PositionalData Position;
+
+	PhysicalData Physical;
+	LifeformData Lifeforms;
+}
+
+struct Universe
+{
+	Vector3D Maxium;
+	Vector3D Minium;
+	container<CelestialObject> Objects;
+}

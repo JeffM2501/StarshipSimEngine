@@ -1,4 +1,4 @@
-#include "sciences.h"
+#include "sciences/module.h"
 
 void UpdateSciences()
 {

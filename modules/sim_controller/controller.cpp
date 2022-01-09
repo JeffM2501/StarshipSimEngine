@@ -48,13 +48,13 @@ void UpdateSimController()
 // input commands
 void InitModule(const SimulationData& data)
 {
-	GetModuleState(ModuleID(data.IntArgs[0])).Init = true;
+//	GetModuleState(ModuleID(data.IntArgs[0])).Init = true;
 }
 
 void InitAllModules(const SimulationData& data)
 {
-	for(int i = 0; i < int(ModuleID::LastModule); i++)
-		GetModuleState(ModuleID(i)).Init = true;
+// 	for(int i = 0; i < int(ModuleID::LastModule); i++)
+// 		GetModuleState(ModuleID(i)).Init = true;
 }
 
 void InitSimController()
