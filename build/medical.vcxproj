@@ -299,6 +299,11 @@
   <ItemGroup>
     <ClCompile Include="..\modules\medical\medical.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="data.vcxproj">
+      <Project>{5f91957c-4bc8-960d-f4b4-7c10e0ca120f}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

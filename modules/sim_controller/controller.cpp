@@ -1,4 +1,11 @@
+#include "communications/module.h"
+#include "engineering/module.h"
+#include "helm/module.h"
+#include "medical/module.h"
+#include "navigation/module.h"
+#include "sciences/module.h"
 #include "sim_controller/module.h"
+
 #include "commands.h"
 
 #include "data/data.h"
@@ -7,6 +14,8 @@
 
 #include <deque>
 #include <limits>
+
+static bool UseLocalModules = true;
 
 std::unordered_map<SimulationCommands, SimEventHandler> SimEventHandlers;
 
@@ -19,7 +28,15 @@ void AddSimulationInput(const SimulationData& data)
 
 void UpdateBackgroundTasks()
 {
-
+	if (UseLocalModules)
+	{
+		UpdatCommunications();
+		UpdateEngineering();
+		UpdateHelm();
+		UpdateMedical();
+		UpdateNavigation();
+		UpdateSciences();
+	}
 }
 
 void UpdateOperatorInput()
@@ -58,6 +75,34 @@ void DoInitModule(int moduleId)
 	moduleInfo.SetInited(true);
 
 	// init the module if we are local
+	if (UseLocalModules)
+	{
+		switch (Data::ModuleID(moduleId))
+		{
+		case Data::ModuleID::Communications:
+			InitCommunications();
+			break;
+
+		case Data::ModuleID::Engineering:
+			InitEngineering();
+			break;
+
+		case Data::ModuleID::Helm:
+			InitHelm();
+			break;
+
+		case Data::ModuleID::Medical:
+			InitMedical();
+			break;
+
+		case Data::ModuleID::Navigation:
+			InitNavigation();
+			break; 
+		case Data::ModuleID::Sciences:
+			InitSciences();
+			break;
+		}
+	}
 }
 
 // input commands
@@ -78,8 +123,6 @@ void InitSimController()
 {
 	SimEventHandlers[SimulationCommands::InitModule] = InitModule;
 	SimEventHandlers[SimulationCommands::InitAllModules] = InitAllModules;
-
-
 
 	// setup the global module data
 	auto modules = Data::GetDataWrapper<Data::CommonModules>(Data::DB::CreateStructure(Data::CommonModules::Name, Data::CommonModules::Name, Path::Root())).GetModules();
