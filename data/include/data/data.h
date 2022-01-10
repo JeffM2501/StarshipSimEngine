@@ -25,6 +25,9 @@ namespace Data
 		void SetName(const std::string& name);
 		ItemTypes GetType() const;
 
+		const Path& GetPath();
+		void SetPath(const Path&);
+
 		virtual bool IsDirty() const = 0;
 		virtual void ResetToDefault() = 0;
 
@@ -35,7 +38,7 @@ namespace Data
 	protected:
 		ItemTypes ItemType = ItemTypes::Value;
 		std::string Name;
-
+		Path ItemPath;
 		bool Dirty = false;
 	};
 
@@ -112,7 +115,7 @@ namespace Data
 		Data::StructurePtr CreateStructure(const std::string& structure, const std::string& name, StructurePtr parent);
 		Data::StructurePtr CreateStructure(const std::string& structure, const std::string& name, Path parentPath);
 
-		Data::ContainerPtr CreateConatner(const std::string& containerType, const std::string& name, StructurePtr parent);
-		Data::ContainerPtr CreateConatner(const std::string& containerType, const std::string& name, Path parentPath);
+		Data::ContainerPtr CreateContainer(const std::string& containerType, const std::string& name, StructurePtr parent);
+		Data::ContainerPtr CreateContainer(const std::string& containerType, const std::string& name, Path parentPath);
 	}
 }

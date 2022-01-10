@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sim_controller">
+      <UniqueIdentifier>{44F27DBD-30EC-A60F-1959-3D2005F20C7C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\modules\sim_controller\commands.h" />
+    <ClInclude Include="..\modules\sim_controller\include\sim_controller\module.h">
+      <Filter>include\sim_controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\modules\sim_controller\controller.cpp" />
+  </ItemGroup>
+</Project>

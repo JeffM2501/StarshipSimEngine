@@ -10,7 +10,6 @@ namespace codegen
         Struct,
         Container,
     }
-
     public class FieldDef
     {
         public ItemTypes ItemType = ItemTypes.Data;
@@ -27,29 +26,35 @@ namespace codegen
         public int StructureCount = 0;
     }
 
+    public class EnumDef
+    {
+        public string Name;
+        public List<string> Values = new List<string>();
+    }
+
     public class DefFile
     {
         public DirectoryInfo IncludeOutputDir = null;
         public DirectoryInfo SourceOutputDir = null;
         public FileInfo InputFile = null;
 
-        public List<StructureDef> Structures = new List<StructureDef>();
-        public List<string> StructNames = new List<string>();
+        public Dictionary<string, StructureDef> Structures = new Dictionary<string, StructureDef>();
+        public Dictionary<string, EnumDef> Enums = new Dictionary<string, EnumDef>();
         public List<string> Imports = new List<string>();
 
         public void ValidateStructures()
         {
             foreach (var structDef in Structures)
             {
-                foreach (var fieldDef in structDef.Fields.ToArray())
+                foreach (var fieldDef in structDef.Value.Fields.ToArray())
                 {
                     if (fieldDef.ItemType == ItemTypes.Container)
                         continue;
 
-                    if (StructNames.Contains(fieldDef.FieldType))
+                    if (Structures.ContainsKey(fieldDef.FieldType))
                     {
                         fieldDef.ItemType = ItemTypes.Struct;
-                        structDef.StructureCount++;
+                        structDef.Value.StructureCount++;
                     }
                     else
                     {
@@ -62,6 +67,7 @@ namespace codegen
         public void ProcessFile()
         {
             StructureDef structDef = null;
+            EnumDef enumDef = null;
 
             var reader = InputFile.OpenText();
             while (!reader.EndOfStream)
@@ -84,8 +90,37 @@ namespace codegen
                         Console.WriteLine("Unterminated struct " + structDef.Name);
                     }
 
+                    if (enumDef != null)
+                    {
+                        Console.WriteLine("Unterminated enum " + enumDef.Name);
+                    }
+                    enumDef = null;
+
                     structDef = new StructureDef();
                     structDef.Name = parts[1];
+                }
+                else if (line.StartsWith("enum"))
+                {
+                    string[] parts = line.Split(" ".ToCharArray());
+                    if (parts.Length < 2 || string.IsNullOrEmpty(parts[1]))
+                    {
+                        Console.WriteLine("Invalid enum line " + line);
+                        continue;
+                    }
+
+                    if (enumDef != null)
+                    {
+                        Console.WriteLine("Unterminated enum " + enumDef.Name);
+                    }
+
+                    if (structDef != null)
+                    {
+                        Console.WriteLine("Unterminated struct " + structDef.Name);
+                    }
+                    structDef = null;
+
+                    enumDef = new EnumDef();
+                    enumDef.Name = parts[1];
                 }
                 else if (structDef != null)
                 {
@@ -94,8 +129,7 @@ namespace codegen
 
                     if (line.StartsWith("}"))
                     {
-                        StructNames.Add(structDef.Name);
-                        Structures.Add(structDef);
+                        Structures.Add(structDef.Name, structDef);
                         structDef = null;
                     }
                     else
@@ -135,6 +169,21 @@ namespace codegen
                         }
 
                         structDef.Fields.Add(field);
+                    }
+                }
+                else if (enumDef != null)
+                {
+                    if (line.StartsWith("{"))
+                        continue;
+
+                    if (line.StartsWith("}"))
+                    {
+                        Enums.Add(enumDef.Name, enumDef);
+                        enumDef = null;
+                    }
+                    else
+                    {
+                        enumDef.Values.Add(line.TrimEnd(','));
                     }
                 }
                 else if (line.StartsWith("import"))
@@ -228,9 +277,29 @@ namespace codegen
             writer.WriteLine();
             writer.WriteLine("namespace Data");
             writer.WriteLine("{");
+
+            if (Enums.Count > 0)
+            {
+                writer.WriteLine();
+                writer.WriteLine("\t//Enums");
+
+                foreach (var enumDef in Enums)
+                {
+                    writer.WriteLine("\tenum class " + enumDef.Value.Name);
+                    writer.WriteLine("\t{");
+                    for (int i = 0; i < enumDef.Value.Values.Count; i++)
+                    {
+                        writer.WriteLine("\t\t" + enumDef.Value.Values[i] + " = " + i.ToString() + ",");
+                    }
+                    writer.WriteLine("\t\tLast" + enumDef.Value.Name + " = " + enumDef.Value.Values.Count.ToString());
+                    writer.WriteLine("\t};");
+
+                    writer.WriteLine();
+                }
+            }
             foreach (var structDef in Structures)
             {
-                OutputStructureHeader(writer, structDef);
+                OutputStructureHeader(writer, structDef.Value);
             }
             writer.WriteLine();
             writer.WriteLine("\t// Registration function");
@@ -265,7 +334,7 @@ namespace codegen
                 }
                 else if (field.ItemType == ItemTypes.Container)
                 {
-                    writer.Write("\t\tDB::CreateConatner(");
+                    writer.Write("\t\tDB::CreateContainer(");
                     writer.Write(field.FieldType);
                     writer.Write("::Name, \"");
                     writer.Write(field.Name);
@@ -351,7 +420,7 @@ namespace codegen
 
             foreach (var structDef in Structures)
             {
-                OutputStructureSource(writer, structDef);
+                OutputStructureSource(writer, structDef.Value);
             }
 
 
@@ -364,8 +433,8 @@ namespace codegen
             foreach (var structDef in Structures)
             {
                 writer.Write("\t\tDB::AddStructureDef(");
-                writer.Write(structDef.Name + "::Name, ");
-                writer.WriteLine(structDef.Name + "::Create); ");
+                writer.Write(structDef.Value.Name + "::Name, ");
+                writer.WriteLine(structDef.Value.Name + "::Create); ");
             }
             writer.WriteLine("\t}");
 

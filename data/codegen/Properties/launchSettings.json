@@ -2,7 +2,7 @@
   "profiles": {
     "codegen": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\jeffm\\Desktop\\StarshipSimEngine\\resources\\Test.def\""
+      "commandLineArgs": "C:\\Users\\jeffm\\Desktop\\StarshipSimEngine\\data\\defs C:\\Users\\jeffm\\Desktop\\StarshipSimEngine\\data\\include\\data C:\\Users\\jeffm\\Desktop\\StarshipSimEngine\\data"
     }
   }
 }

@@ -18,6 +18,16 @@ namespace Data
 		return ItemType;
 	}
 
+	const Path& Item::GetPath()
+	{
+		return ItemPath;
+	}
+
+	void Item::SetPath(const Path& path)
+	{
+		ItemPath = path;
+	}
+
 	// Value Item
 	template< class T>
 	ValueItem<T>::ValueItem(const char* valueTypeName)
@@ -114,7 +124,13 @@ namespace Data
 	void StructureItem::AddField(Item::Ptr field)
 	{
 		if (field != nullptr)
+		{
+			Path path = GetPath();
+			path.Append(field->GetName());
+			field->SetPath(path);
+
 			Fields.insert_or_assign(field->GetName(), field);
+		}
 	}
 
 	Item::Ptr StructureItem::GetField(const std::string& name) const
@@ -257,6 +273,9 @@ namespace Data
 
 			Data::StructurePtr structurePtr = std::make_shared<Data::StructureItem>(structure.c_str());
 			structurePtr->SetName(name);
+			Path path = parent->GetPath();
+			path.Append(name);
+			structurePtr->SetPath(path);
 
 			if (!itr->second(structure, structurePtr))
 				return nullptr;
@@ -275,23 +294,28 @@ namespace Data
 			return CreateStructure(structure, name, std::dynamic_pointer_cast<Data::StructureItem>(parent));
 		}
 
-		Data::ContainerPtr CreateConatner(const std::string& containerType, const std::string& name, StructurePtr parent)
+		Data::ContainerPtr CreateContainer(const std::string& containerType, const std::string& name, StructurePtr parent)
 		{
 			Data::ContainerPtr containerPtr = std::make_shared<Data::ContainerItem>(containerType.c_str());
 			containerPtr->SetName(name);
+
+			Path path = parent->GetPath();
+			path.Append(name);
+			containerPtr->SetPath(path);
+
 
 			parent->Fields.insert_or_assign(name, containerPtr);
 
 			return containerPtr;
 		}
 
-		Data::ContainerPtr CreateConatner(const std::string& containerType, const std::string& name, Path parentPath)
+		Data::ContainerPtr CreateContainer(const std::string& containerType, const std::string& name, Path parentPath)
 		{
 			Data::Item::Ptr parent = Data::GetDataItem(parentPath);
 			if (parent == nullptr || parent->GetType() != Data::ItemTypes::Structure)
 				return nullptr;
 
-			return CreateConatner(containerType, name, std::dynamic_pointer_cast<Data::StructureItem>(parent));
+			return CreateContainer(containerType, name, std::dynamic_pointer_cast<Data::StructureItem>(parent));
 		}
 	}
 }

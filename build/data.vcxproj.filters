@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\data">
+      <UniqueIdentifier>{B2CED969-9E31-690E-47B7-A1C433F93491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="defs">
+      <UniqueIdentifier>{f7e176d0-8f08-4f10-a79f-1d8793be37b2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\data\include\data\data.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\data_types.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\data_path.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\wrappers.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\common.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\sim_data.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\modules.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\data\data.cpp" />
+    <ClCompile Include="..\data\wrappers.cpp" />
+    <ClCompile Include="..\data\common.cpp" />
+    <ClCompile Include="..\data\modules.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\data\defs\Common.def">
+      <Filter>defs</Filter>
+    </None>
+    <None Include="..\data\defs\modules.def">
+      <Filter>defs</Filter>
+    </None>
+  </ItemGroup>
+</Project>

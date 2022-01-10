@@ -101,7 +101,7 @@ namespace Data
 	{
 		structureItem->AddField(Data::ValueItem<Vector3D>::Create("Maxium", "Vector3D"));
 		structureItem->AddField(Data::ValueItem<Vector3D>::Create("Minium", "Vector3D"));
-		DB::CreateConatner(CelestialObject::Name, "Objects", structureItem);
+		DB::CreateContainer(CelestialObject::Name, "Objects", structureItem);
 
 		return true;
 	}
