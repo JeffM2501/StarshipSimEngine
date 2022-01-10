@@ -1,0 +1,34 @@
+enum DefensiveSystemTypes
+{
+	None,
+	Shield,
+}
+
+enum OffsensiveWeaponSystemTypes
+{
+	None,
+	Phaser,
+	PhotonTorpedo,
+	CommunicatonDisruptor,
+	UltimateDistruct,
+}
+
+struct SystemDef
+{
+	float FunctionalStatus = 1.0f;
+	float OperationalStatus = 1.0f;
+	float ReliabilityFactor = 1.0f;
+	float EnergyRequirement = 0.0;f
+}
+
+struct DefensiveSystem
+{
+	DefensiveSystemTypes SystemType;
+	SystemDef SystemInfo;
+}
+
+struct OffsensiveWeaponsSystem
+{
+	OffsensiveWeaponSystemTypes SystemType;
+	SystemDef SystemInfo;
+}

@@ -1,11 +1,44 @@
 #pragma once
 #include "data/data.h"
 #include "data/wrappers.h"
-#include "data/sim_data.h"
+#include "data/systems.h"
 #include <memory>
 
 namespace Data
 {
+
+	//Enums
+	enum class CelstialClassifications
+	{
+		Unknown = 0,
+		Star = 1,
+		Singularity = 2,
+		ParticleCloud = 3,
+		TimeWarp = 4,
+		Planet = 5,
+		Moon = 6,
+		Nova = 7,
+		LastCelstialClassifications = 8
+	};
+
+	enum class LifeformTypes
+	{
+		None = 0,
+		Humanoid = 1,
+		Vegitation = 2,
+		Aquatic = 3,
+		Self = 4,
+		LastLifeformTypes = 5
+	};
+
+	enum class RadiationType
+	{
+		None = 0,
+		Light = 1,
+		Radiation = 2,
+		LastRadiationType = 3
+	};
+
 
 	// Autogen struct PositionalData
 	class PositionalData : public Data::StructWrapper
@@ -93,6 +126,35 @@ namespace Data
 		class PhysicalData GetPhysical() const;
 
 		class LifeformData GetLifeforms() const;
+
+		ContainerWrapper<DefensiveSystem> GetDefenses() const;
+
+		ContainerWrapper<OffsensiveWeaponsSystem> GetOffensiveWeapons() const;
+
+		const bool& GetFiredUpon() const;
+		void SetFiredUpon(const bool& value);
+
+		const bool& GetPeaceTreatyOffered() const;
+		void SetPeaceTreatyOffered(const bool& value);
+
+		const bool& GetPeaceTreatyRequest() const;
+		void SetPeaceTreatyRequest(const bool& value);
+	};
+
+	// Autogen struct Sphere
+	class Sphere : public Data::StructWrapper
+	{
+	public:
+		static constexpr const char Name[] = "Sphere";
+		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
+
+		Sphere(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("Sphere");}
+
+		const Vector3D& GetCenter() const;
+		void SetCenter(const Vector3D& value);
+
+		const double& GetRadius() const;
+		void SetRadius(const double& value);
 	};
 
 	// Autogen struct Universe
@@ -111,6 +173,10 @@ namespace Data
 		void SetMinium(const Vector3D& value);
 
 		ContainerWrapper<CelestialObject> GetObjects() const;
+
+		class Sphere GetRomulonEmpire() const;
+
+		class Sphere GetKlingonEmpire() const;
 	};
 
 	// Registration function

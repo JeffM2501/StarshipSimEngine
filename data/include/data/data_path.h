@@ -28,4 +28,6 @@ public:
 
 		return Elements.rbegin()->c_str();
 	}
+
+	static const Path& Root();
 };

@@ -124,6 +124,14 @@ namespace Data
 	}
 
 	template<class T>
+	T ContainerWrapper<T>::AddValueDefault(int key)
+	{
+		Values.insert_or_assign(key, std::move(T()));
+
+		return GetValue(key);
+	}
+
+	template<class T>
 	void ContainerWrapper<T>::RemoveValue(int key)
 	{
 		auto itr = Values.find(key);
@@ -158,6 +166,18 @@ namespace Data
 	}
 
 	template<class T>
+	bool ContainerWrapper<T>::IsEmpty()
+	{
+		return Values.size() == 0;
+	}
+
+	template<class T>
+	size_t ContainerWrapper<T>::Size()
+	{
+		return Values.size();
+	}
+
+	template<class T>
 	void ContainerWrapper<T>::Validate()
 	{
 		if (ContainerData == nullptr)
@@ -168,5 +188,11 @@ namespace Data
 	T GetDataWrapper(const Path& path)
 	{
 		return std::move(T(Data::GetDataItem(path)));
+	}
+
+	template<class T>
+	T GetDataWrapper(const Item::Ptr& ptr)
+	{
+		return std::move(T(ptr));
 	}
 }

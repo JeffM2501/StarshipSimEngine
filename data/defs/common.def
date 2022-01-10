@@ -1,4 +1,32 @@
- import sim_data.h
+import systems.h
+
+enum CelstialClassifications
+{
+	Unknown,
+	Star,
+	Singularity,
+	ParticleCloud,
+	TimeWarp,
+	Planet,
+	Moon,
+	Nova,
+}
+
+enum LifeformTypes
+{
+	None,
+	Humanoid,
+	Vegitation,
+	Aquatic,
+	Self
+}
+
+enum RadiationType
+{
+	None,
+	Light,
+	Radiation,
+}
 
 struct PositionalData
 {
@@ -32,6 +60,18 @@ struct CelestialObject
 
 	PhysicalData Physical;
 	LifeformData Lifeforms;
+	container<DefensiveSystem> Defenses;
+	container<OffsensiveWeaponsSystem> OffensiveWeapons;
+
+	bool FiredUpon = false;
+	bool PeaceTreatyOffered = false;
+	bool PeaceTreatyRequest = false;
+}
+
+struct Sphere
+{
+	Vector3D Center;
+	double Radius;
 }
 
 struct Universe
@@ -39,4 +79,7 @@ struct Universe
 	Vector3D Maxium;
 	Vector3D Minium;
 	container<CelestialObject> Objects;
+
+	Sphere RomulonEmpire;
+	Sphere KlingonEmpire;
 }

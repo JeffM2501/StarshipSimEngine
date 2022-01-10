@@ -1,5 +1,12 @@
 #include "data/data.h"
 
+Path RootPath;
+
+const Path& Path::Root()
+{
+	return RootPath;
+ }
+
 namespace Data
 {
 	// Item base class

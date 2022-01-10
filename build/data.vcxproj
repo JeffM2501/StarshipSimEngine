@@ -333,8 +333,9 @@
     <ClCompile Include="..\data\wrappers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\data\defs\Common.def" />
+    <None Include="..\data\defs\common.def" />
     <None Include="..\data\defs\modules.def" />
+    <None Include="..\data\defs\systems.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

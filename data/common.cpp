@@ -74,6 +74,11 @@ namespace Data
 		DB::CreateStructure(PositionalData::Name, "Position", structureItem);
 		DB::CreateStructure(PhysicalData::Name, "Physical", structureItem);
 		DB::CreateStructure(LifeformData::Name, "Lifeforms", structureItem);
+		DB::CreateContainer(DefensiveSystem::Name, "Defenses", structureItem);
+		DB::CreateContainer(OffsensiveWeaponsSystem::Name, "OffensiveWeapons", structureItem);
+		structureItem->AddField(Data::ValueItem<bool>::Create("FiredUpon", false, "bool"));
+		structureItem->AddField(Data::ValueItem<bool>::Create("PeaceTreatyOffered", false, "bool"));
+		structureItem->AddField(Data::ValueItem<bool>::Create("PeaceTreatyRequest", false, "bool"));
 
 		return true;
 	}
@@ -96,12 +101,42 @@ namespace Data
 
 	LifeformData CelestialObject::GetLifeforms() const { return std::move(ExtractStructFromField<LifeformData>("Lifeforms")); }
 
+	ContainerWrapper<DefensiveSystem> CelestialObject::GetDefenses() const { return std::move(ExtractContainerFromField<DefensiveSystem>("Defenses")); }
+
+	ContainerWrapper<OffsensiveWeaponsSystem> CelestialObject::GetOffensiveWeapons() const { return std::move(ExtractContainerFromField<OffsensiveWeaponsSystem>("OffensiveWeapons")); }
+
+	const bool& CelestialObject::GetFiredUpon() const { return GetField<bool>("FiredUpon"); }
+	void CelestialObject::SetFiredUpon(const bool& value) { return SetField<bool>("FiredUpon", value); }
+
+	const bool& CelestialObject::GetPeaceTreatyOffered() const { return GetField<bool>("PeaceTreatyOffered"); }
+	void CelestialObject::SetPeaceTreatyOffered(const bool& value) { return SetField<bool>("PeaceTreatyOffered", value); }
+
+	const bool& CelestialObject::GetPeaceTreatyRequest() const { return GetField<bool>("PeaceTreatyRequest"); }
+	void CelestialObject::SetPeaceTreatyRequest(const bool& value) { return SetField<bool>("PeaceTreatyRequest", value); }
+
+	// Autogen structSphere
+	bool Sphere::Create(const std::string& stucture, Data::StructurePtr structureItem)
+	{
+		structureItem->AddField(Data::ValueItem<Vector3D>::Create("Center", "Vector3D"));
+		structureItem->AddField(Data::ValueItem<double>::Create("Radius", "double"));
+
+		return true;
+	}
+
+	const Vector3D& Sphere::GetCenter() const { return GetField<Vector3D>("Center"); }
+	void Sphere::SetCenter(const Vector3D& value) { return SetField<Vector3D>("Center", value); }
+
+	const double& Sphere::GetRadius() const { return GetField<double>("Radius"); }
+	void Sphere::SetRadius(const double& value) { return SetField<double>("Radius", value); }
+
 	// Autogen structUniverse
 	bool Universe::Create(const std::string& stucture, Data::StructurePtr structureItem)
 	{
 		structureItem->AddField(Data::ValueItem<Vector3D>::Create("Maxium", "Vector3D"));
 		structureItem->AddField(Data::ValueItem<Vector3D>::Create("Minium", "Vector3D"));
 		DB::CreateContainer(CelestialObject::Name, "Objects", structureItem);
+		DB::CreateStructure(Sphere::Name, "RomulonEmpire", structureItem);
+		DB::CreateStructure(Sphere::Name, "KlingonEmpire", structureItem);
 
 		return true;
 	}
@@ -113,6 +148,10 @@ namespace Data
 	void Universe::SetMinium(const Vector3D& value) { return SetField<Vector3D>("Minium", value); }
 
 	ContainerWrapper<CelestialObject> Universe::GetObjects() const { return std::move(ExtractContainerFromField<CelestialObject>("Objects")); }
+
+	Sphere Universe::GetRomulonEmpire() const { return std::move(ExtractStructFromField<Sphere>("RomulonEmpire")); }
+
+	Sphere Universe::GetKlingonEmpire() const { return std::move(ExtractStructFromField<Sphere>("KlingonEmpire")); }
 	// Registration function
 	void RegisterCommonStructs()
 	{
@@ -120,6 +159,7 @@ namespace Data
 		DB::AddStructureDef(LifeformData::Name, LifeformData::Create); 
 		DB::AddStructureDef(PhysicalData::Name, PhysicalData::Create); 
 		DB::AddStructureDef(CelestialObject::Name, CelestialObject::Create); 
+		DB::AddStructureDef(Sphere::Name, Sphere::Create); 
 		DB::AddStructureDef(Universe::Name, Universe::Create); 
 	}
 

@@ -12,16 +12,21 @@ namespace Data
 
 		const std::string& GetContanerType();
 		void AddValue(int key, T value);
+		T AddValueDefault(int key);
 		void RemoveValue(int key);
 
 		T GetValue(int key) const;
 		T GetValue(const std::string& name) const;
 		std::vector<int> GetKeys() const;
 
+		bool IsEmpty();
+		size_t Size();
+
+
+		inline bool Valid() const { return ContainerData != nullptr; }
+
 	protected:
 		std::shared_ptr<Data::ContainerItem> ContainerData;
-
-		std::string ContainerType;
 
 		void Validate();
 	};
@@ -31,9 +36,6 @@ namespace Data
 	public:
 		StructWrapper(Data::StructurePtr structPtr);
 		bool IsDirty();
-
-	protected:
-		void Validate(const char* name);
 
 		template<class T>
 		const T& GetField(const std::string& name) const;
@@ -47,9 +49,17 @@ namespace Data
 		template <class T>
 		ContainerWrapper<T> ExtractContainerFromField(const std::string& name) const;
 
+		inline bool Valid() const { return StructData != nullptr; }
+
 		Data::StructurePtr StructData;
+
+	protected:
+		void Validate(const char* name);
 	};
 
 	template<class T>
 	T GetDataWrapper(const Path& path);
+
+	template<class T>
+	T GetDataWrapper(const Item::Ptr& ptr);
 }

@@ -41,10 +41,13 @@
     <ClCompile Include="..\data\modules.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\data\defs\Common.def">
+    <None Include="..\data\defs\modules.def">
       <Filter>defs</Filter>
     </None>
-    <None Include="..\data\defs\modules.def">
+    <None Include="..\data\defs\systems.def">
+      <Filter>defs</Filter>
+    </None>
+    <None Include="..\data\defs\common.def">
       <Filter>defs</Filter>
     </None>
   </ItemGroup>
