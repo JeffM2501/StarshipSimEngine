@@ -46,17 +46,59 @@ namespace Data
 	class ValueItem : public Item
 	{
 	public:
-		ValueItem(const char* valueTypeName = nullptr);
-		ValueItem(T defaultValue, const char* = nullptr);
+		// Value Item
+		ValueItem(const char* valueTypeName = nullptr)
+		{
+			if (valueTypeName != nullptr)
+				DataTypeName = valueTypeName;
+		}
 
-		bool IsDirty() const override;
-		void ResetToDefault() override;
+		ValueItem(T defaultValue, const char* valueTypeName = nullptr)
+			: DefaultValue(defaultValue)
+			, Value(defaultValue)
+		{
+			if (valueTypeName != nullptr)
+				DataTypeName = valueTypeName;
+		}
 
-		const T& GetValue() const;
-		void SetValue(const T& value);
+		inline bool IsDirty() const
+		{
+			return Dirty;
+		}
 
-		static Item::Ptr Create(const std::string& name, T defaultValue, const char* dataTypeName = nullptr);
-		static Item::Ptr Create(const std::string& name, const char* dataTypeName = nullptr);
+		inline void ResetToDefault()
+		{
+			Value = DefaultValue;
+		}
+
+		inline const T& GetValue() const
+		{
+			return Value;
+		}
+
+		inline void SetValue(const T& value)
+		{
+			Value = value;
+			Dirty = true;
+		}
+
+		static inline Item::Ptr Create(const std::string& name, T defaultValue, const char* dataTypeName = nullptr)
+		{
+			std::shared_ptr<ValueItem<T>> ptr = std::make_shared<ValueItem<T>>(defaultValue);
+			ptr->Name = name.c_str();
+			if (dataTypeName != nullptr)
+				ptr->DataTypeName = dataTypeName;
+			return ptr;
+		}
+
+		static inline Item::Ptr Create(const std::string& name, const char* dataTypeName = nullptr)
+		{
+			std::shared_ptr<ValueItem<T>> ptr = std::make_shared<ValueItem<T>>();
+			ptr->Name = name.c_str();
+			if (dataTypeName != nullptr)
+				ptr->DataTypeName = dataTypeName;
+			return ptr;
+		}
 
 	protected:
 		T DefaultValue;
@@ -113,7 +155,9 @@ namespace Data
 		bool IsStructure(const std::string& structureName);
 
 		Data::StructurePtr CreateStructure(const std::string& structure, const std::string& name, StructurePtr parent);
+		Data::StructurePtr CreateStructure(const std::string& structure, int key, ContainerPtr parent);
 		Data::StructurePtr CreateStructure(const std::string& structure, const std::string& name, Path parentPath);
+		Data::StructurePtr CreateStructure(const std::string& structure, int key, Path parentPath);
 
 		Data::ContainerPtr CreateContainer(const std::string& containerType, const std::string& name, StructurePtr parent);
 		Data::ContainerPtr CreateContainer(const std::string& containerType, const std::string& name, Path parentPath);

@@ -24,13 +24,16 @@
     <ClInclude Include="..\data\include\data\wrappers.h">
       <Filter>include\data</Filter>
     </ClInclude>
-    <ClInclude Include="..\data\include\data\common.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="..\data\include\data\sim_data.h">
       <Filter>include\data</Filter>
     </ClInclude>
     <ClInclude Include="..\data\include\data\modules.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\common.h">
+      <Filter>include\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\data\include\data\systems.h">
       <Filter>include\data</Filter>
     </ClInclude>
   </ItemGroup>
@@ -39,6 +42,7 @@
     <ClCompile Include="..\data\wrappers.cpp" />
     <ClCompile Include="..\data\common.cpp" />
     <ClCompile Include="..\data\modules.cpp" />
+    <ClCompile Include="..\data\systems.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\defs\modules.def">

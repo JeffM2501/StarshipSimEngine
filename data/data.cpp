@@ -35,68 +35,6 @@ namespace Data
 		ItemPath = path;
 	}
 
-	// Value Item
-	template< class T>
-	ValueItem<T>::ValueItem(const char* valueTypeName)
-	{
-		if (valueTypeName != nullptr)
-			DataTypeName = valueTypeName; 
-	}
-	
-	template< class T>
-	ValueItem<T>::ValueItem(T defaultValue, const char*)
-		: DefaultValue(defaultValue)
-		, Value(defaultValue) 
-	{ 
-		if (valueTypeName != nullptr)
-			DataTypeName = valueTypeName; 
-	}
-
-	template< class T>
-	bool ValueItem<T>::IsDirty() const
-	{
-		return Dirty;
-	}
-
-	template< class T>
-	void ValueItem<T>::ResetToDefault()
-	{
-		Value = DefaultValue;
-	}
-
-	template< class T>
-	const T& ValueItem<T>::GetValue() const
-	{ 
-		return Value;
-	}
-
-	template< class T>
-	void ValueItem<T>::SetValue(const T& value)
-	{ 
-		Value = value;
-		Dirty = true;
-	}
-
-	template< class T>
-	Item::Ptr ValueItem<T>::Create(const std::string& name, T defaultValue, const char* dataTypeName)
-	{
-		std::shared_ptr<ValueItem<T>> ptr = std::make_shared<ValueItem<T>>(defaultValue);
-		ptr->Name = name.c_str();
-		if (dataTypeName != nullptr)
-			ptr->DataTypeName = dataTypeName;
-		return ptr;
-	}
-
-	template< class T>
-	Item::Ptr ValueItem<T>::Create(const std::string& name, const char* dataTypeName)
-	{
-		std::shared_ptr<ValueItem<T>> ptr = std::make_shared<ValueItem<T>>();
-		ptr->Name = name.c_str();
-		if (dataTypeName != nullptr)
-			ptr->DataTypeName = dataTypeName;
-		return ptr;
-	}
-
 	// StructureItem
 	StructureItem::StructureItem()
 		: Item()
@@ -292,13 +230,51 @@ namespace Data
 			return structurePtr;
 		}
 
+
+		Data::StructurePtr CreateStructure(const std::string& structure, int key, Data::ContainerPtr parent)
+		{
+			auto itr = StructureCallbacks.find(structure);
+			if (itr == StructureCallbacks.end() || itr->second == nullptr)
+				return nullptr;
+
+			Data::StructurePtr structurePtr = std::make_shared<Data::StructureItem>(structure.c_str());
+			structurePtr->SetName(std::to_string(key));
+			Path path = parent->GetPath();
+			path.Append(structurePtr->GetName());
+			structurePtr->SetPath(path);
+
+			if (!itr->second(structure, structurePtr))
+				return nullptr;
+
+			parent->AddValue(key, structurePtr);
+
+			return structurePtr;
+		}
+
 		Data::StructurePtr CreateStructure(const std::string& structure, const std::string& name, Path parentPath)
 		{
 			Data::Item::Ptr parent = Data::GetDataItem(parentPath);
-			if (parent == nullptr || parent->GetType() != Data::ItemTypes::Structure)
+			if (parent == nullptr || parent->GetType() == Data::ItemTypes::Value)
 				return nullptr;
 
-			return CreateStructure(structure, name, std::dynamic_pointer_cast<Data::StructureItem>(parent));
+			if (parent->GetType() == Data::ItemTypes::Structure)
+				return CreateStructure(structure, name, std::dynamic_pointer_cast<Data::StructureItem>(parent));
+			else if (parent->GetType() == Data::ItemTypes::Container)
+				return CreateStructure(structure, atoi(name.c_str()), std::dynamic_pointer_cast<Data::ContainerItem>(parent));
+
+			return nullptr;
+		}
+
+		Data::StructurePtr CreateStructure(const std::string& structure, int key, Path parentPath)
+		{
+			Data::Item::Ptr parent = Data::GetDataItem(parentPath);
+			if (parent == nullptr || parent->GetType() == Data::ItemTypes::Value)
+				return nullptr;
+
+			if (parent->GetType() == Data::ItemTypes::Container)
+				return CreateStructure(structure, key, std::dynamic_pointer_cast<Data::ContainerItem>(parent));
+
+			return nullptr;
 		}
 
 		Data::ContainerPtr CreateContainer(const std::string& containerType, const std::string& name, StructurePtr parent)
@@ -309,7 +285,6 @@ namespace Data
 			Path path = parent->GetPath();
 			path.Append(name);
 			containerPtr->SetPath(path);
-
 
 			parent->Fields.insert_or_assign(name, containerPtr);
 

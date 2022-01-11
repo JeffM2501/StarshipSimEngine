@@ -118,7 +118,7 @@ namespace Data
 	bool Sphere::Create(const std::string& stucture, Data::StructurePtr structureItem)
 	{
 		structureItem->AddField(Data::ValueItem<Vector3D>::Create("Center", "Vector3D"));
-		structureItem->AddField(Data::ValueItem<double>::Create("Radius", "double"));
+		structureItem->AddField(Data::ValueItem<double>::Create("Radius", 0, "double"));
 
 		return true;
 	}

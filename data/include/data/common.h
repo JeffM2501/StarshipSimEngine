@@ -47,7 +47,7 @@ namespace Data
 		static constexpr const char Name[] = "PositionalData";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		PositionalData(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("PositionalData");}
+		PositionalData(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("PositionalData");}
 
 		const Vector3D& GetLocation() const;
 		void SetLocation(const Vector3D& value);
@@ -66,7 +66,7 @@ namespace Data
 		static constexpr const char Name[] = "LifeformData";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		LifeformData(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("LifeformData");}
+		LifeformData(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("LifeformData");}
 
 		const uint64_t& GetQuantity() const;
 		void SetQuantity(const uint64_t& value);
@@ -85,7 +85,7 @@ namespace Data
 		static constexpr const char Name[] = "PhysicalData";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		PhysicalData(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("PhysicalData");}
+		PhysicalData(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("PhysicalData");}
 
 		const double& GetRadius() const;
 		void SetRadius(const double& value);
@@ -107,7 +107,7 @@ namespace Data
 		static constexpr const char Name[] = "CelestialObject";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		CelestialObject(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("CelestialObject");}
+		CelestialObject(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("CelestialObject");}
 
 		const int& GetID() const;
 		void SetID(const int& value);
@@ -148,7 +148,7 @@ namespace Data
 		static constexpr const char Name[] = "Sphere";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		Sphere(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("Sphere");}
+		Sphere(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("Sphere");}
 
 		const Vector3D& GetCenter() const;
 		void SetCenter(const Vector3D& value);
@@ -164,7 +164,7 @@ namespace Data
 		static constexpr const char Name[] = "Universe";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		Universe(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("Universe");}
+		Universe(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("Universe");}
 
 		const Vector3D& GetMaxium() const;
 		void SetMaxium(const Vector3D& value);

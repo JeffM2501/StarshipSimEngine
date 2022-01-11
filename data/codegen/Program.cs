@@ -213,7 +213,7 @@ namespace codegen
 
             writer.WriteLine();
             // constructor
-            writer.WriteLine("\t\t" + structDef.Name + "(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate(\"" + structDef.Name + "\");}");
+            writer.WriteLine("\t\t" + structDef.Name + "(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate(\"" + structDef.Name + "\");}");
 
             //Field accessors
             foreach (var field in structDef.Fields)

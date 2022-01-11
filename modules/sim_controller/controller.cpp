@@ -11,6 +11,7 @@
 #include "data/data.h"
 #include "data/modules.h"
 #include "data/common.h"
+#include "data/systems.h"
 
 #include <deque>
 #include <limits>
@@ -23,7 +24,7 @@ std::deque<SimulationData> PendingInput;
 
 void AddSimulationInput(const SimulationData& data)
 {
-	PendingInput.emplace_back(std::move(data));
+	PendingInput.emplace_back(data);
 }
 
 void UpdateBackgroundTasks()
@@ -66,43 +67,44 @@ void UpdateSimController()
 
 void DoInitModule(int moduleId)
 {
-	auto modules = Data::GetDataWrapper<Data::CommonModules>(Data::DB::CreateStructure(Data::CommonModules::Name, Data::CommonModules::Name, Path::Root())).GetModules();
-
-	auto moduleInfo = modules.GetValue(moduleId);
-	if (!moduleInfo.Valid() || moduleInfo.GetInited())
-		return;
-
-	moduleInfo.SetInited(true);
-
-	// init the module if we are local
-	if (UseLocalModules)
-	{
-		switch (Data::ModuleID(moduleId))
-		{
-		case Data::ModuleID::Communications:
-			InitCommunications();
-			break;
-
-		case Data::ModuleID::Engineering:
-			InitEngineering();
-			break;
-
-		case Data::ModuleID::Helm:
-			InitHelm();
-			break;
-
-		case Data::ModuleID::Medical:
-			InitMedical();
-			break;
-
-		case Data::ModuleID::Navigation:
-			InitNavigation();
-			break; 
-		case Data::ModuleID::Sciences:
-			InitSciences();
-			break;
-		}
-	}
+	auto modulePtr = Data::DB::CreateStructure(Data::CommonModules::Name, Data::CommonModules::Name, Path::Root());
+ 	auto modules = Data::GetDataWrapper<Data::CommonModules>(modulePtr).GetModules();
+ 
+ 	auto moduleInfo = modules.GetValue(moduleId);
+ 	if (!moduleInfo.Valid() || moduleInfo.GetInited())
+ 		return;
+ 
+ 	moduleInfo.SetInited(true);
+ 
+ 	// init the module if we are local
+ 	if (UseLocalModules)
+ 	{
+ 		switch (Data::ModuleID(moduleId))
+ 		{
+ 		case Data::ModuleID::Communications:
+ 			InitCommunications();
+ 			break;
+ 
+ 		case Data::ModuleID::Engineering:
+ 			InitEngineering();
+ 			break;
+ 
+ 		case Data::ModuleID::Helm:
+ 			InitHelm();
+ 			break;
+ 
+ 		case Data::ModuleID::Medical:
+ 			InitMedical();
+ 			break;
+ 
+ 		case Data::ModuleID::Navigation:
+ 			InitNavigation();
+ 			break; 
+ 		case Data::ModuleID::Sciences:
+ 			InitSciences();
+ 			break;
+ 		}
+ 	}
 }
 
 // input commands
@@ -121,11 +123,18 @@ void InitAllModules(const SimulationData&)
 
 void InitSimController()
 {
+	//register commands
 	SimEventHandlers[SimulationCommands::InitModule] = InitModule;
 	SimEventHandlers[SimulationCommands::InitAllModules] = InitAllModules;
 
+	Data::RegisterCommonStructs();
+	Data::RegisterModulesStructs();
+	Data::RegisterSystemsStructs();
+
+	auto commonModules = Data::DB::CreateStructure(Data::CommonModules::Name, Data::CommonModules::Name, Path::Root());
+
 	// setup the global module data
-	auto modules = Data::GetDataWrapper<Data::CommonModules>(Data::DB::CreateStructure(Data::CommonModules::Name, Data::CommonModules::Name, Path::Root())).GetModules();
+	auto modules = Data::GetDataWrapper<Data::CommonModules>(commonModules).GetModules();
 
 	if (modules.IsEmpty())
 	{

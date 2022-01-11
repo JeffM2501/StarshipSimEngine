@@ -71,7 +71,7 @@ struct CelestialObject
 struct Sphere
 {
 	Vector3D Center;
-	double Radius;
+	double Radius = 0;
 }
 
 struct Universe

@@ -341,6 +341,9 @@
     <ProjectReference Include="..\build\helm.vcxproj">
       <Project>{EBD2977C-D709-990D-80F6-7E106C0C150F}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\build\medical.vcxproj">
+      <Project>{545b31bd-c03a-b058-c952-3b2f35b116ba}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\build\navigation.vcxproj">
       <Project>{B522BA85-A1DA-FBD2-0AE2-D42EF6B896C3}</Project>
     </ProjectReference>

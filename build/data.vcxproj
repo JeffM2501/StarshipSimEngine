@@ -324,12 +324,14 @@
     <ClInclude Include="..\data\include\data\data_types.h" />
     <ClInclude Include="..\data\include\data\modules.h" />
     <ClInclude Include="..\data\include\data\sim_data.h" />
+    <ClInclude Include="..\data\include\data\systems.h" />
     <ClInclude Include="..\data\include\data\wrappers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\data\common.cpp" />
     <ClCompile Include="..\data\data.cpp" />
     <ClCompile Include="..\data\modules.cpp" />
+    <ClCompile Include="..\data\systems.cpp" />
     <ClCompile Include="..\data\wrappers.cpp" />
   </ItemGroup>
   <ItemGroup>

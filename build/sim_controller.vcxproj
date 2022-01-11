@@ -300,6 +300,29 @@
   <ItemGroup>
     <ClCompile Include="..\modules\sim_controller\controller.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="communications.vcxproj">
+      <Project>{6efc4e7d-5aca-4283-435e-b3a92fcb1ee8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="data.vcxproj">
+      <Project>{5f91957c-4bc8-960d-f4b4-7c10e0ca120f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="engineering.vcxproj">
+      <Project>{308c1c11-9c41-9506-2536-8fdd91ea8b0a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="helm.vcxproj">
+      <Project>{ebd2977c-d709-990d-80f6-7e106c0c150f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="medical.vcxproj">
+      <Project>{545b31bd-c03a-b058-c952-3b2f35b116ba}</Project>
+    </ProjectReference>
+    <ProjectReference Include="navigation.vcxproj">
+      <Project>{b522ba85-a1da-fbd2-0ae2-d42ef6b896c3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="sciences.vcxproj">
+      <Project>{f2c25a5e-de8f-b569-07a9-a311f3d4eaf7}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

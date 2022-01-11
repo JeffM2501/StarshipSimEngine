@@ -32,7 +32,7 @@ namespace Data
 		static constexpr const char Name[] = "SystemDef";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		SystemDef(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("SystemDef");}
+		SystemDef(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("SystemDef");}
 
 		const float& GetFunctionalStatus() const;
 		void SetFunctionalStatus(const float& value);
@@ -54,7 +54,7 @@ namespace Data
 		static constexpr const char Name[] = "DefensiveSystem";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		DefensiveSystem(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("DefensiveSystem");}
+		DefensiveSystem(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("DefensiveSystem");}
 
 		const DefensiveSystemTypes& GetSystemType() const;
 		void SetSystemType(const DefensiveSystemTypes& value);
@@ -69,7 +69,7 @@ namespace Data
 		static constexpr const char Name[] = "OffsensiveWeaponsSystem";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		OffsensiveWeaponsSystem(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("OffsensiveWeaponsSystem");}
+		OffsensiveWeaponsSystem(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("OffsensiveWeaponsSystem");}
 
 		const OffsensiveWeaponSystemTypes& GetSystemType() const;
 		void SetSystemType(const OffsensiveWeaponSystemTypes& value);

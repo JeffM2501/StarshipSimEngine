@@ -26,7 +26,7 @@ namespace Data
 		static constexpr const char Name[] = "ModuleInfo";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		ModuleInfo(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("ModuleInfo");}
+		ModuleInfo(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("ModuleInfo");}
 
 		const ModuleID& GetId() const;
 		void SetId(const ModuleID& value);
@@ -45,7 +45,7 @@ namespace Data
 		static constexpr const char Name[] = "CommonModules";
 		static bool Create(const std::string& stucture, Data::StructurePtr structureItem);
 
-		CommonModules(Data::StructurePtr structPtr) : StructWrapper(structPtr) { Validate("CommonModules");}
+		CommonModules(Data::Item::Ptr structPtr) : StructWrapper(structPtr) { Validate("CommonModules");}
 
 		ContainerWrapper<ModuleInfo> GetModules() const;
 	};
