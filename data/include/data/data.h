@@ -21,6 +21,8 @@ namespace Data
 	class Item
 	{
 	public:
+		using Ptr = std::shared_ptr<Item>;
+
 		const char* GetName() const;
 		void SetName(const std::string& name);
 		ItemTypes GetType() const;
@@ -32,8 +34,6 @@ namespace Data
 		virtual void ResetToDefault() = 0;
 
 		std::string DataTypeName;
-
-		using Ptr = std::shared_ptr<Item>;
 
 	protected:
 		ItemTypes ItemType = ItemTypes::Value;

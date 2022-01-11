@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "sim_controller/module.h"
+#include "sim_controller/commands.h"
 #include "data/data.h"
 #include "data/data_types.h"
 
@@ -83,7 +84,7 @@ int main()
 
 	InitSimController();
 
-	DumpDataStructures(0, Data::GetDataItem(Path::Root()));
+	AddSimulationInput(SimulationData(SimulationCommands::InitAllModules));
 
 	bool running = true;
 

@@ -21,32 +21,26 @@ namespace Data
 
 		inline void AddValue(int key, T value)
 		{
-			if (field != nullptr)
-				Values.insert_or_assign(key, field);
+			ContainerData->AddValue(key, value.GetItemPtr());
 		}
 		
 		inline T AddValueDefault(int key)
 		{
 			auto val = DB::CreateStructure(ContainerData->DataTypeName, key, ContainerData->GetPath());
-			Values.insert_or_assign(key, val);
+			ContainerData->AddValue(key, val);
 
 			return T(val);
 		}
 
 		inline void RemoveValue(int key)
 		{
-			auto itr = Values.find(key);
-			if (itr != Values.end())
-				Values.erase(itr);
+			ContainerData->RemoveValue(key);
 		}
 
 		inline T GetValue(int key) const
 		{
-			auto itr = Values.find(key);
-			if (itr == Values.end())
-				return nullptr;
-
-			return std::move(T(itr->second));
+			auto ptr = ContainerData->GetValue(key);
+			return std::move(T(ptr));
 		}
 
 		inline T GetValue(const std::string& name) const
@@ -56,26 +50,20 @@ namespace Data
 
 		inline std::vector<int> GetKeys() const
 		{
-			std::vector<int> keys;
-			for (auto& itr : Values)
-				keys.push_back(itr.first);
-
-			return keys;
+			return ContainerData->GetKeys();
 		}
 
 		inline bool IsEmpty()
 		{
-			return Values.size() == 0;
+			return ContainerData->GetKeys().size() == 0;
 		}
 
 		inline size_t Size()
 		{
-			return Values.size();
+			return ContainerData->GetKeys().size();
 		}
 
 		inline bool Valid() const { return ContainerData != nullptr; }
-
-		std::map<int, Item::Ptr> Values;
 
 	protected:
 		std::shared_ptr<Data::ContainerItem> ContainerData;
@@ -90,6 +78,8 @@ namespace Data
 	class StructWrapper
 	{
 	public:
+		Data::StructurePtr StructData;
+
 		StructWrapper(Data::Item::Ptr structPtr);
 		bool IsDirty();
 
@@ -175,7 +165,7 @@ namespace Data
 
 		inline bool Valid() const { return StructData != nullptr; }
 
-		Data::StructurePtr StructData;
+		inline Item::Ptr GetItemPtr() const { return std::dynamic_pointer_cast<Item>(StructData); }
 
 	protected:
 		void Validate(const char* name);

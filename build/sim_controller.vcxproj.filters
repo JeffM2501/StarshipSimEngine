@@ -9,8 +9,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\modules\sim_controller\commands.h" />
     <ClInclude Include="..\modules\sim_controller\include\sim_controller\module.h">
+      <Filter>include\sim_controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\modules\sim_controller\include\sim_controller\commands.h">
       <Filter>include\sim_controller</Filter>
     </ClInclude>
   </ItemGroup>

@@ -294,7 +294,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\modules\sim_controller\commands.h" />
+    <ClInclude Include="..\modules\sim_controller\include\sim_controller\commands.h" />
     <ClInclude Include="..\modules\sim_controller\include\sim_controller\module.h" />
   </ItemGroup>
   <ItemGroup>

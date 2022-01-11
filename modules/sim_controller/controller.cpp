@@ -5,8 +5,7 @@
 #include "navigation/module.h"
 #include "sciences/module.h"
 #include "sim_controller/module.h"
-
-#include "commands.h"
+#include "sim_controller/commands.h"
 
 #include "data/data.h"
 #include "data/modules.h"
@@ -21,6 +20,24 @@ static bool UseLocalModules = true;
 std::unordered_map<SimulationCommands, SimEventHandler> SimEventHandlers;
 
 std::deque<SimulationData> PendingInput;
+
+SimulationData::SimulationData(SimulationCommands cmd, int arg)
+	: Command(cmd)
+{
+	IntArgs.push_back(arg);
+}
+
+SimulationData::SimulationData(SimulationCommands cmd, float arg)
+	: Command(cmd)
+{
+	FloatArgs.push_back(arg);
+}
+
+SimulationData::SimulationData(SimulationCommands cmd, const std::string& arg)
+	: Command(cmd)
+{
+	StringArgs.push_back(arg);
+}
 
 void AddSimulationInput(const SimulationData& data)
 {
@@ -67,10 +84,12 @@ void UpdateSimController()
 
 void DoInitModule(int moduleId)
 {
-	auto modulePtr = Data::DB::CreateStructure(Data::CommonModules::Name, Data::CommonModules::Name, Path::Root());
- 	auto modules = Data::GetDataWrapper<Data::CommonModules>(modulePtr).GetModules();
- 
- 	auto moduleInfo = modules.GetValue(moduleId);
+	auto modulePtr = Data::GetDataItem(Path(Data::CommonModules::Name));
+ 	auto modules = Data::GetDataWrapper<Data::CommonModules>(modulePtr);
+
+	auto moduleList = modules.GetModules();
+
+ 	auto moduleInfo = moduleList.GetValue(moduleId);
  	if (!moduleInfo.Valid() || moduleInfo.GetInited())
  		return;
  

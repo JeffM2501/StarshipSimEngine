@@ -38,7 +38,7 @@ namespace Data
 	const DefensiveSystemTypes& DefensiveSystem::GetSystemType() const { return GetField<DefensiveSystemTypes>("SystemType"); }
 	void DefensiveSystem::SetSystemType(const DefensiveSystemTypes& value) { return SetField<DefensiveSystemTypes>("SystemType", value); }
 
-	SystemDef DefensiveSystem::GetSystemInfo() const { return std::move(ExtractStructFromField<SystemDef>("SystemInfo")); }
+	SystemDef DefensiveSystem::GetSystemInfo() const { return ExtractStructFromField<SystemDef>("SystemInfo"); }
 
 	// Autogen structOffsensiveWeaponsSystem
 	bool OffsensiveWeaponsSystem::Create(const std::string& stucture, Data::StructurePtr structureItem)
@@ -52,7 +52,7 @@ namespace Data
 	const OffsensiveWeaponSystemTypes& OffsensiveWeaponsSystem::GetSystemType() const { return GetField<OffsensiveWeaponSystemTypes>("SystemType"); }
 	void OffsensiveWeaponsSystem::SetSystemType(const OffsensiveWeaponSystemTypes& value) { return SetField<OffsensiveWeaponSystemTypes>("SystemType", value); }
 
-	SystemDef OffsensiveWeaponsSystem::GetSystemInfo() const { return std::move(ExtractStructFromField<SystemDef>("SystemInfo")); }
+	SystemDef OffsensiveWeaponsSystem::GetSystemInfo() const { return ExtractStructFromField<SystemDef>("SystemInfo"); }
 	// Registration function
 	void RegisterSystemsStructs()
 	{

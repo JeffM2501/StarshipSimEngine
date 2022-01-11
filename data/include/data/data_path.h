@@ -8,9 +8,10 @@ class Path
 public:
 	std::vector<std::string> Elements;
 
-	inline void Append(const std::string& element)
+	inline const Path& Append(const std::string& element)
 	{
 		Elements.emplace_back(element);
+		return *this;
 	}
 
 	inline const char* Head()
@@ -27,6 +28,23 @@ public:
 			return nullptr;
 
 		return Elements.rbegin()->c_str();
+	}
+
+	Path() {}
+	Path(const std::string& element)
+	{
+		Append(element);
+	}
+
+	Path(const Path& path)
+	{
+		Elements = path.Elements;
+	}
+
+	Path(const Path& path, const std::string& element)
+	{
+		Elements = path.Elements;
+		Append(element);
 	}
 
 	static const Path& Root();

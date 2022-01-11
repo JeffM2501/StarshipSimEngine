@@ -95,15 +95,15 @@ namespace Data
 	const CelstialClassifications& CelestialObject::GetClassification() const { return GetField<CelstialClassifications>("Classification"); }
 	void CelestialObject::SetClassification(const CelstialClassifications& value) { return SetField<CelstialClassifications>("Classification", value); }
 
-	PositionalData CelestialObject::GetPosition() const { return std::move(ExtractStructFromField<PositionalData>("Position")); }
+	PositionalData CelestialObject::GetPosition() const { return ExtractStructFromField<PositionalData>("Position"); }
 
-	PhysicalData CelestialObject::GetPhysical() const { return std::move(ExtractStructFromField<PhysicalData>("Physical")); }
+	PhysicalData CelestialObject::GetPhysical() const { return ExtractStructFromField<PhysicalData>("Physical"); }
 
-	LifeformData CelestialObject::GetLifeforms() const { return std::move(ExtractStructFromField<LifeformData>("Lifeforms")); }
+	LifeformData CelestialObject::GetLifeforms() const { return ExtractStructFromField<LifeformData>("Lifeforms"); }
 
-	ContainerWrapper<DefensiveSystem> CelestialObject::GetDefenses() const { return std::move(ExtractContainerFromField<DefensiveSystem>("Defenses")); }
+	ContainerWrapper<DefensiveSystem> CelestialObject::GetDefenses() const { return ExtractContainerFromField<DefensiveSystem>("Defenses"); }
 
-	ContainerWrapper<OffsensiveWeaponsSystem> CelestialObject::GetOffensiveWeapons() const { return std::move(ExtractContainerFromField<OffsensiveWeaponsSystem>("OffensiveWeapons")); }
+	ContainerWrapper<OffsensiveWeaponsSystem> CelestialObject::GetOffensiveWeapons() const { return ExtractContainerFromField<OffsensiveWeaponsSystem>("OffensiveWeapons"); }
 
 	const bool& CelestialObject::GetFiredUpon() const { return GetField<bool>("FiredUpon"); }
 	void CelestialObject::SetFiredUpon(const bool& value) { return SetField<bool>("FiredUpon", value); }
@@ -147,11 +147,11 @@ namespace Data
 	const Vector3D& Universe::GetMinium() const { return GetField<Vector3D>("Minium"); }
 	void Universe::SetMinium(const Vector3D& value) { return SetField<Vector3D>("Minium", value); }
 
-	ContainerWrapper<CelestialObject> Universe::GetObjects() const { return std::move(ExtractContainerFromField<CelestialObject>("Objects")); }
+	ContainerWrapper<CelestialObject> Universe::GetObjects() const { return ExtractContainerFromField<CelestialObject>("Objects"); }
 
-	Sphere Universe::GetRomulonEmpire() const { return std::move(ExtractStructFromField<Sphere>("RomulonEmpire")); }
+	Sphere Universe::GetRomulonEmpire() const { return ExtractStructFromField<Sphere>("RomulonEmpire"); }
 
-	Sphere Universe::GetKlingonEmpire() const { return std::move(ExtractStructFromField<Sphere>("KlingonEmpire")); }
+	Sphere Universe::GetKlingonEmpire() const { return ExtractStructFromField<Sphere>("KlingonEmpire"); }
 	// Registration function
 	void RegisterCommonStructs()
 	{

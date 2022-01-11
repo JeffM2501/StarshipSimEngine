@@ -30,7 +30,7 @@ namespace Data
 		return true;
 	}
 
-	ContainerWrapper<ModuleInfo> CommonModules::GetModules() const { return std::move(ExtractContainerFromField<ModuleInfo>("Modules")); }
+	ContainerWrapper<ModuleInfo> CommonModules::GetModules() const { return ExtractContainerFromField<ModuleInfo>("Modules"); }
 	// Registration function
 	void RegisterModulesStructs()
 	{

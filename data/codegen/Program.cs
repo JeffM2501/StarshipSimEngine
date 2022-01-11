@@ -368,17 +368,17 @@ namespace codegen
                 {
                     // getter
                     writer.Write("\t" + field.FieldType + " ");
-                    writer.Write(structDef.Name + "::Get" + field.Name + "() const { return std::move(ExtractStructFromField<");
+                    writer.Write(structDef.Name + "::Get" + field.Name + "() const { return ExtractStructFromField<");
                     writer.Write(field.FieldType + ">(\"");
-                    writer.WriteLine(field.Name + "\")); }");
+                    writer.WriteLine(field.Name + "\"); }");
                 }
                 else if (field.ItemType == ItemTypes.Container)
                 {
                     // getter
                     writer.Write("\tContainerWrapper<" + field.FieldType + "> ");
-                    writer.Write(structDef.Name + "::Get" + field.Name + "() const { return std::move(ExtractContainerFromField<");
+                    writer.Write(structDef.Name + "::Get" + field.Name + "() const { return ExtractContainerFromField<");
                     writer.Write(field.FieldType + ">(\"");
-                    writer.WriteLine(field.Name + "\")); }");
+                    writer.WriteLine(field.Name + "\"); }");
                 }
                 else
                 {
